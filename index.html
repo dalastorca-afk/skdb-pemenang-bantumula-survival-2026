@@ -62,7 +62,7 @@
         
         <!-- Left: Mobile Menu Toggle & Brand -->
         <div class="flex items-center space-x-3">
-          <button id="btnToggleSidebar" type="button" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-hidden transition" title="Buka/Tutup Menu">
+          <button id="btnToggleSidebar" type="button" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-hidden transition cursor-pointer" title="Buka/Tutup Menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
@@ -83,7 +83,7 @@
         <!-- Right: Actions & Tools -->
         <div class="flex items-center space-x-2 sm:space-x-3">
           <!-- Apps Script Sync Status Indicator -->
-          <button id="btnOpenSyncModal" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-2xs">
+          <button id="btnOpenSyncModal" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-2xs cursor-pointer">
             <span id="syncStatusDot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span id="syncStatusText" class="hidden sm:inline">Google Sheets Connected</span>
             <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,7 +92,7 @@
           </button>
 
           <!-- Quick Return to Dashboard -->
-          <button id="btnQuickDashboard" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition shadow-xs">
+          <button id="btnQuickDashboard" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition shadow-xs cursor-pointer">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
             </svg>
@@ -122,7 +122,7 @@
                 <p class="text-[10px] text-slate-400">Pilih Unit Beruniform</p>
               </div>
             </div>
-            <button id="btnCloseSidebar" type="button" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 lg:hidden">
+            <button id="btnCloseSidebar" type="button" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 lg:hidden cursor-pointer">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
@@ -132,7 +132,7 @@
           <!-- Navigation Links -->
           <nav class="space-y-1.5">
             <!-- Dashboard Item -->
-            <button id="navItemDashboard" type="button" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/80 transition group shadow-2xs">
+            <button id="navItemDashboard" type="button" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/80 transition group shadow-2xs cursor-pointer">
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-base shadow-xs">
                   📊
@@ -144,15 +144,13 @@
 
             <div class="pt-3 pb-1.5 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3">
               <span>5 Unit Beruniform</span>
-              <button id="btnOpenSettingsUnits" type="button" class="text-[10px] text-emerald-700 hover:underline lowercase font-normal cursor-pointer" title="Ubah Nama Unit & Aktiviti">⚙️ ubah nama</button>
+              <button id="btnOpenSettingsUnits" type="button" class="text-[10px] text-emerald-700 hover:underline lowercase font-normal cursor-pointer">⚙️ ubah nama</button>
             </div>
 
             <!-- TUSPA -->
             <button data-unit="TUSPA" type="button" class="nav-unit-btn w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition group cursor-pointer">
               <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 text-white flex items-center justify-center text-sm font-bold shadow-2xs">
-                  TU
-                </div>
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 text-white flex items-center justify-center text-sm font-bold shadow-2xs">TU</div>
                 <div class="text-left">
                   <div id="labelUnitName-TUSPA" class="font-bold text-slate-800 group-hover:text-purple-700">TUSPA</div>
                   <div id="labelUnitDesc-TUSPA" class="text-[10px] text-slate-400">Tuspa Pertahanan Awam</div>
@@ -164,9 +162,7 @@
             <!-- TKRS -->
             <button data-unit="TKRS" type="button" class="nav-unit-btn w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition group cursor-pointer">
               <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center text-sm font-bold shadow-2xs">
-                  TK
-                </div>
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center text-sm font-bold shadow-2xs">TK</div>
                 <div class="text-left">
                   <div id="labelUnitName-TKRS" class="font-bold text-slate-800 group-hover:text-emerald-700">TKRS</div>
                   <div id="labelUnitDesc-TKRS" class="text-[10px] text-slate-400">Tunas Kadet Remaja Sekolah</div>
@@ -178,9 +174,7 @@
             <!-- PENGAKAP -->
             <button data-unit="PENGAKAP" type="button" class="nav-unit-btn w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition group cursor-pointer">
               <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-800 text-white flex items-center justify-center text-sm font-bold shadow-2xs">
-                  PG
-                </div>
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-800 text-white flex items-center justify-center text-sm font-bold shadow-2xs">PG</div>
                 <div class="text-left">
                   <div id="labelUnitName-PENGAKAP" class="font-bold text-slate-800 group-hover:text-blue-700">PENGAKAP</div>
                   <div id="labelUnitDesc-PENGAKAP" class="text-[10px] text-slate-400">Persekutuan Pengakap</div>
@@ -192,9 +186,7 @@
             <!-- PPT -->
             <button data-unit="PPT" type="button" class="nav-unit-btn w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition group cursor-pointer">
               <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-600 to-orange-700 text-white flex items-center justify-center text-sm font-bold shadow-2xs">
-                  PP
-                </div>
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-600 to-orange-700 text-white flex items-center justify-center text-sm font-bold shadow-2xs">PP</div>
                 <div class="text-left">
                   <div id="labelUnitName-PPT" class="font-bold text-slate-800 group-hover:text-amber-700">PPT</div>
                   <div id="labelUnitDesc-PPT" class="text-[10px] text-slate-400">Pandu Puteri Tunas</div>
@@ -206,9 +198,7 @@
             <!-- PPIM -->
             <button data-unit="PPIM" type="button" class="nav-unit-btn w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition group cursor-pointer">
               <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center text-sm font-bold shadow-2xs">
-                  PI
-                </div>
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center text-sm font-bold shadow-2xs">PI</div>
                 <div class="text-left">
                   <div id="labelUnitName-PPIM" class="font-bold text-slate-800 group-hover:text-pink-700">PPIM</div>
                   <div id="labelUnitDesc-PPIM" class="text-[10px] text-slate-400">Puteri Islam Malaysia</div>
@@ -223,16 +213,12 @@
         <!-- Sidebar Bottom Utility -->
         <div class="pt-4 border-t border-slate-100 space-y-2">
           <button id="btnOpenExportAllModal" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
-            <span class="flex items-center space-x-2">
-              <span>📑</span>
-              <span>Eksport Semua Unit</span>
-            </span>
+            <span class="flex items-center space-x-2"><span>📑</span><span>Eksport Semua Unit</span></span>
             <span class="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">XLS/PDF/DOC</span>
           </button>
 
           <button id="btnOpenGuideModal" type="button" class="w-full flex items-center space-x-2 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer">
-            <span>🌐</span>
-            <span>Panduan GitHub Pages & Sheet</span>
+            <span>🌐</span><span>Panduan GitHub Pages</span>
           </button>
 
           <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/60 text-[11px] text-slate-500">
@@ -240,7 +226,7 @@
               <span class="font-semibold text-slate-700">Pangkalan Murid</span>
               <span class="font-bold text-emerald-600">681 Murid</span>
             </div>
-            <p class="text-[10px] leading-tight text-slate-400">Dimuatkan terus dari fail SKDB 2026 (Tahun 4, 5 & 6).</p>
+            <p class="text-[10px] leading-tight text-slate-400">Tahun 4, 5 & 6 SKDB.</p>
           </div>
         </div>
 
@@ -257,14 +243,13 @@
             <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div class="space-y-2 max-w-2xl">
                 <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-emerald-200 text-xs font-semibold border border-white/10">
-                  <span>🏆</span>
-                  <span>Aktiviti Perkhemahan & Kokurikulum SKDB</span>
+                  <span>🏆</span><span>Aktiviti Kokurikulum SKDB</span>
                 </div>
                 <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
                   Sistem Pemilihan Pemenang
                 </h1>
                 <p class="text-sm sm:text-base text-emerald-100 font-normal leading-relaxed">
-                  Pengisian nama pemenang mengikut 5 Unit Beruniform untuk murid <strong>Tahun 4, Tahun 5 dan Tahun 6</strong>. Data disegerakkan secara automatik kepada semua pengguna.
+                  Pengisian nama pemenang mengikut 5 Unit Beruniform untuk murid <strong>Tahun 4, Tahun 5 dan Tahun 6</strong>.
                 </p>
               </div>
 
@@ -293,12 +278,9 @@
             <div class="flex items-center justify-between mb-4">
               <div>
                 <h2 class="text-lg font-bold text-slate-800">5 Unit Beruniform</h2>
-                <p class="text-xs text-slate-500">Klik mana-mana unit di bawah untuk mengisi pemenang aktiviti</p>
+                <p class="text-xs text-slate-500">Klik unit di bawah untuk memasukkan senarai pemenang</p>
               </div>
               <button id="btnQuickExportSummary" type="button" class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-2xs transition cursor-pointer">
-                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
                 <span>Eksport Ringkasan</span>
               </button>
             </div>
@@ -310,12 +292,8 @@
               <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between mb-3">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 text-white flex items-center justify-center font-black text-lg shadow-sm">
-                      TU
-                    </div>
-                    <span id="dashBadge-TUSPA" class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
-                      0 / 60 Pemenang
-                    </span>
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 text-white flex items-center justify-center font-black text-lg shadow-sm">TU</div>
+                    <span id="dashBadge-TUSPA" class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200">0 / 60 Pemenang</span>
                   </div>
                   <h3 id="cardName-TUSPA" class="text-base font-bold text-slate-800 group-hover:text-purple-600 transition">TUSPA</h3>
                   <p id="cardDesc-TUSPA" class="text-xs text-slate-500 mb-4">Tuspa Pertahanan Awam</p>
@@ -326,11 +304,11 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span id="labelAct1-TUSPA" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
+                      <span id="labelAct1-TUSPA" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 1</span>
                       <span id="dashBMRating-TUSPA" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span id="labelAct2-TUSPA" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
+                      <span id="labelAct2-TUSPA" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 2</span>
                       <span id="dashSurvRating-TUSPA" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
@@ -338,9 +316,7 @@
 
                 <button data-unit="TUSPA" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition flex items-center justify-center space-x-1.5 cursor-pointer">
                   <span id="btnText-TUSPA">Isi Pemenang TUSPA</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
               </div>
 
@@ -348,12 +324,8 @@
               <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between mb-3">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center font-black text-lg shadow-sm">
-                      TK
-                    </div>
-                    <span id="dashBadge-TKRS" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                      0 / 60 Pemenang
-                    </span>
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center font-black text-lg shadow-sm">TK</div>
+                    <span id="dashBadge-TKRS" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">0 / 60 Pemenang</span>
                   </div>
                   <h3 id="cardName-TKRS" class="text-base font-bold text-slate-800 group-hover:text-emerald-600 transition">TKRS</h3>
                   <p id="cardDesc-TKRS" class="text-xs text-slate-500 mb-4">Tunas Kadet Remaja Sekolah</p>
@@ -364,11 +336,11 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span id="labelAct1-TKRS" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
+                      <span id="labelAct1-TKRS" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 1</span>
                       <span id="dashBMRating-TKRS" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span id="labelAct2-TKRS" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
+                      <span id="labelAct2-TKRS" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 2</span>
                       <span id="dashSurvRating-TKRS" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
@@ -376,9 +348,7 @@
 
                 <button data-unit="TKRS" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 shadow-sm transition flex items-center justify-center space-x-1.5 cursor-pointer">
                   <span id="btnText-TKRS">Isi Pemenang TKRS</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
               </div>
 
@@ -386,12 +356,8 @@
               <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between mb-3">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-800 text-white flex items-center justify-center font-black text-lg shadow-sm">
-                      PG
-                    </div>
-                    <span id="dashBadge-PENGAKAP" class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                      0 / 60 Pemenang
-                    </span>
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-800 text-white flex items-center justify-center font-black text-lg shadow-sm">PG</div>
+                    <span id="dashBadge-PENGAKAP" class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">0 / 60 Pemenang</span>
                   </div>
                   <h3 id="cardName-PENGAKAP" class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition">PENGAKAP</h3>
                   <p id="cardDesc-PENGAKAP" class="text-xs text-slate-500 mb-4">Persekutuan Pengakap</p>
@@ -402,11 +368,11 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span id="labelAct1-PENGAKAP" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
+                      <span id="labelAct1-PENGAKAP" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 1</span>
                       <span id="dashBMRating-PENGAKAP" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span id="labelAct2-PENGAKAP" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
+                      <span id="labelAct2-PENGAKAP" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 2</span>
                       <span id="dashSurvRating-PENGAKAP" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
@@ -414,9 +380,7 @@
 
                 <button data-unit="PENGAKAP" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-800 hover:from-blue-700 hover:to-indigo-900 shadow-sm transition flex items-center justify-center space-x-1.5 cursor-pointer">
                   <span id="btnText-PENGAKAP">Isi Pemenang PENGAKAP</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
               </div>
 
@@ -424,12 +388,8 @@
               <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between mb-3">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-orange-700 text-white flex items-center justify-center font-black text-lg shadow-sm">
-                      PP
-                    </div>
-                    <span id="dashBadge-PPT" class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
-                      0 / 60 Pemenang
-                    </span>
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-orange-700 text-white flex items-center justify-center font-black text-lg shadow-sm">PP</div>
+                    <span id="dashBadge-PPT" class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200">0 / 60 Pemenang</span>
                   </div>
                   <h3 id="cardName-PPT" class="text-base font-bold text-slate-800 group-hover:text-amber-600 transition">PPT</h3>
                   <p id="cardDesc-PPT" class="text-xs text-slate-500 mb-4">Pandu Puteri Tunas</p>
@@ -440,11 +400,11 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span id="labelAct1-PPT" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
+                      <span id="labelAct1-PPT" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 1</span>
                       <span id="dashBMRating-PPT" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span id="labelAct2-PPT" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
+                      <span id="labelAct2-PPT" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 2</span>
                       <span id="dashSurvRating-PPT" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
@@ -452,9 +412,7 @@
 
                 <button data-unit="PPT" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-700 hover:to-orange-800 shadow-sm transition flex items-center justify-center space-x-1.5 cursor-pointer">
                   <span id="btnText-PPT">Isi Pemenang PPT</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
               </div>
 
@@ -462,12 +420,8 @@
               <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between mb-3">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center font-black text-lg shadow-sm">
-                      PI
-                    </div>
-                    <span id="dashBadge-PPIM" class="text-xs font-bold px-2.5 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-200">
-                      0 / 60 Pemenang
-                    </span>
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center font-black text-lg shadow-sm">PI</div>
+                    <span id="dashBadge-PPIM" class="text-xs font-bold px-2.5 py-1 rounded-full bg-pink-50 text-pink-700 border border-pink-200">0 / 60 Pemenang</span>
                   </div>
                   <h3 id="cardName-PPIM" class="text-base font-bold text-slate-800 group-hover:text-pink-600 transition">PPIM</h3>
                   <p id="cardDesc-PPIM" class="text-xs text-slate-500 mb-4">Puteri Islam Malaysia</p>
@@ -478,11 +432,11 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span id="labelAct1-PPIM" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
+                      <span id="labelAct1-PPIM" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 1</span>
                       <span id="dashBMRating-PPIM" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span id="labelAct2-PPIM" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
+                      <span id="labelAct2-PPIM" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Aktiviti 2</span>
                       <span id="dashSurvRating-PPIM" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
@@ -490,29 +444,21 @@
 
                 <button data-unit="PPIM" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 shadow-sm transition flex items-center justify-center space-x-1.5 cursor-pointer">
                   <span id="btnText-PPIM">Isi Pemenang PPIM</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
               </div>
 
               <!-- Quick Info / Instruction Card -->
               <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-5 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-lg mb-3">
-                    ⚙️
-                  </div>
+                  <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-lg mb-3">⚙️</div>
                   <h3 class="text-base font-bold text-white mb-1">Tetapan Sistem</h3>
                   <p class="text-xs text-slate-300 mb-4 leading-relaxed">
-                    Anda boleh mengubah nama unit beruniform dan tajuk aktiviti mengikut keperluan sekolah pada bila-bila masa.
+                    Ubah nama 5 Unit Beruniform dan tajuk aktiviti mengikut kesesuaian pada bila-bila masa.
                   </p>
                 </div>
                 <button id="btnOpenSettingsUnitsMain" type="button" class="w-full py-2.5 px-4 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition flex items-center justify-center space-x-1.5 cursor-pointer">
                   <span>Tukar Nama Unit & Aktiviti</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
                 </button>
               </div>
 
@@ -521,7 +467,7 @@
 
         </div>
 
-        <!-- VIEW 2: PAPARAN UNIT BERUNIFORM (PENGISIAN PEMENANG) -->
+        <!-- VIEW 2: PAPARAN UNIT BERUNIFORM -->
         <div id="viewUnitDetail" class="space-y-6 hidden">
           
           <!-- Unit Header Bar -->
@@ -529,54 +475,31 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
               
               <div class="flex items-center space-x-4">
-                <button id="btnBackToDashboard" type="button" class="p-2.5 rounded-xl text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 transition cursor-pointer" title="Kembali ke Dashboard">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                  </svg>
+                <button id="btnBackToDashboard" type="button" class="p-2.5 rounded-xl text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 transition cursor-pointer" title="Kembali">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 </button>
 
-                <div id="activeUnitIconBox" class="w-12 h-12 rounded-xl flex items-center justify-center font-black text-lg text-white shadow-sm">
-                  TU
-                </div>
+                <div id="activeUnitIconBox" class="w-12 h-12 rounded-xl flex items-center justify-center font-black text-lg text-white shadow-sm">TU</div>
 
                 <div>
                   <div class="flex items-center space-x-2">
                     <h2 id="activeUnitTitle" class="text-xl sm:text-2xl font-black text-slate-800">TUSPA</h2>
                     <span id="activeUnitBadge" class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-slate-100 text-slate-700">0/60 Pemenang</span>
                   </div>
-                  <p id="activeUnitSubtitle" class="text-xs text-slate-500">Pengisian Nama Pemenang Aktiviti</p>
+                  <p id="activeUnitSubtitle" class="text-xs text-slate-500">Pengisian Nama Pemenang</p>
                 </div>
               </div>
 
-              <!-- Export Buttons for Active Unit -->
+              <!-- Export Buttons -->
               <div class="flex flex-wrap items-center gap-2">
-                <span class="text-xs font-semibold text-slate-400 mr-1 hidden sm:inline">Eksport:</span>
-                
-                <button id="btnExportUnitExcel" type="button" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-2xs cursor-pointer">
-                  <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
-                  </svg>
-                  <span>.XLSX</span>
-                </button>
-
-                <button id="btnExportUnitPDF" type="button" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 transition shadow-2xs cursor-pointer">
-                  <svg class="w-4 h-4 text-rose-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5z"/>
-                  </svg>
-                  <span>PDF</span>
-                </button>
-
-                <button id="btnExportUnitWord" type="button" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition shadow-2xs cursor-pointer">
-                  <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h5v7h7v9H6z"/>
-                  </svg>
-                  <span>Word</span>
-                </button>
+                <button id="btnExportUnitExcel" type="button" class="px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 cursor-pointer">.XLSX</button>
+                <button id="btnExportUnitPDF" type="button" class="px-3 py-2 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 cursor-pointer">PDF</button>
+                <button id="btnExportUnitWord" type="button" class="px-3 py-2 rounded-xl text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 cursor-pointer">Word</button>
               </div>
 
             </div>
 
-            <!-- Activity Tabs (Dynamically named) -->
+            <!-- Activity Tabs -->
             <div class="flex items-center space-x-2 mt-6 border-b border-slate-200 pb-2">
               <button id="tabActivity1" type="button" class="activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-600 text-white shadow-xs transition cursor-pointer">
                 <span id="tabName1">🩹 AKTIVITI 1</span>
@@ -599,10 +522,7 @@
                 <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                   <div class="flex items-center space-x-2">
                     <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 font-black text-xs flex items-center justify-center">T4</span>
-                    <div>
-                      <h3 class="text-base font-bold text-slate-800">TAHUN 4</h3>
-                      <p class="text-[10px] text-slate-400">Peringkat Murid Tahun 4</p>
-                    </div>
+                    <div><h3 class="text-base font-bold text-slate-800">TAHUN 4</h3></div>
                   </div>
                   <span id="headerBadgeT4" class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">0/10</span>
                 </div>
@@ -610,22 +530,16 @@
                 <div class="relative mb-3">
                   <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Carian Nama Murid</label>
                   <div class="relative">
-                    <input id="inputSearchT4" type="text" placeholder="Ketik min. 2 huruf nama..." class="w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-hidden transition">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                      </svg>
-                    </div>
-                    <button id="btnClearSearchT4" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer">✕</button>
+                    <input id="inputSearchT4" type="text" placeholder="Ketik min. 2 huruf..." class="w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">🔍</div>
+                    <button id="btnClearSearchT4" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 cursor-pointer">✕</button>
                   </div>
                   <div id="dropdownSuggestionsT4" class="hidden absolute left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-white rounded-xl border border-slate-200 shadow-xl z-20 py-1 divide-y divide-slate-100 text-xs"></div>
                 </div>
 
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-[11px] text-slate-400 font-medium">Senarai 10 Pemenang:</span>
-                  <button data-year="4" type="button" class="btn-open-manual-modal text-[11px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg border border-emerald-200 transition cursor-pointer">
-                    + Tambah Manual
-                  </button>
+                  <span class="text-[11px] text-slate-400 font-medium">Senarai Pemenang:</span>
+                  <button data-year="4" type="button" class="btn-open-manual-modal text-[11px] font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg border border-emerald-200 cursor-pointer">+ Tambah Manual</button>
                 </div>
 
                 <div id="winnersListT4" class="space-y-2 min-h-[320px]"></div>
@@ -638,10 +552,7 @@
                 <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                   <div class="flex items-center space-x-2">
                     <span class="w-7 h-7 rounded-lg bg-teal-100 text-teal-800 font-black text-xs flex items-center justify-center">T5</span>
-                    <div>
-                      <h3 class="text-base font-bold text-slate-800">TAHUN 5</h3>
-                      <p class="text-[10px] text-slate-400">Peringkat Murid Tahun 5</p>
-                    </div>
+                    <div><h3 class="text-base font-bold text-slate-800">TAHUN 5</h3></div>
                   </div>
                   <span id="headerBadgeT5" class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">0/10</span>
                 </div>
@@ -649,22 +560,16 @@
                 <div class="relative mb-3">
                   <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Carian Nama Murid</label>
                   <div class="relative">
-                    <input id="inputSearchT5" type="text" placeholder="Ketik min. 2 huruf nama..." class="w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-hidden transition">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                      </svg>
-                    </div>
-                    <button id="btnClearSearchT5" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer">✕</button>
+                    <input id="inputSearchT5" type="text" placeholder="Ketik min. 2 huruf..." class="w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-500 outline-hidden">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">🔍</div>
+                    <button id="btnClearSearchT5" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 cursor-pointer">✕</button>
                   </div>
                   <div id="dropdownSuggestionsT5" class="hidden absolute left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-white rounded-xl border border-slate-200 shadow-xl z-20 py-1 divide-y divide-slate-100 text-xs"></div>
                 </div>
 
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-[11px] text-slate-400 font-medium">Senarai 10 Pemenang:</span>
-                  <button data-year="5" type="button" class="btn-open-manual-modal text-[11px] font-bold text-teal-700 hover:text-teal-800 bg-teal-50 hover:bg-teal-100 px-2.5 py-1 rounded-lg border border-teal-200 transition cursor-pointer">
-                    + Tambah Manual
-                  </button>
+                  <span class="text-[11px] text-slate-400 font-medium">Senarai Pemenang:</span>
+                  <button data-year="5" type="button" class="btn-open-manual-modal text-[11px] font-bold text-teal-700 bg-teal-50 hover:bg-teal-100 px-2.5 py-1 rounded-lg border border-teal-200 cursor-pointer">+ Tambah Manual</button>
                 </div>
 
                 <div id="winnersListT5" class="space-y-2 min-h-[320px]"></div>
@@ -677,10 +582,7 @@
                 <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                   <div class="flex items-center space-x-2">
                     <span class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-800 font-black text-xs flex items-center justify-center">T6</span>
-                    <div>
-                      <h3 class="text-base font-bold text-slate-800">TAHUN 6</h3>
-                      <p class="text-[10px] text-slate-400">Peringkat Murid Tahun 6</p>
-                    </div>
+                    <div><h3 class="text-base font-bold text-slate-800">TAHUN 6</h3></div>
                   </div>
                   <span id="headerBadgeT6" class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">0/10</span>
                 </div>
@@ -688,22 +590,16 @@
                 <div class="relative mb-3">
                   <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Carian Nama Murid</label>
                   <div class="relative">
-                    <input id="inputSearchT6" type="text" placeholder="Ketik min. 2 huruf nama..." class="w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-hidden transition">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                      </svg>
-                    </div>
-                    <button id="btnClearSearchT6" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer">✕</button>
+                    <input id="inputSearchT6" type="text" placeholder="Ketik min. 2 huruf..." class="w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-cyan-500 outline-hidden">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">🔍</div>
+                    <button id="btnClearSearchT6" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 cursor-pointer">✕</button>
                   </div>
                   <div id="dropdownSuggestionsT6" class="hidden absolute left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-white rounded-xl border border-slate-200 shadow-xl z-20 py-1 divide-y divide-slate-100 text-xs"></div>
                 </div>
 
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-[11px] text-slate-400 font-medium">Senarai 10 Pemenang:</span>
-                  <button data-year="6" type="button" class="btn-open-manual-modal text-[11px] font-bold text-cyan-700 hover:text-cyan-800 bg-cyan-50 hover:bg-cyan-100 px-2.5 py-1 rounded-lg border border-cyan-200 transition cursor-pointer">
-                    + Tambah Manual
-                  </button>
+                  <span class="text-[11px] text-slate-400 font-medium">Senarai Pemenang:</span>
+                  <button data-year="6" type="button" class="btn-open-manual-modal text-[11px] font-bold text-cyan-700 bg-cyan-50 hover:bg-cyan-100 px-2.5 py-1 rounded-lg border border-cyan-200 cursor-pointer">+ Tambah Manual</button>
                 </div>
 
                 <div id="winnersListT6" class="space-y-2 min-h-[320px]"></div>
@@ -724,9 +620,7 @@
           <img src="https://lh3.googleusercontent.com/d/1VTohIzoJNofWQXBfuBgpqnLLBsO3pmkD" alt="SKDB" class="w-5 h-5 object-contain" onerror="this.style.display='none'">
           <span>SK Desa Baiduri &bull; Unit Kokurikulum 2026</span>
         </div>
-        <div>
-          <span>Dihoskan di GitHub Pages &bull; Disambung ke Google Sheets Apps Script API</span>
-        </div>
+        <div><span>Dihoskan di GitHub Pages &bull; Disambung ke Google Sheets</span></div>
       </div>
     </footer>
 
@@ -738,56 +632,56 @@
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
         <div>
           <h3 class="text-base font-bold text-slate-800">Tetapan Nama Unit & Aktiviti</h3>
-          <p class="text-[11px] text-slate-500">Ubah suai nama 5 Unit Beruniform dan Tajuk 2 Aktiviti</p>
+          <p class="text-[11px] text-slate-500">Ubah nama unit beruniform dan tajuk aktiviti</p>
         </div>
         <button id="btnCloseSettingsModal" type="button" class="text-slate-400 hover:text-slate-600 cursor-pointer">✕</button>
       </div>
 
       <div class="space-y-4 text-xs">
         <div>
-          <label class="block font-bold text-slate-700 uppercase mb-1">Tajuk Aktiviti 1 (Tab & Rekod)</label>
-          <input id="inputActName1" type="text" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-semibold" placeholder="Cth: BANTU MULA">
+          <label class="block font-bold text-slate-700 uppercase mb-1">Tajuk Aktiviti 1</label>
+          <input id="inputActName1" type="text" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-semibold">
         </div>
         <div>
-          <label class="block font-bold text-slate-700 uppercase mb-1">Tajuk Aktiviti 2 (Tab & Rekod)</label>
-          <input id="inputActName2" type="text" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-semibold" placeholder="Cth: SURVIVAL">
+          <label class="block font-bold text-slate-700 uppercase mb-1">Tajuk Aktiviti 2</label>
+          <input id="inputActName2" type="text" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-semibold">
         </div>
 
         <div class="border-t border-slate-200 pt-3 space-y-3">
           <div class="font-bold text-slate-800">Nama 5 Unit Beruniform:</div>
           <div class="grid grid-cols-2 gap-2">
             <div>
-              <span class="text-[10px] text-slate-400 block">Unit 1 (Asalnya TUSPA)</span>
-              <input id="unitCode-TUSPA" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
-              <input id="unitDesc-TUSPA" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+              <span class="text-[10px] text-slate-400 block">Unit 1</span>
+              <input id="unitCode-TUSPA" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama">
+              <input id="unitDesc-TUSPA" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan">
             </div>
             <div>
-              <span class="text-[10px] text-slate-400 block">Unit 2 (Asalnya TKRS)</span>
-              <input id="unitCode-TKRS" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
-              <input id="unitDesc-TKRS" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+              <span class="text-[10px] text-slate-400 block">Unit 2</span>
+              <input id="unitCode-TKRS" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama">
+              <input id="unitDesc-TKRS" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan">
             </div>
             <div>
-              <span class="text-[10px] text-slate-400 block">Unit 3 (Asalnya PENGAKAP)</span>
-              <input id="unitCode-PENGAKAP" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
-              <input id="unitDesc-PENGAKAP" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+              <span class="text-[10px] text-slate-400 block">Unit 3</span>
+              <input id="unitCode-PENGAKAP" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama">
+              <input id="unitDesc-PENGAKAP" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan">
             </div>
             <div>
-              <span class="text-[10px] text-slate-400 block">Unit 4 (Asalnya PPT)</span>
-              <input id="unitCode-PPT" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
-              <input id="unitDesc-PPT" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+              <span class="text-[10px] text-slate-400 block">Unit 4</span>
+              <input id="unitCode-PPT" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama">
+              <input id="unitDesc-PPT" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan">
             </div>
             <div class="col-span-2">
-              <span class="text-[10px] text-slate-400 block">Unit 5 (Asalnya PPIM)</span>
-              <input id="unitCode-PPIM" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
-              <input id="unitDesc-PPIM" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+              <span class="text-[10px] text-slate-400 block">Unit 5</span>
+              <input id="unitCode-PPIM" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama">
+              <input id="unitDesc-PPIM" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan">
             </div>
           </div>
         </div>
       </div>
 
       <div class="flex items-center justify-end space-x-2 mt-6 pt-3 border-t border-slate-100">
-        <button id="btnCancelSettings" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition cursor-pointer">Batal</button>
-        <button id="btnSaveSettingsUnits" type="button" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition shadow-xs cursor-pointer">Simpan Tetapan</button>
+        <button id="btnCancelSettings" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl cursor-pointer">Batal</button>
+        <button id="btnSaveSettingsUnits" type="button" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-xs cursor-pointer">Simpan Tetapan</button>
       </div>
     </div>
   </div>
@@ -805,22 +699,15 @@
           <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Murid</label>
           <input id="editInputName" type="text" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
         </div>
-
         <div>
           <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Kelas</label>
-          <input id="editInputClass" type="text" placeholder="Cth: BERLIAN, DELIMA, INTAN..." class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
-        </div>
-
-        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1">
-          <div><span class="font-bold">Unit:</span> <span id="editLabelUnit">TUSPA</span></div>
-          <div><span class="font-bold">Aktiviti:</span> <span id="editLabelActivity">BANTU MULA</span></div>
-          <div><span class="font-bold">Peringkat:</span> Tahun <span id="editLabelYear">4</span> (Tempat <span id="editLabelRank">1</span>)</div>
+          <input id="editInputClass" type="text" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
         </div>
       </div>
 
       <div class="flex items-center justify-end space-x-2 mt-6">
-        <button id="btnCancelEdit" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition cursor-pointer">Batal</button>
-        <button id="btnSaveEdit" type="button" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition shadow-xs cursor-pointer">Simpan Perubahan</button>
+        <button id="btnCancelEdit" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl cursor-pointer">Batal</button>
+        <button id="btnSaveEdit" type="button" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-xs cursor-pointer">Simpan</button>
       </div>
     </div>
   </div>
@@ -831,7 +718,6 @@
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
         <div>
           <h3 class="text-base font-bold text-slate-800">Tambah Pemenang Secara Manual</h3>
-          <p class="text-[11px] text-slate-500">Bagi murid yang tiada dalam data sedia ada</p>
         </div>
         <button id="btnCloseManualModal" type="button" class="text-slate-400 hover:text-slate-600 cursor-pointer">✕</button>
       </div>
@@ -839,68 +725,17 @@
       <div class="space-y-4">
         <div>
           <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Penuh Murid</label>
-          <input id="manualInputName" type="text" placeholder="Cth: AHMAD DANISH BIN AZMAN" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
+          <input id="manualInputName" type="text" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
         </div>
-
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Kelas (Pilihan)</label>
-          <input id="manualInputClass" type="text" placeholder="Cth: BERLIAN / DELIMA / INTAN" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
-        </div>
-
-        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-xs text-emerald-800">
-          Murid ini akan dimasukkan ke dalam slot pemenang seterusnya bagi <strong>Tahun <span id="manualLabelYear">4</span></strong>.
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Kelas</label>
+          <input id="manualInputClass" type="text" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
         </div>
       </div>
 
       <div class="flex items-center justify-end space-x-2 mt-6">
-        <button id="btnCancelManual" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition cursor-pointer">Batal</button>
-        <button id="btnConfirmManual" type="button" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition shadow-xs cursor-pointer">+ Masukkan Pemenang</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: GOOGLE APPS SCRIPT -->
-  <div id="modalSyncSetup" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-slate-100">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-        <div class="flex items-center space-x-2">
-          <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold">GS</div>
-          <div>
-            <h3 class="text-base font-bold text-slate-800">Sambungan Google Sheets (Apps Script API)</h3>
-            <p class="text-[11px] text-slate-500">Pangkalan data awan untuk penyelarasan automatik</p>
-          </div>
-        </div>
-        <button id="btnCloseSyncModal" type="button" class="text-slate-400 hover:text-slate-600 cursor-pointer">✕</button>
-      </div>
-
-      <div class="space-y-5 text-xs text-slate-700">
-        <div class="flex flex-wrap items-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
-          <button id="btnPushToSheets" type="button" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition shadow-2xs flex items-center space-x-1.5 cursor-pointer">
-            <span>Hantar Data ke Google Sheets</span>
-          </button>
-          <button id="btnPullFromSheets" type="button" class="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-700 font-bold hover:bg-slate-100 transition shadow-2xs flex items-center space-x-1.5 cursor-pointer">
-            <span>Muat Turun Semula Data</span>
-          </button>
-          <span id="syncResultStatus" class="text-xs font-semibold text-emerald-700">Status: URL Google Apps Script diset secara kekal.</span>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-end mt-6 pt-3 border-t border-slate-100">
-        <button id="btnCloseSyncModalBottom" type="button" class="px-5 py-2 text-xs font-bold text-white bg-slate-800 hover:bg-slate-900 rounded-xl transition cursor-pointer">Tutup</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: PANDUAN GITHUB -->
-  <div id="modalGuide" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-slate-100">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-        <h3 class="text-base font-bold text-slate-800">Panduan GitHub Pages</h3>
-        <button id="btnCloseGuideModal" type="button" class="text-slate-400 hover:text-slate-600 cursor-pointer">✕</button>
-      </div>
-      <p class="text-xs text-slate-600 leading-relaxed">Aplikasi web ini berjalan sepenuhnya secara automatik dan menyelaraskan data kepada semua pengguna yang melayari pautan GitHub Pages anda.</p>
-      <div class="flex items-center justify-end mt-6 pt-3 border-t border-slate-100">
-        <button id="btnCloseGuideModalBottom" type="button" class="px-5 py-2 text-xs font-bold text-white bg-slate-800 hover:bg-slate-900 rounded-xl transition cursor-pointer">Tutup</button>
+        <button id="btnCancelManual" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl cursor-pointer">Batal</button>
+        <button id="btnConfirmManual" type="button" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-xs cursor-pointer">Tambah</button>
       </div>
     </div>
   </div>
@@ -943,7 +778,7 @@
       });
 
       try {
-        const saved = localStorage.getItem('skdb_winners_state_v3');
+        const saved = localStorage.getItem('skdb_winners_state_v4');
         if (saved) {
           const parsed = JSON.parse(saved);
           if (parsed.winners) appState.winners = parsed.winners;
@@ -958,7 +793,7 @@
 
     function saveState() {
       try {
-        localStorage.setItem('skdb_winners_state_v3', JSON.stringify({
+        localStorage.setItem('skdb_winners_state_v4', JSON.stringify({
           winners: appState.winners,
           unitsConfig: unitsConfig,
           activitiesConfig: activitiesConfig
@@ -971,7 +806,7 @@
     function showToast(msg, type = 'success') {
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
-      const bg = type === 'success' ? 'bg-emerald-800 text-white' : (type === 'error' ? 'bg-rose-800 text-white' : 'bg-slate-800 text-white');
+      const bg = type === 'success' ? 'bg-emerald-800 text-white' : 'bg-rose-800 text-white';
       toast.className = `${bg} px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center space-x-2 transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto`;
       toast.innerHTML = `<span>${type === 'success' ? '✓' : '✕'}</span><span>${msg}</span>`;
       container.appendChild(toast);
@@ -1009,9 +844,7 @@
       const uConf = unitsConfig[appState.activeUnit] || { name: appState.activeUnit, desc: '' };
       document.getElementById('activeUnitTitle').textContent = uConf.name;
       document.getElementById('activeUnitSubtitle').textContent = uConf.desc + ' — Pengisian Pemenang';
-
-      const iconBox = document.getElementById('activeUnitIconBox');
-      iconBox.textContent = uConf.name.substring(0, 2);
+      document.getElementById('activeUnitIconBox').textContent = uConf.name.substring(0, 2);
 
       const a1Name = activitiesConfig.act1;
       const a2Name = activitiesConfig.act2;
@@ -1161,10 +994,6 @@
       editingItem = { unit: appState.activeUnit, activityKey: appState.activeActivityKey, year: year, index: index };
       document.getElementById('editInputName').value = winner.name;
       document.getElementById('editInputClass').value = winner.studentClass || '';
-      document.getElementById('editLabelUnit').textContent = unitsConfig[appState.activeUnit].name;
-      document.getElementById('editLabelActivity').textContent = activitiesConfig[appState.activeActivityKey];
-      document.getElementById('editLabelYear').textContent = year;
-      document.getElementById('editLabelRank').textContent = index + 1;
       document.getElementById('modalEditWinner').classList.remove('hidden');
     }
 
@@ -1241,7 +1070,6 @@
 
     function openManualAddModal(year, prefillName = '') {
       manualTargetYear = year;
-      document.getElementById('manualLabelYear').textContent = year;
       document.getElementById('manualInputName').value = prefillName;
       document.getElementById('manualInputClass').value = '';
       document.getElementById('modalManualAdd').classList.remove('hidden');
@@ -1257,13 +1085,11 @@
         totalAll += count;
         if (count === 60) completedUnits++;
 
-        // Sidebar name & desc
         const nameEl = document.getElementById('labelUnitName-' + uId);
         const descEl = document.getElementById('labelUnitDesc-' + uId);
         if (nameEl) nameEl.textContent = uConf.name;
         if (descEl) descEl.textContent = uConf.desc;
 
-        // Card name & desc
         const cName = document.getElementById('cardName-' + uId);
         const cDesc = document.getElementById('cardDesc-' + uId);
         const bText = document.getElementById('btnText-' + uId);
@@ -1293,7 +1119,6 @@
       document.getElementById('statCompletedUnits').textContent = completedUnits;
     }
 
-    // Auto Google Sheets sync
     async function autoPushToSheetsAsync() {
       if (!appState.appsScriptUrl) return;
       const flattened = [];
@@ -1335,7 +1160,6 @@
             appState.winners[uId] = { act1: {4:[],5:[],6:[]}, act2: {4:[],5:[],6:[]} };
           });
           data.winners.forEach(w => {
-            // Find key by name match
             let uKey = Object.keys(unitsConfig).find(k => unitsConfig[k].name.toUpperCase() === w.unit.toUpperCase()) || 'TUSPA';
             let aKey = (w.activity.toUpperCase() === activitiesConfig.act2.toUpperCase()) ? 'act2' : 'act1';
             if (appState.winners[uKey]?.[aKey]?.[w.year]) {
@@ -1471,7 +1295,6 @@
       initState();
       [4, 5, 6].forEach(y => setupAutocomplete(y));
 
-      // Sidebar & Navigation
       document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
         const sb = document.getElementById('appSidebar');
         if (sb.classList.contains('-translate-x-full')) {
@@ -1502,7 +1325,6 @@
         btn.addEventListener('click', () => showUnit(btn.getAttribute('data-unit')));
       });
 
-      // Tabs
       document.getElementById('tabActivity1')?.addEventListener('click', () => {
         appState.activeActivityKey = 'act1';
         renderCurrentUnitView();
@@ -1512,7 +1334,6 @@
         renderCurrentUnitView();
       });
 
-      // Manual Modal
       document.querySelectorAll('.btn-open-manual-modal').forEach(btn => {
         btn.addEventListener('click', () => openManualAddModal(parseInt(btn.getAttribute('data-year'))));
       });
@@ -1527,7 +1348,6 @@
         }
       });
 
-      // Edit Modal
       document.getElementById('btnCloseEditModal')?.addEventListener('click', () => document.getElementById('modalEditWinner').classList.add('hidden'));
       document.getElementById('btnCancelEdit')?.addEventListener('click', () => document.getElementById('modalEditWinner').classList.add('hidden'));
       document.getElementById('btnSaveEdit')?.addEventListener('click', () => {
@@ -1545,7 +1365,6 @@
         }
       });
 
-      // Unit & Activity Customization Modal
       const openSettingsFn = () => {
         document.getElementById('inputActName1').value = activitiesConfig.act1;
         document.getElementById('inputActName2').value = activitiesConfig.act2;
@@ -1577,29 +1396,27 @@
         saveState();
         renderCurrentUnitView();
         document.getElementById('modalSettingsUnits').classList.add('hidden');
-        showToast('Tetapan nama unit & aktiviti berjaya disimpan!');
+        showToast('Tetapan disimpan!');
       });
 
-      // Export Buttons
       document.getElementById('btnExportUnitExcel')?.addEventListener('click', () => exportToExcel(appState.activeUnit));
       document.getElementById('btnExportUnitPDF')?.addEventListener('click', () => exportToPDF(appState.activeUnit));
       document.getElementById('btnExportUnitWord')?.addEventListener('click', () => exportToWord(appState.activeUnit));
       document.getElementById('btnOpenExportAllModal')?.addEventListener('click', () => exportToExcel(null));
       document.getElementById('btnQuickExportSummary')?.addEventListener('click', () => exportToPDF(null));
 
-      // Sync Modals
       document.getElementById('btnOpenSyncModal')?.addEventListener('click', () => document.getElementById('modalSyncSetup').classList.remove('hidden'));
       document.getElementById('btnCloseSyncModal')?.addEventListener('click', () => document.getElementById('modalSyncSetup').classList.add('hidden'));
       document.getElementById('btnCloseSyncModalBottom')?.addEventListener('click', () => document.getElementById('modalSyncSetup').classList.add('hidden'));
       document.getElementById('btnPushToSheets')?.addEventListener('click', async () => {
-        showToast('Menghantar data ke Google Sheets...');
+        showToast('Menghantar data...');
         await autoPushToSheetsAsync();
-        showToast('Data berjaya dihantar ke Google Sheets!');
+        showToast('Berjaya dihantar!');
       });
       document.getElementById('btnPullFromSheets')?.addEventListener('click', async () => {
-        showToast('Memuat turun data...');
+        showToast('Memuat turun...');
         await autoPullFromSheetsSilent();
-        showToast('Data berjaya dimuat turun!');
+        showToast('Selesai dimuat turun!');
       });
 
       document.getElementById('btnOpenGuideModal')?.addEventListener('click', () => document.getElementById('modalGuide').classList.remove('hidden'));
