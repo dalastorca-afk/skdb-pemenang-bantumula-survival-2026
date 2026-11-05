@@ -795,6 +795,24 @@
     </div>
   </div>
 
+  <!-- MODAL: PANDUAN GITHUB PAGES -->
+  <div id="modalGuide" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+        <h3 class="text-base font-bold text-slate-800">Panduan Ringkas Penggunaan</h3>
+        <button id="btnCloseGuideModal" type="button" class="text-slate-400 hover:text-slate-600 cursor-pointer">✕</button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+        <p>1. <strong>Pilih Unit:</strong> Klik pada mana-mana kad unit atau menu sisi untuk mengisi pemenang.</p>
+        <p>2. <strong>Carian Nama:</strong> Taip sekurang-kurangnya 2 huruf pada kotak carian untuk memilih murid SKDB secara automatik.</p>
+        <p>3. <strong>Auto-Sync Langsung:</strong> Data ditambah atau dipadam akan disegerakkan terus ke Google Sheets dan dikemas kini secara berkala pada skrin pengguna lain.</p>
+      </div>
+      <div class="flex justify-end mt-5">
+        <button id="btnCloseGuideModalBottom" type="button" class="px-4 py-2 text-xs font-bold bg-slate-800 text-white rounded-xl cursor-pointer">Tutup</button>
+      </div>
+    </div>
+  </div>
+
   <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
 
   <!-- JAVASCRIPT LOGIC -->
@@ -1543,9 +1561,17 @@
       document.getElementById('btnExportUnitWord')?.addEventListener('click', () => exportToWord(appState.activeUnit));
       document.getElementById('btnOpenExportAllModal')?.addEventListener('click', () => exportToExcel(null));
       document.getElementById('btnQuickExportSummary')?.addEventListener('click', () => exportToPDF(null));
-      document.getElementById('btnOpenGuideModal')?.addEventListener('click', () => document.getElementById('modalGuide').classList.remove('hidden'));
-      document.getElementById('btnCloseGuideModal')?.addEventListener('click', () => document.getElementById('modalGuide').classList.add('hidden'));
-      document.getElementById('btnCloseGuideModalBottom')?.addEventListener('click', () => document.getElementById('modalGuide').classList.add('hidden'));
+
+      const modalGuideEl = document.getElementById('modalGuide');
+      document.getElementById('btnOpenGuideModal')?.addEventListener('click', () => {
+        if (modalGuideEl) modalGuideEl.classList.remove('hidden');
+      });
+      document.getElementById('btnCloseGuideModal')?.addEventListener('click', () => {
+        if (modalGuideEl) modalGuideEl.classList.add('hidden');
+      });
+      document.getElementById('btnCloseGuideModalBottom')?.addEventListener('click', () => {
+        if (modalGuideEl) modalGuideEl.classList.add('hidden');
+      });
     });
   </script>
 </body>
