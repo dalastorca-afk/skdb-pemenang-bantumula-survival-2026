@@ -106,8 +106,8 @@
         <div class="flex items-center space-x-2 sm:space-x-3">
           <!-- Apps Script Sync Status Indicator -->
           <button id="btnOpenSyncModal" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-2xs cursor-pointer">
-            <span id="syncStatusDot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span id="syncStatusText" class="hidden sm:inline">Google Sheets Connected</span>
+            <span id="syncStatusDot" class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span id="syncStatusText" class="hidden sm:inline">Auto-Sync Aktif</span>
             <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
             </svg>
@@ -824,6 +824,8 @@
 
     let editingItem = { unit: '', activityKey: '', year: 4, index: 0 };
     let manualTargetYear = 4;
+    let isSyncingToServer = false;
+    let syncIntervalTimer = null;
 
     function initState() {
       ['TUSPA', 'TKRS', 'PENGAKAP', 'PPT', 'PPIM'].forEach(u => {
@@ -842,6 +844,39 @@
           if (parsed.activitiesConfig) activitiesConfig = parsed.activitiesConfig;
           if (parsed.watermarkOpacity !== undefined) appState.watermarkOpacity = parsed.watermarkOpacity;
         }
+      } catch(e) {}
+
+      applyWatermarkOpacity(appState.watermarkOpacity);
+      updateAllUI();
+      
+      // Tarik data pertama kali & mulakan kitaran auto-sync berterusan (setiap 5 saat)
+      autoPullFromSheetsSilent();
+      startAutoSyncPolling();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('skdb_winners_state_v5', JSON.stringify({
+          winners: appState.winners,
+          unitsConfig: unitsConfig,
+          activitiesConfig: activitiesConfig,
+          watermarkOpacity: appState.watermarkOpacity
+        }));
+      } catch(e) {}
+      updateAllUI();
+      // Auto push serta-merta ke pelayan Google Sheets setiap kali ada pertambahan/pemadaman
+      autoPushToSheetsAsync();
+    }
+
+    function startAutoSyncPolling() {
+      if (syncIntervalTimer) clearInterval(syncIntervalTimer);
+      // Semak perubahan dari pengguna lain setiap 5 saat
+      syncIntervalTimer = setInterval(() => {
+        if (!isSyncingToServer) {
+          autoPullFromSheetsSilent();
+        }
+      }, 5000);
+    }
       } catch(e) {}
 
       applyWatermarkOpacity(appState.watermarkOpacity);
@@ -1195,6 +1230,12 @@
 
     async function autoPushToSheetsAsync() {
       if (!appState.appsScriptUrl) return;
+      isSyncingToServer = true;
+      const dot = document.getElementById('syncStatusDot');
+      const text = document.getElementById('syncStatusText');
+      if (dot) dot.className = 'w-2 h-2 rounded-full bg-amber-500 animate-pulse';
+      if (text) text.textContent = 'Menyimpan...';
+
       const flattened = [];
       ['TUSPA', 'TKRS', 'PENGAKAP', 'PPT', 'PPIM'].forEach(uId => {
         ['act1', 'act2'].forEach(actKey => {
@@ -1221,26 +1262,53 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'saveAll', winners: flattened })
         });
-      } catch(e) {}
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-ping';
+        if (text) text.textContent = 'Auto-Sync Aktif';
+      } catch(e) {
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-rose-500';
+        if (text) text.textContent = 'Ralat Sync';
+      } finally {
+        setTimeout(() => { isSyncingToServer = false; }, 1500);
+      }
     }
 
     async function autoPullFromSheetsSilent() {
-      if (!appState.appsScriptUrl) return;
+      if (!appState.appsScriptUrl || isSyncingToServer) return;
       try {
-        const response = await fetch(appState.appsScriptUrl);
+        const response = await fetch(appState.appsScriptUrl + '?t=' + Date.now());
         const data = await response.json();
-        if (data.status === 'success' && data.winners && data.winners.length > 0) {
+        if (data.status === 'success' && Array.isArray(data.winners)) {
+          const freshWinners = {};
           ['TUSPA', 'TKRS', 'PENGAKAP', 'PPT', 'PPIM'].forEach(uId => {
-            appState.winners[uId] = { act1: {4:[],5:[],6:[]}, act2: {4:[],5:[],6:[]} };
+            freshWinners[uId] = { act1: {4:[],5:[],6:[]}, act2: {4:[],5:[],6:[]} };
           });
+          
           data.winners.forEach(w => {
-            let uKey = Object.keys(unitsConfig).find(k => unitsConfig[k].name.toUpperCase() === w.unit.toUpperCase()) || 'TUSPA';
-            let aKey = (w.activity.toUpperCase() === activitiesConfig.act2.toUpperCase()) ? 'act2' : 'act1';
-            if (appState.winners[uKey]?.[aKey]?.[w.year]) {
-              appState.winners[uKey][aKey][w.year].push({ name: w.name, studentClass: w.studentClass, manual: false });
+            let uKey = Object.keys(unitsConfig).find(k => unitsConfig[k].name.toUpperCase() === String(w.unit).toUpperCase()) || 'TUSPA';
+            let aKey = (String(w.activity).toUpperCase() === activitiesConfig.act2.toUpperCase()) ? 'act2' : 'act1';
+            if (freshWinners[uKey]?.[aKey]?.[w.year]) {
+              freshWinners[uKey][aKey][w.year].push({ name: w.name, studentClass: w.studentClass, manual: false });
             }
           });
-          updateAllUI();
+
+          // Semak jika ada perbezaan sebelum kemas kini paparan untuk elakkan flicker
+          const oldStr = JSON.stringify(appState.winners);
+          const newStr = JSON.stringify(freshWinners);
+          if (oldStr !== newStr) {
+            appState.winners = freshWinners;
+            try {
+              localStorage.setItem('skdb_winners_state_v5', JSON.stringify({
+                winners: appState.winners,
+                unitsConfig: unitsConfig,
+                activitiesConfig: activitiesConfig,
+                watermarkOpacity: appState.watermarkOpacity
+              }));
+            } catch(err) {}
+            updateAllUI();
+            if (document.getElementById('viewUnitDetail') && !document.getElementById('viewUnitDetail').classList.contains('hidden')) {
+              renderCurrentUnitView();
+            }
+          }
         }
       } catch(e) {}
     }
