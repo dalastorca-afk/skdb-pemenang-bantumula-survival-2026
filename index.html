@@ -1,25 +1,47 @@
 <!-- ... existing code ... -->
-  <!-- Watermark Logo Background (Dengan kawalan keterlihatan / opacity) -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .bg-watermark {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: var(--watermark-opacity, 0.80);
+      transition: opacity 0.3s ease;
+    }
+    .bg-watermark img {
+      max-width: 520px;
+      width: 75vw;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.08));
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col relative antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- Watermark Logo Background (Logo Rasmi SKDB dari Google Drive dengan 80% opacity) -->
   <div id="schoolWatermark" class="bg-watermark">
-    <!-- Logo SVG Vektor SKDB yang ringan dan kemas (menggantikan kod base64 yang panjang) -->
-    <svg class="w-[500px] h-[500px] max-w-[80vw]" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="skdbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#15803d"/>
-          <stop offset="50%" stop-color="#0f766e"/>
-          <stop offset="100%" stop-color="#1e3a8a"/>
-        </linearGradient>
-      </defs>
-      <!-- Perisai Lencana Sekolah -->
-      <path d="M150 20 L240 60 V160 C240 220 150 270 150 270 C150 270 60 220 60 160 V60 Z" fill="url(#skdbGrad)" stroke="#facc15" stroke-width="8"/>
-      <!-- Obor & Buku Ilmu -->
-      <path d="M110 170 Q150 150 190 170 Q150 190 110 170 Z" fill="#ffffff" opacity="0.9"/>
-      <path d="M150 100 L160 140 H140 Z" fill="#facc15"/>
-      <circle cx="150" cy="95" r="12" fill="#ef4444"/>
-      <!-- Jalur Bintang & Teks SKDB -->
-      <text x="150" y="215" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="22" font-weight="900" fill="#ffffff" text-anchor="middle">SKDB</text>
-      <text x="150" y="235" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="11" font-weight="700" fill="#fde047" text-anchor="middle">BERILMU BERBAKTI 2026</text>
-    </svg>
+    <img id="imgWatermarkLogo" src="https://lh3.googleusercontent.com/d/1VTohIzoJNofWQXBfuBgpqnLLBsO3pmkD" onerror="this.src='https://placehold.co/400x400/15803d/ffffff?text=SKDB+2026'" alt="Watermark SKDB">
   </div>
 
   <!-- App Wrapper -->
@@ -38,9 +60,7 @@
           </button>
 
           <div class="flex items-center space-x-3 cursor-pointer" id="navBrandHome">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-700 to-teal-800 flex items-center justify-center text-white font-black text-sm border-2 border-amber-300 shadow-sm">
-              SKDB
-            </div>
+            <img id="imgNavLogo" src="https://lh3.googleusercontent.com/d/1VTohIzoJNofWQXBfuBgpqnLLBsO3pmkD" onerror="this.src='https://placehold.co/80x80/15803d/ffffff?text=SKDB'" alt="Logo SKDB" class="w-10 h-10 object-contain rounded-lg">
             <div>
               <div class="flex items-center space-x-2">
                 <span class="text-sm sm:text-base font-extrabold bg-gradient-to-r from-emerald-700 via-teal-700 to-cyan-800 bg-clip-text text-transparent">SK DESA BAIDURI</span>
@@ -50,4 +70,209 @@
             </div>
           </div>
         </div>
+
+        <!-- Right: Actions & Tools -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <!-- Apps Script Sync Status Indicator -->
+          <button id="btnOpenSyncModal" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-2xs">
+            <span id="syncStatusDot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="syncStatusText" class="hidden sm:inline">Google Sheets</span>
+            <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+          </button>
+
+          <!-- Watermark Opacity Slider Toggle -->
+          <button id="btnToggleWatermarkMenu" type="button" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition" title="Kecerahan Logo Latar (Watermark 80%)">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+          </button>
+
+          <!-- Quick Return to Dashboard -->
+          <button id="btnQuickDashboard" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition shadow-xs">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+            </svg>
+            <span class="hidden sm:inline">Dashboard</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Body Layout with Sidebar and Content -->
+    <div class="flex-1 flex max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 gap-6 relative">
+      
+      <!-- Backdrop Overlay for Mobile Sidebar -->
+      <div id="sidebarBackdrop" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-40 hidden transition-opacity lg:hidden"></div>
+
+      <!-- Collapsible Sidebar -->
+      <aside id="appSidebar" class="fixed lg:sticky top-0 lg:top-20 inset-y-0 left-0 z-50 lg:z-10 w-72 bg-white/95 lg:bg-white rounded-none lg:rounded-2xl border-r lg:border border-slate-200 shadow-xl lg:shadow-xs p-5 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out h-full lg:h-[calc(100vh-6.5rem)] overflow-y-auto">
+        
+        <div>
+          <!-- Sidebar Header (Inside drawer for mobile) -->
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+            <div class="flex items-center space-x-3">
+              <img id="imgSidebarLogo" src="https://lh3.googleusercontent.com/d/1VTohIzoJNofWQXBfuBgpqnLLBsO3pmkD" onerror="this.src='https://placehold.co/80x80/15803d/ffffff?text=SKDB'" alt="Logo" class="w-10 h-10 object-contain rounded-lg">
+              <div>
+                <h2 class="text-xs font-bold text-slate-800">MENU UTAMA</h2>
+                <p class="text-[10px] text-slate-400">Pilih Unit Beruniform</p>
+              </div>
+            </div>
+            <button id="btnCloseSidebar" type="button" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 lg:hidden">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+<!-- ... existing code ... -->
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-auto text-center text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div class="flex items-center space-x-2">
+          <img id="imgFooterLogo" src="https://lh3.googleusercontent.com/d/1VTohIzoJNofWQXBfuBgpqnLLBsO3pmkD" onerror="this.src='https://placehold.co/40x40/15803d/ffffff?text=SKDB'" alt="SKDB" class="w-5 h-5 object-contain">
+          <span>SK Desa Baiduri &bull; Unit Kokurikulum 2026</span>
+        </div>
+        <div>
+          <span>Dihoskan di GitHub Pages &bull; Disambung ke Google Sheets Apps Script API</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MODAL: TUKAR / UPLOAD LOGO SEKOLAH -->
+  <div id="modalLogoSettings" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+        <h3 class="text-base font-bold text-slate-800">Pautan Logo Rasmi SKDB (Google Drive)</h3>
+        <button id="btnCloseLogoModal" type="button" class="text-slate-400 hover:text-slate-600">✕</button>
+      </div>
+
+      <div class="space-y-4 text-xs text-slate-600">
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Tampal Pautan (Link) Google Drive Logo Sekolah:</label>
+          <input id="inputLogoUrl" type="text" placeholder="https://drive.google.com/file/d/1a2B3c.../view?usp=sharing" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
+          <p class="text-[10px] text-slate-500 mt-1.5 leading-relaxed">
+            *Pastikan tetapan perkongsian (share) fail di Google Drive anda ialah <strong>"Anyone with the link can view"</strong> (Sesiapa sahaja dengan pautan boleh melihat).
+          </p>
+        </div>
+
+        <div class="p-3 bg-slate-50 rounded-xl flex items-center space-x-3 border border-slate-100">
+          <img id="previewLogoThumb" src="logo.png" onerror="this.src='https://placehold.co/80x80/15803d/ffffff?text=SKDB'" class="w-14 h-14 object-contain bg-white rounded-lg p-1 border border-slate-200" alt="Preview">
+          <div>
+            <div class="font-bold text-slate-800">Pratonton Logo</div>
+            <div class="text-[10px] text-slate-500">Sistem automatik menukarkan link Google Drive kepada imej langsung tanpa tersekat.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 mt-5">
+        <button id="btnResetLogo" type="button" class="px-3 py-2 text-xs font-bold text-slate-500 hover:bg-slate-100 rounded-xl transition">Reset</button>
+        <button id="btnSaveLogo" type="button" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition shadow-xs">Simpan Logo</button>
+      </div>
+    </div>
+  </div>
+    // Convert any Google Drive sharing URL into a high-speed direct image stream
+    function convertGoogleDriveUrl(url) {
+      if (!url) return '';
+      url = url.trim();
+      
+      // Match ID from /file/d/ID or id=ID
+      let fileId = '';
+      const match1 = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      const match2 = url.match(/id=([a-zA-Z0-9_-]+)/);
+      
+      if (match1 && match1[1]) {
+        fileId = match1[1];
+      } else if (match2 && match2[1]) {
+        fileId = match2[1];
+      }
+      
+      if (fileId) {
+        // Direct reliable high-res Google Content URL that bypasses CORS & iframe blocking
+        return `https://lh3.googleusercontent.com/d/${fileId}`;
+      }
+      return url;
+    }
+
+    function updateAllLogoImages(rawUrl) {
+      const finalUrl = convertGoogleDriveUrl(rawUrl);
+      const logos = ['imgNavLogo', 'imgSidebarLogo', 'imgFooterLogo', 'imgWatermarkLogo', 'previewLogoThumb'];
+      logos.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.src = finalUrl;
+      });
+    }
+<!-- ... existing code ... -->
+      // Modal Logo Actions
+      document.getElementById('btnOpenLogoModal')?.addEventListener('click', () => {
+        const savedLogo = localStorage.getItem('skdb_custom_logo_url') || '';
+        document.getElementById('inputLogoUrl').value = savedLogo;
+        document.getElementById('modalLogoSettings').classList.remove('hidden');
+      });
+      document.getElementById('btnCloseLogoModal')?.addEventListener('click', () => {
+        document.getElementById('modalLogoSettings').classList.add('hidden');
+      });
+      document.getElementById('inputLogoUrl')?.addEventListener('input', (e) => {
+        const converted = convertGoogleDriveUrl(e.target.value);
+        if (converted) {
+          document.getElementById('previewLogoThumb').src = converted;
+        }
+      });
+      document.getElementById('btnSaveLogo')?.addEventListener('click', () => {
+        const customUrl = document.getElementById('inputLogoUrl').value.trim();
+        if (customUrl) {
+          const directUrl = convertGoogleDriveUrl(customUrl);
+          updateAllLogoImages(directUrl);
+          localStorage.setItem('skdb_custom_logo_url', customUrl);
+          document.getElementById('modalLogoSettings').classList.add('hidden');
+          showToast('Logo Google Drive berjaya disambungkan!');
+        } else {
+          showToast('Sila masukkan pautan Google Drive logo anda.', 'error');
+        }
+      });
+      document.getElementById('btnResetLogo')?.addEventListener('click', () => {
+        localStorage.removeItem('skdb_custom_logo_url');
+        updateAllLogoImages('logo.png');
+        document.getElementById('inputLogoUrl').value = '';
+        document.getElementById('modalLogoSettings').classList.add('hidden');
+        showToast('Logo dikembalikan ke tetapan asal');
+      });
+      document.getElementById('btnCloseLogoModal')?.addEventListener('click', () => {
+        document.getElementById('modalLogoSettings').classList.add('hidden');
+      });
+      document.getElementById('inputFileLogo')?.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            document.getElementById('previewLogoThumb').src = evt.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      document.getElementById('btnSaveLogo')?.addEventListener('click', () => {
+        const previewSrc = document.getElementById('previewLogoThumb').src;
+        const customUrl = document.getElementById('inputLogoUrl').value.trim();
+        const finalLogo = customUrl || previewSrc;
+        updateAllLogoImages(finalLogo);
+        localStorage.setItem('skdb_custom_logo_url', finalLogo);
+        document.getElementById('modalLogoSettings').classList.add('hidden');
+        showToast('Logo sekolah telah berjaya dikemaskini!');
+      });
+      document.getElementById('btnResetLogo')?.addEventListener('click', () => {
+        localStorage.removeItem('skdb_custom_logo_url');
+        updateAllLogoImages('logo.png');
+        document.getElementById('inputLogoUrl').value = '';
+        document.getElementById('modalLogoSettings').classList.add('hidden');
+        showToast('Logo dikembalikan ke fail asal (logo.png)');
+      });
+
+      // Watermark Setting Modal & Slider
+      document.getElementById('btnToggleWatermarkMenu')?.addEventListener('click', () => {
+        document.getElementById('modalWatermarkSettings').classList.remove('hidden');
+      });
 <!-- ... existing code ... -->
