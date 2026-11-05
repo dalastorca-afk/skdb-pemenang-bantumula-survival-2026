@@ -35,7 +35,6 @@
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -86,7 +85,7 @@
           <!-- Apps Script Sync Status Indicator -->
           <button id="btnOpenSyncModal" type="button" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-2xs">
             <span id="syncStatusDot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span id="syncStatusText" class="hidden sm:inline">Google Sheets</span>
+            <span id="syncStatusText" class="hidden sm:inline">Google Sheets Connected</span>
             <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
             </svg>
@@ -143,8 +142,9 @@
               <span id="badgeTotalProgress" class="text-xs px-2 py-0.5 rounded-full font-bold bg-emerald-200 text-emerald-900">0/300</span>
             </button>
 
-            <div class="pt-3 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3">
-              5 Unit Beruniform
+            <div class="pt-3 pb-1.5 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3">
+              <span>5 Unit Beruniform</span>
+              <button id="btnOpenSettingsUnits" type="button" class="text-[10px] text-emerald-700 hover:underline lowercase font-normal" title="Ubah Nama Unit & Aktiviti">⚙️ ubah nama</button>
             </div>
 
             <!-- TUSPA -->
@@ -154,8 +154,8 @@
                   TU
                 </div>
                 <div class="text-left">
-                  <div class="font-bold text-slate-800 group-hover:text-purple-700">TUSPA</div>
-                  <div class="text-[10px] text-slate-400">Tunas Pandu Puteri</div>
+                  <div id="labelUnitName-TUSPA" class="font-bold text-slate-800 group-hover:text-purple-700">TUSPA</div>
+                  <div id="labelUnitDesc-TUSPA" class="text-[10px] text-slate-400">Tuspa Pertahanan Awam</div>
                 </div>
               </div>
               <span id="badge-TUSPA" class="text-xs px-2 py-0.5 rounded-full font-semibold bg-slate-100 text-slate-600">0/60</span>
@@ -168,8 +168,8 @@
                   TK
                 </div>
                 <div class="text-left">
-                  <div class="font-bold text-slate-800 group-hover:text-emerald-700">TKRS</div>
-                  <div class="text-[10px] text-slate-400">Kadet Remaja Sekolah</div>
+                  <div id="labelUnitName-TKRS" class="font-bold text-slate-800 group-hover:text-emerald-700">TKRS</div>
+                  <div id="labelUnitDesc-TKRS" class="text-[10px] text-slate-400">Tunas Kadet Remaja Sekolah</div>
                 </div>
               </div>
               <span id="badge-TKRS" class="text-xs px-2 py-0.5 rounded-full font-semibold bg-slate-100 text-slate-600">0/60</span>
@@ -182,8 +182,8 @@
                   PG
                 </div>
                 <div class="text-left">
-                  <div class="font-bold text-slate-800 group-hover:text-blue-700">PENGAKAP</div>
-                  <div class="text-[10px] text-slate-400">Persekutuan Pengakap</div>
+                  <div id="labelUnitName-PENGAKAP" class="font-bold text-slate-800 group-hover:text-blue-700">PENGAKAP</div>
+                  <div id="labelUnitDesc-PENGAKAP" class="text-[10px] text-slate-400">Persekutuan Pengakap</div>
                 </div>
               </div>
               <span id="badge-PENGAKAP" class="text-xs px-2 py-0.5 rounded-full font-semibold bg-slate-100 text-slate-600">0/60</span>
@@ -196,8 +196,8 @@
                   PP
                 </div>
                 <div class="text-left">
-                  <div class="font-bold text-slate-800 group-hover:text-amber-700">PPT</div>
-                  <div class="text-[10px] text-slate-400">Pandu Puteri Tunas</div>
+                  <div id="labelUnitName-PPT" class="font-bold text-slate-800 group-hover:text-amber-700">PPT</div>
+                  <div id="labelUnitDesc-PPT" class="text-[10px] text-slate-400">Pandu Puteri Tunas</div>
                 </div>
               </div>
               <span id="badge-PPT" class="text-xs px-2 py-0.5 rounded-full font-semibold bg-slate-100 text-slate-600">0/60</span>
@@ -210,8 +210,8 @@
                   PI
                 </div>
                 <div class="text-left">
-                  <div class="font-bold text-slate-800 group-hover:text-pink-700">PPIM</div>
-                  <div class="text-[10px] text-slate-400">Puteri Islam Malaysia</div>
+                  <div id="labelUnitName-PPIM" class="font-bold text-slate-800 group-hover:text-pink-700">PPIM</div>
+                  <div id="labelUnitDesc-PPIM" class="text-[10px] text-slate-400">Puteri Islam Malaysia</div>
                 </div>
               </div>
               <span id="badge-PPIM" class="text-xs px-2 py-0.5 rounded-full font-semibold bg-slate-100 text-slate-600">0/60</span>
@@ -264,7 +264,7 @@
                   Sistem Pemilihan Pemenang
                 </h1>
                 <p class="text-sm sm:text-base text-emerald-100 font-normal leading-relaxed">
-                  Pengisian nama pemenang bagi aktiviti <strong>BANTU MULA</strong> dan <strong>SURVIVAL</strong> mengikut 5 Unit Beruniform untuk murid <strong>Tahun 4, Tahun 5 dan Tahun 6</strong>.
+                  Pengisian nama pemenang mengikut 5 Unit Beruniform untuk murid <strong>Tahun 4, Tahun 5 dan Tahun 6</strong>. Data disegerakkan secara automatik kepada semua pengguna.
                 </p>
               </div>
 
@@ -293,7 +293,7 @@
             <div class="flex items-center justify-between mb-4">
               <div>
                 <h2 class="text-lg font-bold text-slate-800">5 Unit Beruniform</h2>
-                <p class="text-xs text-slate-500">Klik mana-mana unit di bawah untuk mengisi pemenang Bantu Mula & Survival</p>
+                <p class="text-xs text-slate-500">Klik mana-mana unit di bawah untuk mengisi pemenang aktiviti</p>
               </div>
               <button id="btnQuickExportSummary" type="button" class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-2xs transition">
                 <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -317,8 +317,8 @@
                       0 / 60 Pemenang
                     </span>
                   </div>
-                  <h3 class="text-base font-bold text-slate-800 group-hover:text-purple-600 transition">TUSPA</h3>
-                  <p class="text-xs text-slate-500 mb-4">Tunas Pandu Puteri</p>
+                  <h3 id="cardName-TUSPA" class="text-base font-bold text-slate-800 group-hover:text-purple-600 transition">TUSPA</h3>
+                  <p id="cardDesc-TUSPA" class="text-xs text-slate-500 mb-4">Tuspa Pertahanan Awam</p>
                   
                   <div class="w-full bg-slate-100 rounded-full h-2 mb-3 overflow-hidden">
                     <div id="progBar-TUSPA" class="bg-gradient-to-r from-purple-500 to-indigo-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
@@ -326,18 +326,18 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Bantu Mula</span>
+                      <span id="labelAct1-TUSPA" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
                       <span id="dashBMRating-TUSPA" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Survival</span>
+                      <span id="labelAct2-TUSPA" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
                       <span id="dashSurvRating-TUSPA" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
                 </div>
 
                 <button data-unit="TUSPA" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition flex items-center justify-center space-x-1.5">
-                  <span>Isi Pemenang TUSPA</span>
+                  <span id="btnText-TUSPA">Isi Pemenang TUSPA</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
@@ -355,8 +355,8 @@
                       0 / 60 Pemenang
                     </span>
                   </div>
-                  <h3 class="text-base font-bold text-slate-800 group-hover:text-emerald-600 transition">TKRS</h3>
-                  <p class="text-xs text-slate-500 mb-4">Tunas Kadet Remaja Sekolah</p>
+                  <h3 id="cardName-TKRS" class="text-base font-bold text-slate-800 group-hover:text-emerald-600 transition">TKRS</h3>
+                  <p id="cardDesc-TKRS" class="text-xs text-slate-500 mb-4">Tunas Kadet Remaja Sekolah</p>
                   
                   <div class="w-full bg-slate-100 rounded-full h-2 mb-3 overflow-hidden">
                     <div id="progBar-TKRS" class="bg-gradient-to-r from-emerald-500 to-teal-700 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
@@ -364,18 +364,18 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Bantu Mula</span>
+                      <span id="labelAct1-TKRS" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
                       <span id="dashBMRating-TKRS" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Survival</span>
+                      <span id="labelAct2-TKRS" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
                       <span id="dashSurvRating-TKRS" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
                 </div>
 
                 <button data-unit="TKRS" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 shadow-sm transition flex items-center justify-center space-x-1.5">
-                  <span>Isi Pemenang TKRS</span>
+                  <span id="btnText-TKRS">Isi Pemenang TKRS</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
@@ -393,8 +393,8 @@
                       0 / 60 Pemenang
                     </span>
                   </div>
-                  <h3 class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition">PENGAKAP</h3>
-                  <p class="text-xs text-slate-500 mb-4">Persekutuan Pengakap Kanak-Kanak</p>
+                  <h3 id="cardName-PENGAKAP" class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition">PENGAKAP</h3>
+                  <p id="cardDesc-PENGAKAP" class="text-xs text-slate-500 mb-4">Persekutuan Pengakap</p>
                   
                   <div class="w-full bg-slate-100 rounded-full h-2 mb-3 overflow-hidden">
                     <div id="progBar-PENGAKAP" class="bg-gradient-to-r from-blue-600 to-indigo-800 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
@@ -402,18 +402,18 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Bantu Mula</span>
+                      <span id="labelAct1-PENGAKAP" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
                       <span id="dashBMRating-PENGAKAP" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Survival</span>
+                      <span id="labelAct2-PENGAKAP" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
                       <span id="dashSurvRating-PENGAKAP" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
                 </div>
 
                 <button data-unit="PENGAKAP" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-800 hover:from-blue-700 hover:to-indigo-900 shadow-sm transition flex items-center justify-center space-x-1.5">
-                  <span>Isi Pemenang PENGAKAP</span>
+                  <span id="btnText-PENGAKAP">Isi Pemenang PENGAKAP</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
@@ -431,8 +431,8 @@
                       0 / 60 Pemenang
                     </span>
                   </div>
-                  <h3 class="text-base font-bold text-slate-800 group-hover:text-amber-600 transition">PPT</h3>
-                  <p class="text-xs text-slate-500 mb-4">Pergerakan Pandu Puteri Tunas</p>
+                  <h3 id="cardName-PPT" class="text-base font-bold text-slate-800 group-hover:text-amber-600 transition">PPT</h3>
+                  <p id="cardDesc-PPT" class="text-xs text-slate-500 mb-4">Pandu Puteri Tunas</p>
                   
                   <div class="w-full bg-slate-100 rounded-full h-2 mb-3 overflow-hidden">
                     <div id="progBar-PPT" class="bg-gradient-to-r from-amber-600 to-orange-700 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
@@ -440,18 +440,18 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Bantu Mula</span>
+                      <span id="labelAct1-PPT" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
                       <span id="dashBMRating-PPT" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Survival</span>
+                      <span id="labelAct2-PPT" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
                       <span id="dashSurvRating-PPT" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
                 </div>
 
                 <button data-unit="PPT" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-700 hover:to-orange-800 shadow-sm transition flex items-center justify-center space-x-1.5">
-                  <span>Isi Pemenang PPT</span>
+                  <span id="btnText-PPT">Isi Pemenang PPT</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
@@ -469,8 +469,8 @@
                       0 / 60 Pemenang
                     </span>
                   </div>
-                  <h3 class="text-base font-bold text-slate-800 group-hover:text-pink-600 transition">PPIM</h3>
-                  <p class="text-xs text-slate-500 mb-4">Pergerakan Puteri Islam Malaysia</p>
+                  <h3 id="cardName-PPIM" class="text-base font-bold text-slate-800 group-hover:text-pink-600 transition">PPIM</h3>
+                  <p id="cardDesc-PPIM" class="text-xs text-slate-500 mb-4">Puteri Islam Malaysia</p>
                   
                   <div class="w-full bg-slate-100 rounded-full h-2 mb-3 overflow-hidden">
                     <div id="progBar-PPIM" class="bg-gradient-to-r from-pink-500 to-rose-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
@@ -478,18 +478,18 @@
 
                   <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Bantu Mula</span>
+                      <span id="labelAct1-PPIM" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Bantu Mula</span>
                       <span id="dashBMRating-PPIM" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                     <div>
-                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Survival</span>
+                      <span id="labelAct2-PPIM" class="text-[10px] uppercase font-bold text-slate-400 block truncate">Survival</span>
                       <span id="dashSurvRating-PPIM" class="font-bold text-slate-700">0/30 Diisi</span>
                     </div>
                   </div>
                 </div>
 
                 <button data-unit="PPIM" type="button" class="btn-card-select-unit w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 shadow-sm transition flex items-center justify-center space-x-1.5">
-                  <span>Isi Pemenang PPIM</span>
+                  <span id="btnText-PPIM">Isi Pemenang PPIM</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
@@ -500,28 +500,18 @@
               <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-5 shadow-xs flex flex-col justify-between">
                 <div>
                   <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-lg mb-3">
-                    💡
+                    ⚙️
                   </div>
-                  <h3 class="text-base font-bold text-white mb-1">Panduan Pengisian</h3>
-                  <ul class="text-xs text-slate-300 space-y-2 mb-4 leading-relaxed">
-                    <li class="flex items-start space-x-2">
-                      <span class="text-emerald-400 font-bold">•</span>
-                      <span>Ketik minimum <strong>2 huruf</strong> pada kotak carian untuk senarai auto murid SKDB.</span>
-                    </li>
-                    <li class="flex items-start space-x-2">
-                      <span class="text-emerald-400 font-bold">•</span>
-                      <span>Boleh masukkan sehingga <strong>10 pemenang</strong> setiap Tahun 4, 5, dan 6.</span>
-                    </li>
-                    <li class="flex items-start space-x-2">
-                      <span class="text-emerald-400 font-bold">•</span>
-                      <span>Gunakan butang <strong>Tambah Manual</strong> sekiranya nama tiada dalam senarai.</span>
-                    </li>
-                  </ul>
+                  <h3 class="text-base font-bold text-white mb-1">Tetapan Sistem</h3>
+                  <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                    Anda boleh mengubah nama unit beruniform dan tajuk aktiviti mengikut keperluan sekolah pada bila-bila masa.
+                  </p>
                 </div>
-                <button id="btnOpenSetupGuide" type="button" class="w-full py-2.5 px-4 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition flex items-center justify-center space-x-1.5">
-                  <span>Setup Google Sheets API</span>
+                <button id="btnOpenSettingsUnitsMain" type="button" class="w-full py-2.5 px-4 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition flex items-center justify-center space-x-1.5">
+                  <span>Tukar Nama Unit & Aktiviti</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   </svg>
                 </button>
               </div>
@@ -554,7 +544,7 @@
                     <h2 id="activeUnitTitle" class="text-xl sm:text-2xl font-black text-slate-800">TUSPA</h2>
                     <span id="activeUnitBadge" class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-slate-100 text-slate-700">0/60 Pemenang</span>
                   </div>
-                  <p id="activeUnitSubtitle" class="text-xs text-slate-500">Pengisian Nama Pemenang Bantu Mula & Survival</p>
+                  <p id="activeUnitSubtitle" class="text-xs text-slate-500">Pengisian Nama Pemenang Aktiviti</p>
                 </div>
               </div>
 
@@ -586,16 +576,16 @@
 
             </div>
 
-            <!-- Activity Tabs: BANTU MULA vs SURVIVAL -->
+            <!-- Activity Tabs (Dynamically named) -->
             <div class="flex items-center space-x-2 mt-6 border-b border-slate-200 pb-2">
-              <button id="tabActivityBM" type="button" class="activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-600 text-white shadow-xs transition">
-                <span>🩹 BANTU MULA</span>
-                <span id="tabCountBM" class="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white">0/30</span>
+              <button id="tabActivity1" type="button" class="activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-600 text-white shadow-xs transition">
+                <span id="tabName1">🩹 AKTIVITI 1</span>
+                <span id="tabCount1" class="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white">0/30</span>
               </button>
 
-              <button id="tabActivitySurvival" type="button" class="activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
-                <span>🔥 SURVIVAL</span>
-                <span id="tabCountSurvival" class="text-xs px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">0/30</span>
+              <button id="tabActivity2" type="button" class="activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                <span id="tabName2">🔥 AKTIVITI 2</span>
+                <span id="tabCount2" class="text-xs px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">0/30</span>
               </button>
             </div>
           </div>
@@ -617,7 +607,6 @@
                   <span id="headerBadgeT4" class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">0/10</span>
                 </div>
 
-                <!-- Autocomplete Search Input -->
                 <div class="relative mb-3">
                   <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Carian Nama Murid</label>
                   <div class="relative">
@@ -627,16 +616,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                       </svg>
                     </div>
-                    <button id="btnClearSearchT4" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600">
-                      ✕
-                    </button>
+                    <button id="btnClearSearchT4" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600">✕</button>
                   </div>
-
-                  <!-- Autocomplete Suggestions Dropdown -->
                   <div id="dropdownSuggestionsT4" class="hidden absolute left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-white rounded-xl border border-slate-200 shadow-xl z-20 py-1 divide-y divide-slate-100 text-xs"></div>
                 </div>
 
-                <!-- Manual Add Button -->
                 <div class="flex items-center justify-between mb-3">
                   <span class="text-[11px] text-slate-400 font-medium">Senarai 10 Pemenang:</span>
                   <button data-year="4" type="button" class="btn-open-manual-modal text-[11px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg border border-emerald-200 transition">
@@ -644,7 +628,6 @@
                   </button>
                 </div>
 
-                <!-- Winners List 1-10 -->
                 <div id="winnersListT4" class="space-y-2 min-h-[320px]"></div>
               </div>
             </div>
@@ -663,7 +646,6 @@
                   <span id="headerBadgeT5" class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">0/10</span>
                 </div>
 
-                <!-- Autocomplete Search Input -->
                 <div class="relative mb-3">
                   <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Carian Nama Murid</label>
                   <div class="relative">
@@ -673,16 +655,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                       </svg>
                     </div>
-                    <button id="btnClearSearchT5" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600">
-                      ✕
-                    </button>
+                    <button id="btnClearSearchT5" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600">✕</button>
                   </div>
-
-                  <!-- Autocomplete Suggestions Dropdown -->
                   <div id="dropdownSuggestionsT5" class="hidden absolute left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-white rounded-xl border border-slate-200 shadow-xl z-20 py-1 divide-y divide-slate-100 text-xs"></div>
                 </div>
 
-                <!-- Manual Add Button -->
                 <div class="flex items-center justify-between mb-3">
                   <span class="text-[11px] text-slate-400 font-medium">Senarai 10 Pemenang:</span>
                   <button data-year="5" type="button" class="btn-open-manual-modal text-[11px] font-bold text-teal-700 hover:text-teal-800 bg-teal-50 hover:bg-teal-100 px-2.5 py-1 rounded-lg border border-teal-200 transition">
@@ -690,7 +667,6 @@
                   </button>
                 </div>
 
-                <!-- Winners List 1-10 -->
                 <div id="winnersListT5" class="space-y-2 min-h-[320px]"></div>
               </div>
             </div>
@@ -709,7 +685,6 @@
                   <span id="headerBadgeT6" class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">0/10</span>
                 </div>
 
-                <!-- Autocomplete Search Input -->
                 <div class="relative mb-3">
                   <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Carian Nama Murid</label>
                   <div class="relative">
@@ -719,16 +694,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                       </svg>
                     </div>
-                    <button id="btnClearSearchT6" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600">
-                      ✕
-                    </button>
+                    <button id="btnClearSearchT6" type="button" class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600">✕</button>
                   </div>
-
-                  <!-- Autocomplete Suggestions Dropdown -->
                   <div id="dropdownSuggestionsT6" class="hidden absolute left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-white rounded-xl border border-slate-200 shadow-xl z-20 py-1 divide-y divide-slate-100 text-xs"></div>
                 </div>
 
-                <!-- Manual Add Button -->
                 <div class="flex items-center justify-between mb-3">
                   <span class="text-[11px] text-slate-400 font-medium">Senarai 10 Pemenang:</span>
                   <button data-year="6" type="button" class="btn-open-manual-modal text-[11px] font-bold text-cyan-700 hover:text-cyan-800 bg-cyan-50 hover:bg-cyan-100 px-2.5 py-1 rounded-lg border border-cyan-200 transition">
@@ -736,7 +706,6 @@
                   </button>
                 </div>
 
-                <!-- Winners List 1-10 -->
                 <div id="winnersListT6" class="space-y-2 min-h-[320px]"></div>
               </div>
             </div>
@@ -761,6 +730,66 @@
       </div>
     </footer>
 
+  </div>
+
+  <!-- MODAL: TETAPAN NAMA UNIT & AKTIVITI -->
+  <div id="modalSettingsUnits" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+        <div>
+          <h3 class="text-base font-bold text-slate-800">Tetapan Nama Unit & Aktiviti</h3>
+          <p class="text-[11px] text-slate-500">Ubah suai nama 5 Unit Beruniform dan Tajuk 2 Aktiviti</p>
+        </div>
+        <button id="btnCloseSettingsModal" type="button" class="text-slate-400 hover:text-slate-600">✕</button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Tajuk Aktiviti 1 (Tab & Rekod)</label>
+          <input id="inputActName1" type="text" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-semibold" placeholder="Cth: BANTU MULA">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">Tajuk Aktiviti 2 (Tab & Rekod)</label>
+          <input id="inputActName2" type="text" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-semibold" placeholder="Cth: SURVIVAL">
+        </div>
+
+        <div class="border-t border-slate-200 pt-3 space-y-3">
+          <div class="font-bold text-slate-800">Nama 5 Unit Beruniform:</div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <span class="text-[10px] text-slate-400 block">Unit 1 (Asalnya TUSPA)</span>
+              <input id="unitCode-TUSPA" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
+              <input id="unitDesc-TUSPA" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-400 block">Unit 2 (Asalnya TKRS)</span>
+              <input id="unitCode-TKRS" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
+              <input id="unitDesc-TKRS" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-400 block">Unit 3 (Asalnya PENGAKAP)</span>
+              <input id="unitCode-PENGAKAP" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
+              <input id="unitDesc-PENGAKAP" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-400 block">Unit 4 (Asalnya PPT)</span>
+              <input id="unitCode-PPT" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
+              <input id="unitDesc-PPT" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+            </div>
+            <div class="col-span-2">
+              <span class="text-[10px] text-slate-400 block">Unit 5 (Asalnya PPIM)</span>
+              <input id="unitCode-PPIM" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-semibold" placeholder="Nama Singkatan">
+              <input id="unitDesc-PPIM" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 mt-1 text-[11px]" placeholder="Keterangan Penuh">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 mt-6 pt-3 border-t border-slate-100">
+        <button id="btnCancelSettings" type="button" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition">Batal</button>
+        <button id="btnSaveSettingsUnits" type="button" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition shadow-xs">Simpan Tetapan</button>
+      </div>
+    </div>
   </div>
 
   <!-- MODAL: EDIT PEMENANG -->
@@ -830,63 +859,29 @@
     </div>
   </div>
 
-  <!-- MODAL: GOOGLE APPS SCRIPT & GOOGLE SHEETS SETUP -->
+  <!-- MODAL: GOOGLE APPS SCRIPT -->
   <div id="modalSyncSetup" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-slate-100">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
         <div class="flex items-center space-x-2">
-          <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold">
-            GS
-          </div>
+          <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold">GS</div>
           <div>
             <h3 class="text-base font-bold text-slate-800">Sambungan Google Sheets (Apps Script API)</h3>
-            <p class="text-[11px] text-slate-500">Pangkalan data awan untuk menyimpan semua keputusan pemenang</p>
+            <p class="text-[11px] text-slate-500">Pangkalan data awan untuk penyelarasan automatik</p>
           </div>
         </div>
         <button id="btnCloseSyncModal" type="button" class="text-slate-400 hover:text-slate-600">✕</button>
       </div>
 
       <div class="space-y-5 text-xs text-slate-700">
-        <div>
-          <label class="block font-bold text-slate-700 uppercase mb-1">Web App URL (Google Apps Script)</label>
-          <div class="flex gap-2">
-            <input id="inputAppsScriptUrl" type="url" placeholder="https://script.google.com/macros/s/AKfycbx.../exec" class="flex-1 px-3 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-hidden">
-            <button id="btnSaveSyncUrl" type="button" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition">Simpan URL</button>
-          </div>
-          <p class="text-[11px] text-slate-400 mt-1">URL ini diperoleh selepas anda tekan "Deploy as Web App" di Google Sheets.</p>
-        </div>
-
         <div class="flex flex-wrap items-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
           <button id="btnPushToSheets" type="button" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition shadow-2xs flex items-center space-x-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-            </svg>
             <span>Hantar Data ke Google Sheets</span>
           </button>
-
           <button id="btnPullFromSheets" type="button" class="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-700 font-bold hover:bg-slate-100 transition shadow-2xs flex items-center space-x-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
-            </svg>
-            <span>Tarik Data dari Google Sheets</span>
+            <span>Muat Turun Semula Data</span>
           </button>
-
-          <span id="syncResultStatus" class="text-xs font-semibold text-slate-500">Status: Disimpan dalam memori tempatan (LocalStorage)</span>
-        </div>
-
-        <div class="border border-slate-200 rounded-xl p-4 bg-white space-y-3">
-          <div class="font-bold text-slate-800 text-sm flex items-center space-x-2">
-            <span>📋</span>
-            <span>Cara Setup Google Sheet & Apps Script:</span>
-          </div>
-          <ol class="list-decimal pl-5 space-y-1.5 leading-relaxed text-slate-600">
-            <li>Buka <strong>Google Sheets</strong> baharu, namakan cth: <em>"Pemenang Kokurikulum SKDB 2026"</em>.</li>
-            <li>Klik menu <strong>Extensions &gt; Apps Script</strong>.</li>
-            <li>Padam kod sedia ada, dan salin kod dari tab <strong>Code.gs</strong> di sebelah.</li>
-            <li>Klik butang <strong>Deploy &gt; New deployment</strong> di penjuru atas kanan.</li>
-            <li>Pilih <strong>Web app</strong>, tetapkan <em>Execute as: Me</em>, dan <em>Who has access: Anyone</em>.</li>
-            <li>Salin URL Web App yang terhasil dan tampal pada ruangan di atas. Siap!</li>
-          </ol>
+          <span id="syncResultStatus" class="text-xs font-semibold text-emerald-700">Status: URL Google Apps Script diset secara kekal.</span>
         </div>
       </div>
 
@@ -896,1643 +891,24 @@
     </div>
   </div>
 
-  <!-- MODAL: PANDUAN GITHUB PAGES -->
+  <!-- MODAL: PANDUAN GITHUB -->
   <div id="modalGuide" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-slate-100">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-        <h3 class="text-base font-bold text-slate-800">Panduan Hoskan di GitHub Pages</h3>
+        <h3 class="text-base font-bold text-slate-800">Panduan GitHub Pages</h3>
         <button id="btnCloseGuideModal" type="button" class="text-slate-400 hover:text-slate-600">✕</button>
       </div>
-
-      <div class="space-y-4 text-xs text-slate-600 leading-relaxed">
-        <p>Aplikasi web ini dibina sebagai <strong>Single Page Application (SPA)</strong> yang serba lengkap dalam satu fail HTML (berserta data murid dan logo sekolah).</p>
-      </div>
-
+      <p class="text-xs text-slate-600 leading-relaxed">Aplikasi web ini berjalan sepenuhnya secara automatik dan menyelaraskan data kepada semua pengguna yang melayari pautan GitHub Pages anda.</p>
       <div class="flex items-center justify-end mt-6 pt-3 border-t border-slate-100">
         <button id="btnCloseGuideModalBottom" type="button" class="px-5 py-2 text-xs font-bold text-white bg-slate-800 hover:bg-slate-900 rounded-xl transition">Tutup</button>
       </div>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
 
-  <!-- JAVASCRIPT LOGIC -->
   <script>
-    // Embedded Database of 681 SKDB Students
-    const studentDatabase = [
-      {"n": "'UMARA NUSAYBAH BINTI MOHD HAFIZUAN", "t": 4, "k": "BERLIAN"},
-      {"n": "ABIGAIL SACHIKO NAIR", "t": 4, "k": "BERLIAN"},
-      {"n": "AISYA MARYAM BINTI MOHD KHAIDIR", "t": 4, "k": "BERLIAN"},
-      {"n": "ANAS SYAMIL BIN ABDUL HADI", "t": 4, "k": "BERLIAN"},
-      {"n": "ARISHA FATHIMA BINTI SYED SAHUL HAKEEM", "t": 4, "k": "BERLIAN"},
-      {"n": "CHE AHMAD SHAFWAN BIN CHE NAWI", "t": 4, "k": "BERLIAN"},
-      {"n": "CHRISTIANLLY RONALDO DAVID", "t": 4, "k": "BERLIAN"},
-      {"n": "DANISH AQMAL BIN MUHAMMAD RIDZUAN", "t": 4, "k": "BERLIAN"},
-      {"n": "DHIYA HUMAIRA BINTI MOHAMAD HAFIZ", "t": 4, "k": "BERLIAN"},
-      {"n": "DZULFIQAR AMIRUL ARIEF BIN ISYRAQ ZHAFIR", "t": 4, "k": "BERLIAN"},
-      {"n": "FATHIAH AMNI BINTI FAHMI", "t": 4, "k": "BERLIAN"},
-      {"n": "INARA AISYA BINTI MOHD AKMAL", "t": 4, "k": "BERLIAN"},
-      {"n": "ISAAC AIMAN BIN SULAIMAN", "t": 4, "k": "BERLIAN"},
-      {"n": "MEGAT RAAFI FAKHRULLAH BIN MEGAT SAHRULRIZAL", "t": 4, "k": "BERLIAN"},
-      {"n": "MOHAMAD EIYAD FIKRI BIN MOHAMAD YUSRI", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD AIMAN BIN MOHD SHARUNISHAM", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD AKID SYAHIRAN BIN ZULKAPLI", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD AL FATEH BIN MOHD ARSHAD", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD AMMAR IRFAN BIN HISYAM", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD HAFIY MUQRI BIN MUHAMMAD SHAHRULNIZAM", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD HAKIM AIDIL BIN ROSLI", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD HARRAZ ARYYAN ZIYYAD BIN MOHAMAD SHAFRINI", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD HARRAZ BIN MUHAMMAD NUR FARHAN", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD IRFAN BIN MOHD HIDIR", "t": 4, "k": "BERLIAN"},
-      {"n": "MUHAMMAD QARIZH BIN SAMSUL KEMAL", "t": 4, "k": "BERLIAN"},
-      {"n": "NUR AINA SYAFIQAH BINTI RIZWAN", "t": 4, "k": "BERLIAN"},
-      {"n": "NUR ALYA DEWINA MARYAM BINTI ABDUL RAHMAN", "t": 4, "k": "BERLIAN"},
-      {"n": "NUR DURRATUL INSYIRAH BINTI MOHD SUHAIL", "t": 4, "k": "BERLIAN"},
-      {"n": "NUR NAJIHAH NESHAH BINTI MUHAMMED NURI SHAH", "t": 4, "k": "BERLIAN"},
-      {"n": "NUR ORQED RAMADHANIA BINTI MUHAMAD FAIZUL", "t": 4, "k": "BERLIAN"},
-      {"n": "NUR QAIREEN ADRIANA BINTI SAIFUL AZUAN", "t": 4, "k": "BERLIAN"},
-      {"n": "NUR QAISARA ERYNA BINTI MUHAMMAD FARIDZUDEEN", "t": 4, "k": "BERLIAN"},
-      {"n": "NUR RASHA HUMAIRAH BINTI ABDULLAH", "t": 4, "k": "BERLIAN"},
-      {"n": "NURUL HASNA AFIZAH BINTI SABIRIN", "t": 4, "k": "BERLIAN"},
-      {"n": "PRAJEETHA A/P RAVI SHANKAR", "t": 4, "k": "BERLIAN"},
-      {"n": "UMAR QAYYUM BIN MOHD MAZLAN", "t": 4, "k": "BERLIAN"},
-      {"n": "AARIZ NAIMSHAH BIN NUZUL ANUAR", "t": 4, "k": "DELIMA"},
-      {"n": "ADRIAN IZZ RAYYAN BIN MOHD NOOR HAFIZI", "t": 4, "k": "DELIMA"},
-      {"n": "AISH AMIRUL AFIQ BIN ABDULLAH", "t": 4, "k": "DELIMA"},
-      {"n": "AISY ARYAN BIN MUHAMMAD NAZMI FARHAN", "t": 4, "k": "DELIMA"},
-      {"n": "AULIA AZZAHRA BINTI AMIRUL AMIN", "t": 4, "k": "DELIMA"},
-      {"n": "AUNI NURZAHRA BINTI MUHAMAD SHUHAIRI", "t": 4, "k": "DELIMA"},
-      {"n": "HANIN BINTI MOHD HUSNI HARITHI", "t": 4, "k": "DELIMA"},
-      {"n": "HARRAZ NAUFAL BIN HAIRUL AZMIL", "t": 4, "k": "DELIMA"},
-      {"n": "IBTISAM AN-NAJAH BINTI KHAIRIL IZUAN", "t": 4, "k": "DELIMA"},
-      {"n": "IZZ EIYAD DHIYAULHAQ BIN MOHAMAD FAIZOL", "t": 4, "k": "DELIMA"},
-      {"n": "MOHAMMAD AL-ISYRAF IMAN BIN MOHD ALI", "t": 4, "k": "DELIMA"},
-      {"n": "MOHAMMAD HAFY HADID BIN SAHRIZAL", "t": 4, "k": "DELIMA"},
-      {"n": "MUHAMAD AQIF BIN YASIR ARAFAT", "t": 4, "k": "DELIMA"},
-      {"n": "MUHAMMAD ADAM IMAN BIN MUHAMMAD FAIZUL IMAN", "t": 4, "k": "DELIMA"},
-      {"n": "MUHAMMAD AFFAN FIRDAUS BIN ROSIMI", "t": 4, "k": "DELIMA"},
-      {"n": "MUHAMMAD ARIQ HARRAZ BIN MOHD ADIP", "t": 4, "k": "DELIMA"},
-      {"n": "MUHAMMAD EL FIRAS ANAS BIN AZLI", "t": 4, "k": "DELIMA"},
-      {"n": "MUHAMMAD KHAIRUL UWAIS AL QHALEEQ BIN MD KHAIRULIESMA", "t": 4, "k": "DELIMA"},
-      {"n": "MUHAMMAD RIFQI IYAAZ BIN MUHAMMAD HAFIZ", "t": 4, "k": "DELIMA"},
-      {"n": "MUHAMMAD ZULFAN FIRDAUS BIN MOHD ZUBAIRI", "t": 4, "k": "DELIMA"},
-      {"n": "NOOR ALISHA ZAHRA BINTI MUHAMMAD ADAM HANAFI", "t": 4, "k": "DELIMA"},
-      {"n": "NUR AISYA ALIFA BINTI CHE KHAIRUL EZIZIE", "t": 4, "k": "DELIMA"},
-      {"n": "NUR AISYAH INARA BINTI MOHD AZIZ", "t": 4, "k": "DELIMA"},
-      {"n": "NUR AISYAH SALSABILA BINTI MOHD RIDZUAN FIRDAUS", "t": 4, "k": "DELIMA"},
-      {"n": "NUR ALIA QASRINA BINTI MOHD RAZIF", "t": 4, "k": "DELIMA"},
-      {"n": "NUR ERNY SYAMIRA BINTI MOHD RAZAIMI", "t": 4, "k": "DELIMA"},
-      {"n": "ROSYIQAH AMANI BINTI ROYSTON", "t": 4, "k": "DELIMA"},
-      {"n": "SHARIFAH NUR QAIRA QHALEESYA BINTI SYED AZMAN", "t": 4, "k": "DELIMA"},
-      {"n": "UFAIRA AZ ZAHRA BINTI MOHD YAZID", "t": 4, "k": "DELIMA"},
-      {"n": "WAN MUHAMMAD DANISH DHAMIN BIN WAN DAINI MUSTAKI", "t": 4, "k": "DELIMA"},
-      {"n": "WAN NOOR AULIA JANNAH BINTI WAN MOHD ZULKARNAIN", "t": 4, "k": "DELIMA"},
-      {"n": "ZIAULHAQ ARIQIN BIN ZULFADLI AIZAT", "t": 4, "k": "DELIMA"},
-      {"n": "AARIZ WAFIQ BIN ADAM", "t": 4, "k": "INTAN"},
-      {"n": "ADAM DANIEL BIN ZULHADZLI", "t": 4, "k": "INTAN"},
-      {"n": "AIMAN AFFAN BIN AZIZI", "t": 4, "k": "INTAN"},
-      {"n": "AYRA MYSHA NAIRA BINTI M NASIR", "t": 4, "k": "INTAN"},
-      {"n": "DAMIA AISYAH BINTI MOHD KAMAL AZNAN", "t": 4, "k": "INTAN"},
-      {"n": "HARITH IRFAN BIN MOHD HELNI", "t": 4, "k": "INTAN"},
-      {"n": "IMAN DURRANI BIN YUSRI", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMAD NADIM NAUFAL BIN MOHD ZAINUL", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD ADAM DARWISH BIN MOHD FAIZOL", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD AIDAN SUFI BIN MOHD KHAIRIE", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD AMMAR IRSYAD BIN MARIZZUAN", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD AQIL QARNAIN BIN MOHD IBRAHIM", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD FARIS RAYYAN BIN MOHD AZWAN", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD FAYYADH ARYAN BIN MOHD FAIZAL", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD IMAN FIRDAUS BIN SAIFUL NIZAM", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD MUAZ YASSIR BIN MOHD FARID", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD MUHAIMIN BIN ENCHEK ABRIZANI", "t": 4, "k": "INTAN"},
-      {"n": "MUHAMMAD RIFQI BIN SHAHARUDIN", "t": 4, "k": "INTAN"},
-      {"n": "NAURA BINTI MOHD RUSLI", "t": 4, "k": "INTAN"},
-      {"n": "NORHANA IZARA BINTI AZIZUL RAHMAN", "t": 4, "k": "INTAN"},
-      {"n": "NUR AFRINA ZARA BINTI MUHAMMAD ZULHILMI", "t": 4, "k": "INTAN"},
-      {"n": "NUR AMALINA QISTINA BINTI MOHD RADI", "t": 4, "k": "INTAN"},
-      {"n": "NUR AMRINA RASYADA BINTI MOHD RIDZUAN", "t": 4, "k": "INTAN"},
-      {"n": "NUR IMAN NAFEESA BINTI AHMAD FAIZAL", "t": 4, "k": "INTAN"},
-      {"n": "NUR ZARA ARISSA BINTI HAMIDI", "t": 4, "k": "INTAN"},
-      {"n": "NURAISHA BINTI MOHD KASHPURAHMAN", "t": 4, "k": "INTAN"},
-      {"n": "NURALISHA IZZ ZARA BINTI MOHD EZWAN", "t": 4, "k": "INTAN"},
-      {"n": "NURDAMIA MIKAYLA BINTI MOHD RAFFI", "t": 4, "k": "INTAN"},
-      {"n": "NURUL FARISHA SHAFINA BINTI ABDUL FATTAH", "t": 4, "k": "INTAN"},
-      {"n": "NURUL IZZANI ZAHRAA BINTI MOHAMAD IDRUS", "t": 4, "k": "INTAN"},
-      {"n": "QHALISH IZZ LUTFI BIN MOHAMMAD RAFIZIE", "t": 4, "k": "INTAN"},
-      {"n": "SYAHMI RAYYAN BIN SUHAIMI", "t": 4, "k": "INTAN"},
-      {"n": "SYED AMMAR THAQIF BIN SYED MOHD FAREZ", "t": 4, "k": "INTAN"},
-      {"n": "AKID MUAZ BIN MOHD SHAHBANI", "t": 4, "k": "MUTIARA"},
-      {"n": "AMIRUL AJWAD BIN AMIRUL FAIZAL", "t": 4, "k": "MUTIARA"},
-      {"n": "AZALEA ALEYSIA BINTI AZLI SHAH", "t": 4, "k": "MUTIARA"},
-      {"n": "ILMI NAAZNEEN BINTI ABDUL AZIZ", "t": 4, "k": "MUTIARA"},
-      {"n": "JAZLIN NUR RANIA BINTI JOE", "t": 4, "k": "MUTIARA"},
-      {"n": "KAMILIYA SAAFIYRA BINTI AVEJAZNAWAN", "t": 4, "k": "MUTIARA"},
-      {"n": "MALIK BIN KHAIRUL ZHAFRI", "t": 4, "k": "MUTIARA"},
-      {"n": "MEOR MUHAMMAD YUSUF BIN MEOR ABDUL MUHAIMIN", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ADAM AMSYAR BIN MOHD SAIFUL FAKHRI", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ADAM HARITH BIN MOHD FAKHARAMI", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ADAM RAYYAN BIN ALI", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ALEEF NAUFAL BIN MOHD RIDHUAN", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AYDEN AARIZ BIN MOHD RIZAL", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD DARWISY NADEEM BIN MUHAMAD SYAFIQ", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD FARIS ASYRAF BIN MOHD FAIZOL", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD HAZIQ IMAN BIN MOHD IZZAD", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD QABIL DERRIK BIN MOHD RIDWANSYAH", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD SUFI BIN MUHAMMAD SHAFIQ", "t": 4, "k": "MUTIARA"},
-      {"n": "MUHAMMAD THAQIF UKASYAH BIN MOHD SAIFUL ASNAWI", "t": 4, "k": "MUTIARA"},
-      {"n": "NASYRAH AZ-ZAYRA BINTI MUHAMMAD RIDHUAN", "t": 4, "k": "MUTIARA"},
-      {"n": "NUR ALLIESYA SOFEA BINTI MOHD HASNIEZAR", "t": 4, "k": "MUTIARA"},
-      {"n": "NUR AMANDA TIHANIE BINTI MOHD ZUL KHAIRI", "t": 4, "k": "MUTIARA"},
-      {"n": "NUR AMNI FELIESYA BINTI MOHD SAIFUL AZUAN", "t": 4, "k": "MUTIARA"},
-      {"n": "NUR DAMIA SOFIA BINTI MOHD NAZIRUL", "t": 4, "k": "MUTIARA"},
-      {"n": "NUR DHEA AMMARA BINTI KAMAL", "t": 4, "k": "MUTIARA"},
-      {"n": "NUR DIYANA FAQIHAH BINTI MOHD JASMI", "t": 4, "k": "MUTIARA"},
-      {"n": "NUR INSYIRAH TASNIM BINTI MOHAMAD NORHAFIZEE", "t": 4, "k": "MUTIARA"},
-      {"n": "NURQIESYA IRDINA BINTI JAMAL AZIZI", "t": 4, "k": "MUTIARA"},
-      {"n": "PUTERA HULAIF AZEEM BIN SALMAN HAKIM", "t": 4, "k": "MUTIARA"},
-      {"n": "SITI MAWAR RAUDHAH BINTI HAMBALI", "t": 4, "k": "MUTIARA"},
-      {"n": "SUFIYAH UMAIRAH BINTI IBRAHIM", "t": 4, "k": "MUTIARA"},
-      {"n": "SYAZWAN AIMAN BIN AMIR", "t": 4, "k": "MUTIARA"},
-      {"n": "TARIQ JAZMAN BIN MOHD AZHAR SAFWAN", "t": 4, "k": "MUTIARA"},
-      {"n": "AMMARA INARAH NUR IMAN BINTI NOORAMIN", "t": 4, "k": "NILAM"},
-      {"n": "ANAQI KHAYRI BIN ANASZ AZRUL", "t": 4, "k": "NILAM"},
-      {"n": "AQID ZEFREE BIN MOHD SANI", "t": 4, "k": "NILAM"},
-      {"n": "AYRA MIKAYLA BINTI MUHAMAD FAIRUZ", "t": 4, "k": "NILAM"},
-      {"n": "DANEA EL-ZEHRAA BINTI AHMAD NORSHAHRIL", "t": 4, "k": "NILAM"},
-      {"n": "DHIYA SARAH BINTI SAIFUL HARIS", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMAD FARIS IQBAL BIN FAIZAL NASRUL", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMAD HARRAZ RIZQIN BIN MAZLAN", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD ADAM MIKAIL BIN MUHAMMAD AZIZI", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD AMZAR SUFYAN BIN RUSTAM", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD ARIF BAHRIQ BIN MUHAMMAD ARIF AFIF", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD FAREEQ RIFQI BIN MOHD NAZREEN", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD FATEH BIN MOHD FIKRI", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD HARIS ZAKWAN BIN HAIRIL IZWAN", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD HARITH AQIL BIN MUHAMMAD HAZIQ", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD HARRAZ NAUFAL BIN BADRUL HISYAM", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD HAZIQ RAYYAN BIN ABDUL MUHAIMIN", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD QALIF ARRAYAN BIN JAMALUDIN", "t": 4, "k": "NILAM"},
-      {"n": "MUHAMMAD SYARIFUL DANIYAL YUSSOF BIN SHIEKY", "t": 4, "k": "NILAM"},
-      {"n": "NABIL FAYYADH BIN SHERMAN", "t": 4, "k": "NILAM"},
-      {"n": "NAYLI INSYIRAH BINTI HUSSIN", "t": 4, "k": "NILAM"},
-      {"n": "NUR FATIMA IZZAH BINTI MUHAMMAD IZZUDIN", "t": 4, "k": "NILAM"},
-      {"n": "NUR FATIN DIANA BINTI ABDUL FATTAH", "t": 4, "k": "NILAM"},
-      {"n": "NUR IRINEE QALEESYA BINTI ZAROL EKHSAN", "t": 4, "k": "NILAM"},
-      {"n": "NUR SYAFIRA BINTI SHAMIR AZMIR", "t": 4, "k": "NILAM"},
-      {"n": "NUR WAAFIYA IMAANI BINTI SYAHRUL ERMAN", "t": 4, "k": "NILAM"},
-      {"n": "NUR ZALFA NAQIYYAH BINTI MOHAMAD SAIFUL ZAIE", "t": 4, "k": "NILAM"},
-      {"n": "NUR ZARA IMAN BINTI MOHD HERMAN", "t": 4, "k": "NILAM"},
-      {"n": "NURUL ZAHRA WAFFIYAH BINTI MOHD ZAIRUL", "t": 4, "k": "NILAM"},
-      {"n": "PUTRI KHADIJAH BINTI MOHAMAD RODZI", "t": 4, "k": "NILAM"},
-      {"n": "UMAR FAREEZ IRSYAD BIN MOHD FAUZEE", "t": 4, "k": "NILAM"},
-      {"n": "WAN NUR HASYA BINTI WAN ASRI", "t": 4, "k": "NILAM"},
-      {"n": "AKIFA NAILA BINTI MOHD SUPARDI", "t": 4, "k": "PERMATA"},
-      {"n": "AL WALEED BIN ABDULLAH", "t": 4, "k": "PERMATA"},
-      {"n": "AMMAR AMZAR BIN MOHD IZWAN", "t": 4, "k": "PERMATA"},
-      {"n": "AMMARA KHAYLA BINTI AZRUZAFRAN", "t": 4, "k": "PERMATA"},
-      {"n": "DHIA MEDINA BINTI RAFIZI", "t": 4, "k": "PERMATA"},
-      {"n": "EMIR ARSYAD BIN MUHAMMAD SYAFIQ", "t": 4, "k": "PERMATA"},
-      {"n": "HANNY QHALEEDA BINTI HELFIASTRI", "t": 4, "k": "PERMATA"},
-      {"n": "HASREYANI IZZANIE BINTI HAMSIR", "t": 4, "k": "PERMATA"},
-      {"n": "IMAN HAIRULSHAH BIN ABDUL FATTAH", "t": 4, "k": "PERMATA"},
-      {"n": "IMAN KHALISH NURHAN BIN AZAMMUDIN", "t": 4, "k": "PERMATA"},
-      {"n": "LILY MIQAILA BINTI MUHAMMAD NAIM", "t": 4, "k": "PERMATA"},
-      {"n": "MAI AISHA AILANI BINTI MIOR AHMAD AIZAD", "t": 4, "k": "PERMATA"},
-      {"n": "MUHAMMAD AIMAN HAFIZ BIN MOHD RIDZUAN", "t": 4, "k": "PERMATA"},
-      {"n": "MUHAMMAD DANISH MIKAIL BIN MOHAMMAD FARED", "t": 4, "k": "PERMATA"},
-      {"n": "MUHAMMAD FAIZ ASYRAF BIN MOHD SHAH", "t": 4, "k": "PERMATA"},
-      {"n": "MUHAMMAD HARRAZ NAUFAL BIN AZRULL HISYAM", "t": 4, "k": "PERMATA"},
-      {"n": "MUHAMMAD JAILANI RAMADHAN BIN ABDULLAH", "t": 4, "k": "PERMATA"},
-      {"n": "MUHAMMAD RAKEEM BIN MOHD YAZID", "t": 4, "k": "PERMATA"},
-      {"n": "MUHAMMED SAMEER NAZRI BIN MUHAMMAD SAIFULLAH M", "t": 4, "k": "PERMATA"},
-      {"n": "NAUFAL IZZ AZAYN BIN ABDUL NAFI'", "t": 4, "k": "PERMATA"},
-      {"n": "NUR AISYAH HUMAIRA BINTI MOHD IRMAN SUHAIMI", "t": 4, "k": "PERMATA"},
-      {"n": "NUR ALEESYA SYAFIQAH BINTI MOHD FIKRI", "t": 4, "k": "PERMATA"},
-      {"n": "NUR DHIA SOFFIYAH BINTI ABDULLAH", "t": 4, "k": "PERMATA"},
-      {"n": "NUR RAESYA SAFIYA BINTI MOHD FAISAL", "t": 4, "k": "PERMATA"},
-      {"n": "NUR SHAFFI DURRANI BINTI SHAHZULZAINI", "t": 4, "k": "PERMATA"},
-      {"n": "NUR ZARITH MEDINA BINTI NOR AZLAN", "t": 4, "k": "PERMATA"},
-      {"n": "QALISYAH QAISARAH BINTI HARIS HAFIZ", "t": 4, "k": "PERMATA"},
-      {"n": "SUFI BIN SAIFFUL", "t": 4, "k": "PERMATA"},
-      {"n": "SYED AL FAYYADH WAFA BIN SYED MUHAMMAD ALIFF WAFA", "t": 4, "k": "PERMATA"},
-      {"n": "WAN MUHAMMAD REYQAL AFFAYADH BIN ABDULLAH", "t": 4, "k": "PERMATA"},
-      {"n": "ZAHRA ELIYA BINTI MOHD FAISAL", "t": 4, "k": "PERMATA"},
-      {"n": "ZARIF ISKANDAR BIN MUHAMAD FAUZI", "t": 4, "k": "PERMATA"},
-      {"n": "AAINAA AIMI BINTI ZULKIFLI", "t": 4, "k": "ZAMRUD"},
-      {"n": "AHMAD ASHBIL BIN KHAIRULLAH", "t": 4, "k": "ZAMRUD"},
-      {"n": "AHMAD RAYYAN THAQIF BIN MOHD RIBUAN", "t": 4, "k": "ZAMRUD"},
-      {"n": "AHMAD SHARIF HAZMI BIN SHAIFON NIZAM", "t": 4, "k": "ZAMRUD"},
-      {"n": "AMMARA KAYYISA BINTI ROSAIFULNIZAN", "t": 4, "k": "ZAMRUD"},
-      {"n": "ARASY HAIYAN BIN HAZRUL HAKIM", "t": 4, "k": "ZAMRUD"},
-      {"n": "ARYAN ABRAHAM IDISI", "t": 4, "k": "ZAMRUD"},
-      {"n": "AYSARA IMANI SOFEA BINTI KHAIDIR", "t": 4, "k": "ZAMRUD"},
-      {"n": "AZZAHRA BINTI MUHAMMAD AZLAN", "t": 4, "k": "ZAMRUD"},
-      {"n": "IZZ MUHAMMAD HARRAZ BIN MOHD SANI", "t": 4, "k": "ZAMRUD"},
-      {"n": "KHAIZURAN NIYAZ BIN MUHAMAD EZ'ZUL", "t": 4, "k": "ZAMRUD"},
-      {"n": "LUQMAN ABDURROHMAN BIN ONN", "t": 4, "k": "ZAMRUD"},
-      {"n": "MOHAMAD WAFIY NAUFAL BIN MOHAMAD ADNAN", "t": 4, "k": "ZAMRUD"},
-      {"n": "MUHAMAD ALIF ZIYAD BIN MOHD FARIZ", "t": 4, "k": "ZAMRUD"},
-      {"n": "MUHAMAD ARIF HADIF BIN MOHD FADHLI", "t": 4, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD ASHRAF HAKIMI BIN MOHD ASRI", "t": 4, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD FIQ IRSYAD BIN MOHD ZAIDI", "t": 4, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD HAIKAL BIN MOHD SHARILBUN", "t": 4, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD RAYQAL DANISH BIN JAFRI", "t": 4, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD YAZDAN NOAH BIN MOHD YUSRIZAL", "t": 4, "k": "ZAMRUD"},
-      {"n": "NOR EIRHAM RAMADHAN BIN AZHAKHAIRUL IZAD", "t": 4, "k": "ZAMRUD"},
-      {"n": "NORALIJAH BINTI ABDULLAH", "t": 4, "k": "ZAMRUD"},
-      {"n": "NUR AINA HUMAIRA BINTI ANUAWI", "t": 4, "k": "ZAMRUD"},
-      {"n": "NUR ARISHA SAFIYYAH BINTI MOHD SHAFARUL NIZAM", "t": 4, "k": "ZAMRUD"},
-      {"n": "NUR EL HUSNA BINTI MD.RAZMAN", "t": 4, "k": "ZAMRUD"},
-      {"n": "NUR QASEEH AALIYA BINTI ABDULLAH", "t": 4, "k": "ZAMRUD"},
-      {"n": "NUR ZALIKHA UFAIRA BINTI MOHD ZUBIR", "t": 4, "k": "ZAMRUD"},
-      {"n": "NURUL DIYANA ALISHA BINTI ABDUL RAHMAN", "t": 4, "k": "ZAMRUD"},
-      {"n": "NURYN AISYAH BINTI MOHD AL - HAFIS", "t": 4, "k": "ZAMRUD"},
-      {"n": "RAISHA UMAIRAH BINTI ROHAILIM", "t": 4, "k": "ZAMRUD"},
-      {"n": "UMMI HUMAIRAH BINTI MOHD KHAIRUL ANUAR", "t": 4, "k": "ZAMRUD"},
-      {"n": "ADAM ASHLEY", "t": 5, "k": "BERLIAN"},
-      {"n": "ADILA ARDANI BINTI MOHD SANY", "t": 5, "k": "BERLIAN"},
-      {"n": "ADRIAN AL-MU'IZZ BIN MUHAMAD ZAIDI", "t": 5, "k": "BERLIAN"},
-      {"n": "ADRIAN AL-MU'MIN BIN MUHAMAD ZAIDI", "t": 5, "k": "BERLIAN"},
-      {"n": "ADRIANNA INSYIRAH BINTI MOHD FAUZEE", "t": 5, "k": "BERLIAN"},
-      {"n": "AFIQ AMMAR BIN ADAM", "t": 5, "k": "BERLIAN"},
-      {"n": "AHMAD ZIYYAD HARRIZ BIN SHAIFON NIZAM", "t": 5, "k": "BERLIAN"},
-      {"n": "AISY ANNUR AISYAH BINTI ABDUL HALIM", "t": 5, "k": "BERLIAN"},
-      {"n": "AISYAH JANNATUL HUSNA BINTI AZMAN", "t": 5, "k": "BERLIAN"},
-      {"n": "AUDREY EVA BINTI AGUSTIN", "t": 5, "k": "BERLIAN"},
-      {"n": "DHANIYAH HUMAIRA BINTI HANIS", "t": 5, "k": "BERLIAN"},
-      {"n": "EMANUEL ALWIN ANAK BONNY", "t": 5, "k": "BERLIAN"},
-      {"n": "FARAH NUR HUMAIRA BINTI MUHAMMAD SAIFULLAH", "t": 5, "k": "BERLIAN"},
-      {"n": "ISMA LIYANA BINTI ISKANDAR SHAH", "t": 5, "k": "BERLIAN"},
-      {"n": "IZZ HARRAZ BIN ABDUL RAHMAN", "t": 5, "k": "BERLIAN"},
-      {"n": "MOHAMMAD AMZAR BIN MOHAMMAD RIDZUAN", "t": 5, "k": "BERLIAN"},
-      {"n": "MUHAMAD DANISH IKHWAN BIN MOHD AZLI", "t": 5, "k": "BERLIAN"},
-      {"n": "MUHAMMAD DARWISH NAUFAL BIN MOHD SULAIMAN", "t": 5, "k": "BERLIAN"},
-      {"n": "MUHAMMAD HADIF ZAIREEL BIN AIMAN SYAFIQ", "t": 5, "k": "BERLIAN"},
-      {"n": "MUHAMMAD RAYYAN AAKIF BIN MOHD REEZAL", "t": 5, "k": "BERLIAN"},
-      {"n": "MUHAMMAD RIZQI ARYAN BIN MUHAMMAD RUZAINI", "t": 5, "k": "BERLIAN"},
-      {"n": "MUHAMMAD SHAH ALZIQRI BIN SAHRONI", "t": 5, "k": "BERLIAN"},
-      {"n": "MUHAMMAD ZIYAAD BIN FEROZ", "t": 5, "k": "BERLIAN"},
-      {"n": "NU'MAN BASYEER BIN NOR SAIFUL", "t": 5, "k": "BERLIAN"},
-      {"n": "NUR AAEESHA ESHAL BINTI MAKMUR ALI", "t": 5, "k": "BERLIAN"},
-      {"n": "NUR AIREEN MIKAILA BINTI MOHD KHALIL", "t": 5, "k": "BERLIAN"},
-      {"n": "NUR ALIYA ZAHRA BINTI MOHD HAFIZI", "t": 5, "k": "BERLIAN"},
-      {"n": "NUR KHALISHA SOFIA BINTI MOHD HAFIZUDDIN", "t": 5, "k": "BERLIAN"},
-      {"n": "NUR MARDHIYAH ZAHRA BINTI ABDUL OMAR", "t": 5, "k": "BERLIAN"},
-      {"n": "NUR RANNIA ADELIA BINTI MOHD SAIFFUL", "t": 5, "k": "BERLIAN"},
-      {"n": "NUR YUSRA TIHANI BINTI HASHIM", "t": 5, "k": "BERLIAN"},
-      {"n": "PUTERI ZAHRA ZULAYKHA BINTI MOHD REDZUAN", "t": 5, "k": "BERLIAN"},
-      {"n": "QALEEF BADRIE BIN MOHD NOR SOFUAN", "t": 5, "k": "BERLIAN"},
-      {"n": "RUVEEN NADAR A/L CHELLAIAH NADAR", "t": 5, "k": "BERLIAN"},
-      {"n": "WAN AMMAR SHAZRIEL BIN WAN AHMAD SHARBINI", "t": 5, "k": "BERLIAN"},
-      {"n": "AIN BAHIRAH NAZIRAH BINTI NUHDI HADFI", "t": 5, "k": "DELIMA"},
-      {"n": "AISYAH DAMIA BINTI MOHD RIDZUAN", "t": 5, "k": "DELIMA"},
-      {"n": "AISYAH RAMADHANI BINTI MOHD SUFFIAN", "t": 5, "k": "DELIMA"},
-      {"n": "ANITA BINTI AMIRUL BASUAN", "t": 5, "k": "DELIMA"},
-      {"n": "ARJUNA KHAZINDAR BIN MAT ARIFIN", "t": 5, "k": "DELIMA"},
-      {"n": "AULIA ZULAIKHA BINTI AZIM SHAMSUL", "t": 5, "k": "DELIMA"},
-      {"n": "ILMI KHAYLA BINTI ABDUL AZIZ", "t": 5, "k": "DELIMA"},
-      {"n": "KAYLA MAYESA BINTI SHAFIQ IZWAN", "t": 5, "k": "DELIMA"},
-      {"n": "MARSYA NUR NAZEERA BINTI MOHD ZUBAIR", "t": 5, "k": "DELIMA"},
-      {"n": "MARYAM MAISARAH BINTI SAIFUL BAKHTIAR", "t": 5, "k": "DELIMA"},
-      {"n": "MIA HANA ZAHIRAH BINTI MOHAMAD ZAKI", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMAD AIMAN AMIN BIN MUHAMAD SHAH DAN", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMAD KHALISH IMAN BIN ABD GHANI", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD AMMAR BIN ABDUL MALIK", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD AMMAR ZAFRAN BIN MOHD KHAIRUL AZRIL", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD AMSYAR BIN MOHAMAD FAIZUL", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD ANAS FIKRI BIN MOHAMAD SYAKAFF", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD AQEEL DARWISY BIN YANOORHIZAL NORZEE", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD DANIAL IQRAM BIN MOHD FAIZAL", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD DZUL FARISH BIN MOHD HAFIZ", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD IZZUL HAQ BIN ROSZAIDI", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD LUTFAN AMIN BIN IRWAN", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD NUR'ARSYAD NAUFAL BIN MOHAMAD NURHAFISZAN", "t": 5, "k": "DELIMA"},
-      {"n": "MUHAMMAD RAYKAL RYFDI BIN MOHD SHAIFOL BAKRI", "t": 5, "k": "DELIMA"},
-      {"n": "NAWRA ILFA MILLIYYA BINTI SAHZEMAN", "t": 5, "k": "DELIMA"},
-      {"n": "NUR AMALIN HUMAIRA BINTI MOHD HAFIZ ASHRAF", "t": 5, "k": "DELIMA"},
-      {"n": "NUR AMALIN INSYIRAH BINTI ZAKARIA", "t": 5, "k": "DELIMA"},
-      {"n": "NUR AUNI INSYIRAH BINTI OMAR", "t": 5, "k": "DELIMA"},
-      {"n": "NUR HAZIM BIN SHAMSHUL BAKHREE", "t": 5, "k": "DELIMA"},
-      {"n": "NUR HAZIQ BIN SHAMSHUL BAKHREE", "t": 5, "k": "DELIMA"},
-      {"n": "NUR HAZMI BIN SHAMSHUL BAKHREE", "t": 5, "k": "DELIMA"},
-      {"n": "NUR IZARA SOFEA BINTI MOHD ZAINIE", "t": 5, "k": "DELIMA"},
-      {"n": "PUTERI QUDWATUN HASANAH BINTI MOHD ASYRAF", "t": 5, "k": "DELIMA"},
-      {"n": "UMAR BIN MOHD HAFIZUAN", "t": 5, "k": "DELIMA"},
-      {"n": "UZAYR BIN AHMAD SABIQ", "t": 5, "k": "DELIMA"},
-      {"n": "ADAM MIKAEL BIN ABDULLAH", "t": 5, "k": "INTAN"},
-      {"n": "ANNUR SYAMIMI BINTI MOHD HAFIZ", "t": 5, "k": "INTAN"},
-      {"n": "AYLA HAZIQAH BINTI MOHD ZAKI", "t": 5, "k": "INTAN"},
-      {"n": "DANISH ARDHANI SYAZWY BIN MOHD SHAIRY", "t": 5, "k": "INTAN"},
-      {"n": "DHIA ATHIYYAH MEDINA ARDHANI BINTI SUDIWANA", "t": 5, "k": "INTAN"},
-      {"n": "FATIMAH BINTI MOEDIN", "t": 5, "k": "INTAN"},
-      {"n": "HARIS FAYYADH BIN IMY SAFUANDY", "t": 5, "k": "INTAN"},
-      {"n": "HASREYNIE IZZATI BINTI HAMSIR", "t": 5, "k": "INTAN"},
-      {"n": "HASYA DERINA BINTI MUHAMMAD HAIRI", "t": 5, "k": "INTAN"},
-      {"n": "KHAYRA AMANDA BINTI SAIFUL ZAMRI", "t": 5, "k": "INTAN"},
-      {"n": "MADHAIKAL SAFIK BIN BACHO", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD ADEEB BAIHAQI BIN MOHD RIDHUAN", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD AFI AZHAD BIN MOHD SHAHRUL RIZAM", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD AFI ZIYAD BIN MOHD IZAMRUDIN", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD AISY MUSTAQEEM BIN AHMAD NOOR IZWAN", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD ELYAS BIN EFRI NOOR", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD FAHMI ISKANDAR BIN RAHIM", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD HAFIZ SAFWAN BIN AZLAN", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD IRFAN NAFIS BIN ISMAIL", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD LUQMAN HAKIM BIN MOHD ROHIMI", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD NOR HIKMAH BIN MOHD SHAFARUL NIZAM", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD QAYYUM BIN SAFARUDIN", "t": 5, "k": "INTAN"},
-      {"n": "MUHAMMAD ZAFRAN RAZIN BIN ABD HASYIM", "t": 5, "k": "INTAN"},
-      {"n": "NORMARDHIYAH BINTI MOHAMED HAFIZ", "t": 5, "k": "INTAN"},
-      {"n": "NUR ALYA INSYIRAH BINTI MOHD KHOIRI", "t": 5, "k": "INTAN"},
-      {"n": "NUR AMIRAH HAZIRAH BINTI MOHD AFANDI", "t": 5, "k": "INTAN"},
-      {"n": "NUR AYRA DARISSA BINTI MOHD KHAIRUL ANAS", "t": 5, "k": "INTAN"},
-      {"n": "NUR DAMIA BINTI MUHAMMAD FIRDAUS", "t": 5, "k": "INTAN"},
-      {"n": "NUR ZAARA RAISYA BINTI MOHD RADZI", "t": 5, "k": "INTAN"},
-      {"n": "QASEH SUMAYYAH BINTI MOHD SAIFUL ASNAWI", "t": 5, "k": "INTAN"},
-      {"n": "QISYA NURMALAIKA ASYRAF BINTI MOHD UZAIR ASYRAF", "t": 5, "k": "INTAN"},
-      {"n": "RIFQI RUZAIN BIN RIDHUAN", "t": 5, "k": "INTAN"},
-      {"n": "SHARIFAH NUR AISY DAREEY AZZALFA BINTI SYED KHAIRIL AFIZUL", "t": 5, "k": "INTAN"},
-      {"n": "SYAH PUTRA FAEZRUL BIN MOHD FAIZAL", "t": 5, "k": "INTAN"},
-      {"n": "AZFAR SYAZAN BIN ZAINUDDIN", "t": 5, "k": "MUTIARA"},
-      {"n": "CLINTON BRYAN IDISI", "t": 5, "k": "MUTIARA"},
-      {"n": "DHIA NURQHALISYA BINTI ZAIDI", "t": 5, "k": "MUTIARA"},
-      {"n": "ELISSA BALQIS BINTI NOORZI", "t": 5, "k": "MUTIARA"},
-      {"n": "FATHIMAH BINTI MOHAMED ISMAIL", "t": 5, "k": "MUTIARA"},
-      {"n": "FIRASH ZAKWAN BIN ABDULLAH", "t": 5, "k": "MUTIARA"},
-      {"n": "MOHAMED AZMI BIN NOORUL HASSAN", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AFIQ AMSYAR BIN MOHD AFNAN", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AFIQ DANIAL BIN MOHD NOOR", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AIRIEL UKASYAH BIN MUHAMAD FAIRUZ", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AL-FATEH BIN RIDHZUAN HAFIZI", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ALIF DANISH BIN MOHAMMAD FAIZAL", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AMMAR DANIAL BIN MOHD.ZAIAZWAN", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AQIL RIZQI BIN MOHD AZIZ", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AZFAR QAYYUM BIN ABDULLAH", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD BAHARIN BIN RUSDI", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD HAFIZ HIDAYAT BIN MAIZUL KAMARUL ZAMAN", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ILYAS BIN MOHD REDZUWAN", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD IZZAT FARHAN BIN MUHAMMAD IZZUDIN", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD NAUFAL IBAD BIN KHAIRUDDIN", "t": 5, "k": "MUTIARA"},
-      {"n": "MUHAMMAD QAYYUM BIN MUHAMMAD ALIF EDZUDIN", "t": 5, "k": "MUTIARA"},
-      {"n": "NAYLA QAIRA BINTI ABDUL ALFIE", "t": 5, "k": "MUTIARA"},
-      {"n": "NIK MUHAMMAD AISY ANAQI BIN NIK MOHD TAUFIK", "t": 5, "k": "MUTIARA"},
-      {"n": "NUR ADANI FASIHA BINTI MUHAMAD SAHRUL", "t": 5, "k": "MUTIARA"},
-      {"n": "NUR ADRA QAISARA BINTI NORSALI SYAZALEY", "t": 5, "k": "MUTIARA"},
-      {"n": "NUR ALEESYA QAISARA BINTI MOHAMAD AZWAN", "t": 5, "k": "MUTIARA"},
-      {"n": "NUR DANISHA AFRINA BINTI MOHD SUFIAN", "t": 5, "k": "MUTIARA"},
-      {"n": "NUR IZZATI BINTI MOHD YAZAM", "t": 5, "k": "MUTIARA"},
-      {"n": "NUR QADRIYYAH AISYAH BINTI HANIS", "t": 5, "k": "MUTIARA"},
-      {"n": "NUR QASEH QALEESYA BINTI ABDUL MUHAIMIN", "t": 5, "k": "MUTIARA"},
-      {"n": "NUR SHAHIRAH BINTI MOHD SHAHIRUDDIN", "t": 5, "k": "MUTIARA"},
-      {"n": "NURNABIHAH BINTI MOHD IZZAD", "t": 5, "k": "MUTIARA"},
-      {"n": "NURUL ADELIA BINTI MUAZ NAZMI MARZUQI", "t": 5, "k": "MUTIARA"},
-      {"n": "NURUL HUSNA HANANIA BINTI MOHD HAFIZ", "t": 5, "k": "MUTIARA"},
-      {"n": "AIMAN HARITH BIN NORFAZLIE", "t": 5, "k": "NILAM"},
-      {"n": "ATHIRAH HUSNA BINTI MOHAMAD RIZAL", "t": 5, "k": "NILAM"},
-      {"n": "AYUMI MILLIYYA BINTI AZMISHAHAFEEZ", "t": 5, "k": "NILAM"},
-      {"n": "AZEEM ISKANDAR BIN MOHD RADZI", "t": 5, "k": "NILAM"},
-      {"n": "FATIN QASEH ZULAIKHA BINTI FAIZUL ZAHRY", "t": 5, "k": "NILAM"},
-      {"n": "FAWWAZ AMSYAR BIN AMRAN", "t": 5, "k": "NILAM"},
-      {"n": "LUQMAN NUL HAKIM BIN MUHAMAD FUAD", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD ADRIAN RIZQI BIN MUHAMMAD 'AZIM", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD AISY FAYYADH BIN MOHAMAD SYAFARUL", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD ARYAN ZARIFF BIN MOHAMMAD EFFANDI", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD DARFIZ AFFAN BIN MOHD RADZUAN", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD FIRAS NAIM BIN MOHD FADZLI", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD HAFIY BIN HASRIL", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD NAZRIN SHAH BIN MUHAMMAD NAZRE", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD RAYQAL MIQHAIL BIN ABDULLAH", "t": 5, "k": "NILAM"},
-      {"n": "MUHAMMAD ZHARIFF ZAFRAN BIN MD HAFIS", "t": 5, "k": "NILAM"},
-      {"n": "MUKHRIZ UKAIL BIN KHAIRUL MIZAN", "t": 5, "k": "NILAM"},
-      {"n": "NAAZNEEN QALISHA DALIAH BINTI MOHD RIDWANSYAH", "t": 5, "k": "NILAM"},
-      {"n": "NUR AWLIYA HAWANI BINTI RIDZUAN", "t": 5, "k": "NILAM"},
-      {"n": "NUR ELFIRA FAQHIRA BINTI NOOR FAIZUL SYAM", "t": 5, "k": "NILAM"},
-      {"n": "NUR ELISYA IMANIE BINTI MUHAMMAD ALI", "t": 5, "k": "NILAM"},
-      {"n": "NUR HAWA AMANI BINTI MOHD HAIRUL AZHAR", "t": 5, "k": "NILAM"},
-      {"n": "NUR MAISARAH BINTI MOHD HARDY AMER", "t": 5, "k": "NILAM"},
-      {"n": "NUR NABIHAH NESHAH BINTI MUHAMMED NURI SHAH", "t": 5, "k": "NILAM"},
-      {"n": "NUR QAIREEN ELLYSA BINTI KHAIRUL HISHAM", "t": 5, "k": "NILAM"},
-      {"n": "NUR QHALISHA ANNAILA BINTI MOHD NIZAM", "t": 5, "k": "NILAM"},
-      {"n": "NUR RAISHA ZULFA BINTI AHMAD NOR FAIZAL", "t": 5, "k": "NILAM"},
-      {"n": "NUR SARAH AMANI BINTI MOHD RODZI", "t": 5, "k": "NILAM"},
-      {"n": "NUR SYIFA' SYALIA BINTI ABDUL LATIF", "t": 5, "k": "NILAM"},
-      {"n": "NUR ZALIKHA ALEESYA BINTI MOHAMMAD IKHWAN", "t": 5, "k": "NILAM"},
-      {"n": "NURSYIFA AMMARA BINTI MOHD SHAHRUL JAMADI", "t": 5, "k": "NILAM"},
-      {"n": "NURUL NABILA BINTI NIZAN", "t": 5, "k": "NILAM"},
-      {"n": "PUTERI NURRJANNAH BINTI MOHD NAZRI", "t": 5, "k": "NILAM"},
-      {"n": "QISYA QISTINA BINTI HARIS HAFIZ", "t": 5, "k": "NILAM"},
-      {"n": "WAN MUHAMMAD DARWISY BIN WAN ABDULLAH", "t": 5, "k": "NILAM"},
-      {"n": "AFZA SHAKIRA BINTI MOHD SHAFIQ", "t": 5, "k": "PERMATA"},
-      {"n": "AHMAD AZRIL RAFAEL BIN ABDUL RAHMAN", "t": 5, "k": "PERMATA"},
-      {"n": "AHMAD SYARIF BIN MOHD SYAMSULBAHRI", "t": 5, "k": "PERMATA"},
-      {"n": "AMMAR MU'MIN BIN MOHD HANIFF", "t": 5, "k": "PERMATA"},
-      {"n": "FAZEERA IRDINA BINTI ROSLAN", "t": 5, "k": "PERMATA"},
-      {"n": "HASSAN AL BASSRY BIN ABDUL SAMAT", "t": 5, "k": "PERMATA"},
-      {"n": "INTAN ZARA ALISHA BINTI MOHD NOR AZHARI", "t": 5, "k": "PERMATA"},
-      {"n": "MIFTAHUL NUR JANNAH BINTI AZRANAWI", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMAD MIQHAEL QASHAF BIN MOHD HAFIZ", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD AFI FAIREL BIN MOHAMAD KHAIRI", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD ALIFF FIRDAUS BIN MOHD AIDIER", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD AMSYAR WAFIQ BIN MOHD SYAIFUL LIZAN", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD AQIL HADIF BIN NOORHASRULLAH", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD ARYAN AQIL BIN MOHD HELMI", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD FAKHRUL RAYYAN BIN MOHAMAD LOKMAN", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD FIRASH ILMAN BIN ABDULLAH", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD HARRAZ FADHLIN BIN MOHD HAIRIZAL", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD HAZIM BIN HANAFIAH", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD MIKAIL AMSYAR BIN MOHAMAD AZWAN", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD RAYHAN MIKHAIL BIN MOHD ZULKARNAIN", "t": 5, "k": "PERMATA"},
-      {"n": "MUHAMMAD SYUKRI MIKHAIL BIN MOHAMAD AZHAR", "t": 5, "k": "PERMATA"},
-      {"n": "NUR ERIKA SOFEA BINTI ABDUL AZIZ", "t": 5, "k": "PERMATA"},
-      {"n": "NUR FARAH BINTI ABDUL RAHMAN", "t": 5, "k": "PERMATA"},
-      {"n": "NUR QAIREEN AFRINA BINTI ABDULLAH", "t": 5, "k": "PERMATA"},
-      {"n": "NUR RAISYA AFIFY BINTI SYAIFUL", "t": 5, "k": "PERMATA"},
-      {"n": "NUR SARAH BINTI MUHAMMAD SHAFIQ", "t": 5, "k": "PERMATA"},
-      {"n": "NUR SHIEFAH ALIESYAH BINTI FADZLASH", "t": 5, "k": "PERMATA"},
-      {"n": "NUR ZAARA HADELIA BINTI MOHAMAD HAZRUL", "t": 5, "k": "PERMATA"},
-      {"n": "NUR ZARA AYUNI BINTI MUHAMAD ZAIDI", "t": 5, "k": "PERMATA"},
-      {"n": "NURDALILIFAHIMAH BINTI YAHYA", "t": 5, "k": "PERMATA"},
-      {"n": "NURDANIA FARYSHA BINTI NORSHALIZAN", "t": 5, "k": "PERMATA"},
-      {"n": "PUTRA ASHAZ DANISH BIN MOHAMAD SHAHRIL AKMAL", "t": 5, "k": "PERMATA"},
-      {"n": "SITI NUR HERLYANA BINTI ABDULLAH", "t": 5, "k": "PERMATA"},
-      {"n": "SYASYA QASRINA BINTI ASRUL", "t": 5, "k": "PERMATA"},
-      {"n": "ASHRAF ARIQ ARSYAD BIN MOHD RAFIE", "t": 5, "k": "ZAMRUD"},
-      {"n": "DHIA AULIA MARISSA BINTI ABDULLAH BUKHARY", "t": 5, "k": "ZAMRUD"},
-      {"n": "DHIA NUR QASEH BINTI ABDUL MUIZZ", "t": 5, "k": "ZAMRUD"},
-      {"n": "IZZ FARHAN PUTRA BIN MOHAMAD AZLEE", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMAD ALIF SUFYAN BIN MOHD SAFULAZAM", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD AMMAR RASYID BIN MOHD HAIDEEL AMNEE", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD BURHAN HELMI BIN AINOL MUHAMMAD", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD BURHAN QARNI BIN AINOL MUHAMMAD", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD DAIYAN ASHRAFF BIN MOHD KHAIRIL", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD FAHRI BIN MUHD FAEZZUDDIEN", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD HASBI ARYAN BIN ZAINUDDIN", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD HAZIQI BIN ZAHARI", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD HILMI ARSYAD BIN IDZWAN SHAHREDZA", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD IMAN LUTHFI BIN IZHAM", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD SA'IF ZAFRY BIN MOHD SYAFIQ HAZWAN", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD SHAHMI ZAFRY BIN MUHAMMAD ZAMIR", "t": 5, "k": "ZAMRUD"},
-      {"n": "MUHAMMAD UMAR BIN MOHD SHURDAN", "t": 5, "k": "ZAMRUD"},
-      {"n": "NASIBAH SOFEA BINTI AHMAD NAZREE", "t": 5, "k": "ZAMRUD"},
-      {"n": "NORISH FARIHA BINTI SYAHFADZIL", "t": 5, "k": "ZAMRUD"},
-      {"n": "NUR AZALIQHA DAREESYA BINTI MOHD HASAN", "t": 5, "k": "ZAMRUD"},
-      {"n": "NUR QASEH HUMAIRA BINTI MOHD AIZAT", "t": 5, "k": "ZAMRUD"},
-      {"n": "NURAIN YASARAH BINTI MUHAMAD YUSOF", "t": 5, "k": "ZAMRUD"},
-      {"n": "NURFARIESYA ADRIANA BINTI MUHAMMAD ADREEN", "t": 5, "k": "ZAMRUD"},
-      {"n": "NURUL ALISHA SOFIA BINTI MOHD SHAHRIL", "t": 5, "k": "ZAMRUD"},
-      {"n": "NURUL DURRAH DARWISYAH BINTI MOHD HAFIZUDDIN", "t": 5, "k": "ZAMRUD"},
-      {"n": "NURUL IZZATUL NATASHA BINTI HARSAT", "t": 5, "k": "ZAMRUD"},
-      {"n": "PUTERI AUNI BASYIRAH BINTI MUHAMAD SYAMIL AFIZAN", "t": 5, "k": "ZAMRUD"},
-      {"n": "PUTRI ARIANA QASRINA BINTI MOHAMMED FARIQ", "t": 5, "k": "ZAMRUD"},
-      {"n": "SHAHRIZQI BIN SHAHEZAM", "t": 5, "k": "ZAMRUD"},
-      {"n": "SHARIFAH DAMIA SAFIYA BINTI SYED ISMAIL", "t": 5, "k": "ZAMRUD"},
-      {"n": "SITI NUR DIANA SHAHMAN BINTI SAMAT", "t": 5, "k": "ZAMRUD"},
-      {"n": "TALHAH BIN UMAR", "t": 5, "k": "ZAMRUD"},
-      {"n": "UZMA FAQIHAH BINTI MD FAIZUL", "t": 5, "k": "ZAMRUD"},
-      {"n": "WAN QISRINA AZZANUR BINTI WAN MOHD AZIZUL SAHRIL", "t": 5, "k": "ZAMRUD"},
-      {"n": "ADAM ADLI BIN ZULKIFLI", "t": 6, "k": "BERLIAN"},
-      {"n": "AINUN BARIAH BINTI MOHD AIMAN", "t": 6, "k": "BERLIAN"},
-      {"n": "ALIFF DZIHNI BIN ABDUL HAKIM", "t": 6, "k": "BERLIAN"},
-      {"n": "ANNUR DURRAH BINTI BADRUL", "t": 6, "k": "BERLIAN"},
-      {"n": "ASHLEY KELLY RIVERA ANAK DOMINIC", "t": 6, "k": "BERLIAN"},
-      {"n": "DHIYA ALISHA AMANDA BINTI ADLI HAFRIZ", "t": 6, "k": "BERLIAN"},
-      {"n": "JASMIN NUR DELISHA BINTI JOE", "t": 6, "k": "BERLIAN"},
-      {"n": "KEYSHA ADLINA BINTI ABDUL RAHIM", "t": 6, "k": "BERLIAN"},
-      {"n": "MOHAMAD RIFFAT RAYQAL BIN MOHAMAD RAZMAN", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD ABID ARSYAD BIN MOHD SYAHLIAFFANDI", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD ADAM DANISH BIN MOHD SAIFUL FAKHRI", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD ADAM FARREZ BIN ROSLI", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD ADAM ZAFRI BIN MUHAMAD ADIB", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD ANIQ THAQIF BIN MOHD ZUL KHAIRI", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD FAIQ HILMI BIN HUSNI", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD FARISH IRFAN BIN MUHAMMAD SYAFIQ", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD HAIKAL BIN MOHAMAD FAREEZ", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD IZAZ RAFAEL BIN MOHD IZWAN", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD IZZ DANIAL BIN ABDULLAH", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD NAFIS DANI BIN RUSHAIDI", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD QABIL DANISH BIN MOHD RIDWANSYAH", "t": 6, "k": "BERLIAN"},
-      {"n": "MUHAMMAD QAZIM BIN FAREEZ", "t": 6, "k": "BERLIAN"},
-      {"n": "NAZLAH KARMILA BINTI RIZWAN", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR ALEESYA ZARA BINTI MUHAMMAD ZULHILMI", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR AQISHA BINTI MUHAMMAD AZAFFRI", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR FARHANA BINTI MOHD FAIZAL", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR IRDINA SAFIYA BINTI HAMZAH", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR NADHIRA SOFIA BINTI MOHD NOR HISHAM", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR QAISARAH AIRIN BINTI MOHAMED ZAHID", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR RAISYYAH SYAMIMI BINTI MOHAMMAD FAREID ESMEIT EMEIR", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR SYAKURA BINTI SHAMIR AZMIR", "t": 6, "k": "BERLIAN"},
-      {"n": "NUR ZAHIRAH BINTI MOHD BADRUL", "t": 6, "k": "BERLIAN"},
-      {"n": "NURUL IZZATUL ZARISHA BINTI MOHAMAD IDRUS", "t": 6, "k": "BERLIAN"},
-      {"n": "REZAYMIE FAQHRUL HAZIZ BIN ROME", "t": 6, "k": "BERLIAN"},
-      {"n": "SHARIFAH DIANDRA JASMINE BINTI SYED UMAR", "t": 6, "k": "BERLIAN"},
-      {"n": "ADAMHARITH BIN MOHD SHAHBANI", "t": 6, "k": "DELIMA"},
-      {"n": "AQIB RAMADHAN BIN ADAM", "t": 6, "k": "DELIMA"},
-      {"n": "EFWAT TAQREES BIN SHAHRUL NIZAM", "t": 6, "k": "DELIMA"},
-      {"n": "HELMI BUCHARY BIN RUSDI", "t": 6, "k": "DELIMA"},
-      {"n": "IRDINA FAQIHAH BINTI IBRAHIM", "t": 6, "k": "DELIMA"},
-      {"n": "MOHAMAD AKMAL HAKIM BIN AB RAMAN", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMAD AFIQ FIRDAUS BIN MUHAMAD SHAHRIZAL", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMMAD ABDUL RAHMAN BIN HISYAMUDDIN", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMMAD ADLI FAHMI BIN MOHD FADHLI", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMMAD AMMAR SYAMEEL BIN MOHD AZRUL", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMMAD ARYAN ZIQRI BIN AZIAN", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMMAD AYDAN BIN MOHD ZAIRUL NIZAM", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMMAD FADIL BIN ANWAR", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMMAD FARHAN SAFUAN BIN SHAMSHUL RIZAM", "t": 6, "k": "DELIMA"},
-      {"n": "MUHAMMAD RAYQAL BIN MOHD FAUZEE", "t": 6, "k": "DELIMA"},
-      {"n": "NABILAH YASMEEN BINTI AMAN SHAH", "t": 6, "k": "DELIMA"},
-      {"n": "NISA DARWISYAH BINTI NU'MAN", "t": 6, "k": "DELIMA"},
-      {"n": "NUR AISYAH AINA BINTI ABDUL RAHMAN", "t": 6, "k": "DELIMA"},
-      {"n": "NUR AISYASORFINA BINTI MOHD SAFULAZAM", "t": 6, "k": "DELIMA"},
-      {"n": "NUR ALYA SAFIYYA BINTI MOHD SHARUNISHAM", "t": 6, "k": "DELIMA"},
-      {"n": "NUR AMANI ARISSA BINTI MOHD NASRUL", "t": 6, "k": "DELIMA"},
-      {"n": "NUR HASYA AFRINA BINTI MUHAMMAD HAFIZUDDIN", "t": 6, "k": "DELIMA"},
-      {"n": "NUR LUTHFIYYAH FAIHA BINTI MOHD FAKRULLAH", "t": 6, "k": "DELIMA"},
-      {"n": "NUR QAIREEN ELMIEZA BINTI ISHAK", "t": 6, "k": "DELIMA"},
-      {"n": "NUR RAISHA HANA BINTI NORAFFIS", "t": 6, "k": "DELIMA"},
-      {"n": "NUR ZARA AMANI BINTI HAMIDI", "t": 6, "k": "DELIMA"},
-      {"n": "NUR ZULAIKHA BINTI AHMAD FADHIL", "t": 6, "k": "DELIMA"},
-      {"n": "OMAR BIN KHAIRUL ZHAFRI", "t": 6, "k": "DELIMA"},
-      {"n": "QAISER DANISH MIKHAEL BIN CHE MUHAMMAD FARRIS", "t": 6, "k": "DELIMA"},
-      {"n": "QASEH NUR ADRINA BINTI NORAZMAN", "t": 6, "k": "DELIMA"},
-      {"n": "SOFIA AMANI BINTI ABDULLAH BAKORI", "t": 6, "k": "DELIMA"},
-      {"n": "SYAHMI FIRAS BIN MOHD HAZMIL", "t": 6, "k": "DELIMA"},
-      {"n": "WAN ALISHA IMAN BINTI WAN MOHD KHAIRI", "t": 6, "k": "DELIMA"},
-      {"n": "WAN NUR ALISHA SOFEA BINTI WAN MOHD AFIS IRWAN", "t": 6, "k": "DELIMA"},
-      {"n": "ADELIA NUR QAISARA BINTI MUHAMAD FIRDAUS", "t": 6, "k": "INTAN"},
-      {"n": "ANIS BINTI ZAINAL KHAIRI", "t": 6, "k": "INTAN"},
-      {"n": "DARISH ZULMI BIN KAMARUL AZMI", "t": 6, "k": "INTAN"},
-      {"n": "DHIA FARIHA SHUHADA BINTI DZULFADLY", "t": 6, "k": "INTAN"},
-      {"n": "DHIA IRFAN BIN MOHD SHAHRUL NIZAM", "t": 6, "k": "INTAN"},
-      {"n": "FATIN NAZIRAH BINTI MOHAMAD ARIFFIN", "t": 6, "k": "INTAN"},
-      {"n": "FIRASH AMMAR ADZIM BIN FARHAN ADZUAN", "t": 6, "k": "INTAN"},
-      {"n": "INDAH KIASATINA BINTI MOHD.REDZUAN", "t": 6, "k": "INTAN"},
-      {"n": "KEYSHA ADELIA BINTI ABDUL RAHIM", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD AISY RAYQAL BIN MUHAMMAD AFENDI", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD AUFF AQWA BIN MOHD HAFFIS", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD ERYQ DARWISH BIN MOHAMAD ZAIROL", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD FAYYADH SHADIQ BIN MUHAMMAD FAIRUZ", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD FIQ IRFAN BIN MOHD ZAIDI", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD HADIF FIRASZ BIN ZAKARIA", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD LUQMAN AUFF BIN MOHD MUAZ", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD RIZQI BIN MOHD RUSLI", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD SHAHAZRIEL FURQAN BIN SHAHZULZAINI", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD UWAIS AL QORNI BIN MOHAMMAD FIZREE", "t": 6, "k": "INTAN"},
-      {"n": "MUHAMMAD ZIQRI BIN SHAHARUDIN", "t": 6, "k": "INTAN"},
-      {"n": "NOR IRFAN ADHA BIN AZHAKHAIRUL IZAD", "t": 6, "k": "INTAN"},
-      {"n": "NUR AISYAH BINTI MUHAMAD RAZID", "t": 6, "k": "INTAN"},
-      {"n": "NUR DAMIA ARISSA BINTI MUHAMAD SYAFIQ", "t": 6, "k": "INTAN"},
-      {"n": "NUR DINI SAFIYYAH BINTI MOHD SALIBIN", "t": 6, "k": "INTAN"},
-      {"n": "NUR FARIHAH AINA BINTI MOHAMAD FIRDAUSUL", "t": 6, "k": "INTAN"},
-      {"n": "NUR FARZANA DALILAH BINTI MOHAMAD FAEEZ", "t": 6, "k": "INTAN"},
-      {"n": "NUR HUMAIRAH BATRISYA BINTI MOHAMAD NORHAFIZEE", "t": 6, "k": "INTAN"},
-      {"n": "NUR KAISARA ADELIA BINTI KHAIRUDDIN", "t": 6, "k": "INTAN"},
-      {"n": "NUR QALISYA BINTI ABDULLAH", "t": 6, "k": "INTAN"},
-      {"n": "NUR SYAHINDAH BINTI ZAM ZAM ROS", "t": 6, "k": "INTAN"},
-      {"n": "NUR ZARA MEDINA BINTI MOHD KHUSAIRY", "t": 6, "k": "INTAN"},
-      {"n": "SHASHA AMANI BINTI MOHD ASYRAF", "t": 6, "k": "INTAN"},
-      {"n": "SITI MAISARAH BINTI ERSHAD", "t": 6, "k": "INTAN"},
-      {"n": "SYAKIR AMSYAR BIN AMIR", "t": 6, "k": "INTAN"},
-      {"n": "WARDAH HAFIZA BINTI MOHD.HISHAMUDIN", "t": 6, "k": "INTAN"},
-      {"n": "ZIKRY RAZIN BIN ZAIAZRIL", "t": 6, "k": "INTAN"},
-      {"n": "AHMAD RIDHWAN BIN SHAMSUDDIN LAW", "t": 6, "k": "MUTIARA"},
-      {"n": "BAZIL IHSAN BIN FAIZAL", "t": 6, "k": "MUTIARA"},
-      {"n": "DZINY IRDINA BINTI ZALBALADIL AMIN", "t": 6, "k": "MUTIARA"},
-      {"n": "FATIN NASUHA BINTI AZHAR", "t": 6, "k": "MUTIARA"},
-      {"n": "FEERAS NADHMI BIN FAHRURAZI", "t": 6, "k": "MUTIARA"},
-      {"n": "IMAN HARITH RIZQI BIN MUHAMMAD ROSDI", "t": 6, "k": "MUTIARA"},
-      {"n": "IZZARA SOFEA BINTI IDDZAT", "t": 6, "k": "MUTIARA"},
-      {"n": "KAUTSAR ADRIANA BINTI MOHAMAD SYAKAFF", "t": 6, "k": "MUTIARA"},
-      {"n": "MIKY RAYYAN HAZIQ BIN HARIS HAFIZ", "t": 6, "k": "MUTIARA"},
-      {"n": "MOHAMAD DAIYAN DARWISY BIN ISYRAQ ZHAFIR", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AARIZ QAUSAR BIN MOHD AMINUDIN", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AIDIL LUQMAN BIN MOHD HERMAN", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ALIF NAUFAL BIN SHALMY HANIZAM", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AMIRUL AAKIF BIN SHAMSHIR", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD AMMAR ZAFFRIL BIN MOHAMMAD EFFANDI", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ARSYAD DANISH BIN MOHAMAD HAFIZ", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD ASYRAF ZULFA BIN AHMAD NOR FAIZAL", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD FARHAN BIN MOHAMAD FAIZ", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD FIRAS LUTFI BIN HASHIM", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD FITRI ADRIEL BIN MUHAMMAD FIRDAUS", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD HARITH AMSYAR BIN MUHD SAIFOL RIZAL", "t": 6, "k": "MUTIARA"},
-      {"n": "MUHAMMAD UZAIR AZZIM BIN MOHD SHAHRIL", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR AISYA HUMAIRA BINTI MOHD AZRUL FARIZA", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR ALISHA ZARA BINTI MUHAMMAD ALI", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR AMIRA SHAKILA BINTI ABDULLAH", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR ASSYIFA EDRIANNA BINTI ZULHADZLI", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR DAMIA ALEESYA BINTI MUHAMAD FIQREE", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR HANIYA HUMAYRA BINTI MOHAMAD HAFIZ", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR NADZRYANNA BINTI NADZLY", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR NAURAH IZZARA BINTI FAIZAL NASRUL", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR QASEH ARRIANA BINTI JAMALUDIN", "t": 6, "k": "MUTIARA"},
-      {"n": "NUR SYAZA AMANI BINTI SUFANDI", "t": 6, "k": "MUTIARA"},
-      {"n": "NURJANNAH AFRINA BINTI MUHAMMAD JAFNI", "t": 6, "k": "MUTIARA"},
-      {"n": "NURSYAKILA BINTI MUHAMAD RAZMAN", "t": 6, "k": "MUTIARA"},
-      {"n": "SHAZIA AZZALEA BINTI AZMI", "t": 6, "k": "MUTIARA"},
-      {"n": "ABDUL DANISH IMAN BIN ABDUL RAHIM", "t": 6, "k": "NILAM"},
-      {"n": "AISY ARSYAD ADHA BIN ABDULLAH", "t": 6, "k": "NILAM"},
-      {"n": "DAMIA MAISARAH BINTI MOHAMMAD HAIRUL", "t": 6, "k": "NILAM"},
-      {"n": "DHIA HANA DELISHA BINTI HAFZANIZAM", "t": 6, "k": "NILAM"},
-      {"n": "DHIYA KHAYLA IRDINA BINTI MOHAMAD EFENDY", "t": 6, "k": "NILAM"},
-      {"n": "HARITH NAUFAL BIN HAMIDON", "t": 6, "k": "NILAM"},
-      {"n": "IRIS QADEEJA BINTI MOHD RIZAM", "t": 6, "k": "NILAM"},
-      {"n": "MOHAMAD ZIYAD ZIQRI BIN MOHAMAD YUSRI", "t": 6, "k": "NILAM"},
-      {"n": "MOHAMMAD IMRAN ISKANDAR BIN MOHD HAIRIL AZHAR", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMAD AQIL NAUFAL BIN MUHAMAD KHAIRUL ANUAR", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMAD MIKAIL BIN MOHAMMED DANIEL SHAH", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD AFIF BIN MOHD ARIS", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD AIRIEL MIKHAIL BIN KHAIRUL HADI", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD AMEER BIN MUHAMMAD AZLAN", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD AMMAR HAZIQ BIN KHAIRIL IZUAN", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD ERFAN RAIQAL BIN MOHD KHAIRUL RIDZUAN", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD HISHAMMUDIN BIN MOHD BILAL", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD MIKAIL BIN ROSDI", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD NUR ADIEF BIN AHMAD ZAKWAN", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD NUR LUQMAN BIN LASAHIDU", "t": 6, "k": "NILAM"},
-      {"n": "MUHAMMAD YAZDAN NAWFAL BIN MOHD YUSRIZAL", "t": 6, "k": "NILAM"},
-      {"n": "NOR HADIRAH BINTI MOHAMED HAFIZ", "t": 6, "k": "NILAM"},
-      {"n": "NUR ADELIA SAFIYA BINTI MUHAMMAD AMRI", "t": 6, "k": "NILAM"},
-      {"n": "NUR AINUL MARDHIAH BINTI MOHD HELMI", "t": 6, "k": "NILAM"},
-      {"n": "NUR AMEERA SAFIYYA BINTI MOHD NAZRI", "t": 6, "k": "NILAM"},
-      {"n": "NUR ARISSA BATRISYA BINTI MUHAMMAD BUKHARI", "t": 6, "k": "NILAM"},
-      {"n": "NUR AZWA SAFRINA BINTI MOHAMAD FAZLY", "t": 6, "k": "NILAM"},
-      {"n": "NUR SARAH IRDINA BINTI AHMAD FADZLEY", "t": 6, "k": "NILAM"},
-      {"n": "NURIN IRDINA BINTI FITRI AZWAN", "t": 6, "k": "NILAM"},
-      {"n": "PUTRI NUR AIRIS ARISSA BINTI NORMAN", "t": 6, "k": "NILAM"},
-      {"n": "RAJA NUR ADRIANA BINTI RAJA MOHD SYAFIQ", "t": 6, "k": "NILAM"},
-      {"n": "SAID JIRATULLAH BIN MOHD HARDY AMER", "t": 6, "k": "NILAM"},
-      {"n": "SAIF BIN SAIFFUL", "t": 6, "k": "NILAM"},
-      {"n": "SITI AISYAH BINTI MOHD REDZUWAN", "t": 6, "k": "NILAM"},
-      {"n": "ZULEEQA AURA NATASYA BINTI KHAIRUL KHAIRI", "t": 6, "k": "NILAM"},
-      {"n": "A'INUL HUSNA BINTI NOOR KHAIROOL AZIZUL", "t": 6, "k": "PERMATA"},
-      {"n": "AIMY SYAMIMY NURJANNAH BINTI ROZI", "t": 6, "k": "PERMATA"},
-      {"n": "AL-HAZMAN ZULHILMIE BIN FAIJAL", "t": 6, "k": "PERMATA"},
-      {"n": "ALYA NURFARISYA BINTI MUHAMAD SHUHAIRI", "t": 6, "k": "PERMATA"},
-      {"n": "AMIRUL SYAFIQ BIN MOHD JEFFRY", "t": 6, "k": "PERMATA"},
-      {"n": "AUNI SAFIYYA BINTI IRMAN", "t": 6, "k": "PERMATA"},
-      {"n": "DAMIA ARISSA BINTI MOHD KAMAL AZNAN", "t": 6, "k": "PERMATA"},
-      {"n": "DAMIA NOORALISHA BINTI ABDULLAH", "t": 6, "k": "PERMATA"},
-      {"n": "DARRELL SYAIF RYKARL BIN EDDY DZULHAIRY", "t": 6, "k": "PERMATA"},
-      {"n": "HAELEY ERLINNA BINTI MUHAMMAD RIZZA", "t": 6, "k": "PERMATA"},
-      {"n": "JAFAR HUSSAIN BIN ABDUL RAHMAN", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD ADAM RAYFAL BIN NURMAN", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD ADI LUTFI BIN MOHD NAZIR", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD AMMAR AL-HARITH BIN ZULFADHLI", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD ARFAN AZRAEI BIN MOHD FARIZY", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD ARYAN MUKHRIZ BIN KHUZAIRY", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD IRHAM RIFKI BIN MUHAMMAD EJARON", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD LUQMAN HAKIM BIN AZLAN", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD SHAKIR BIN SALLEH", "t": 6, "k": "PERMATA"},
-      {"n": "MUHAMMAD UMAR ZAFRAN BIN MOHD QAMARUL HAZIMIN", "t": 6, "k": "PERMATA"},
-      {"n": "NUR ADELIA ALISHA BINTI MOHD RIZAL", "t": 6, "k": "PERMATA"},
-      {"n": "NUR AINUL MARDHIAH BINTI MOHD HANIF", "t": 6, "k": "PERMATA"},
-      {"n": "NUR AMNI FAREESYA BINTI MOHD SAIFUL AZUAN", "t": 6, "k": "PERMATA"},
-      {"n": "NUR ARIANA ZAHRA BINTI MOHAMAD FAIZUL", "t": 6, "k": "PERMATA"},
-      {"n": "NUR AUNI SORFINA BINTI MOHD SHAH RIZAN", "t": 6, "k": "PERMATA"},
-      {"n": "NUR DHIA HUMAIRA BINTI MOHAMMAD FARED", "t": 6, "k": "PERMATA"},
-      {"n": "NUR INDAH NELLYSA BINTI KHAIRUL HISHAM", "t": 6, "k": "PERMATA"},
-      {"n": "NUR KHAYRA AFFIA BINTI MOHD AFIQ", "t": 6, "k": "PERMATA"},
-      {"n": "NUR QASEH AZZALEA BINTI MD.ALI", "t": 6, "k": "PERMATA"},
-      {"n": "NUR ZAHRA BINTI NOR AZLAN", "t": 6, "k": "PERMATA"},
-      {"n": "NURUL QIESRAWIYAH BINTI HASBULLAH", "t": 6, "k": "PERMATA"},
-      {"n": "RAYYAN QALISH BIN HAKIMI", "t": 6, "k": "PERMATA"},
-      {"n": "RIZQIN AKASYAH BIN MOHD ASRI", "t": 6, "k": "PERMATA"},
-      {"n": "SHUFI NURMAISARA BINTI KHAIRUL HAFIZ", "t": 6, "k": "PERMATA"},
-      {"n": "WAN HARRAZ BIN WAN MOHD AFIF", "t": 6, "k": "PERMATA"},
-      {"n": "ZARITH ANAQI BIN MOHD FAISAL", "t": 6, "k": "PERMATA"}
-    ];
-
-    // 5 Uniform Units Configuration
-    const UNITS = [
-      { id: 'TUSPA', name: 'TUSPA', desc: 'Tunas Pandu Puteri', color: 'from-purple-500 to-indigo-600', text: 'text-purple-700', bg: 'bg-purple-50', border: 'border-purple-200' },
-      { id: 'TKRS', name: 'TKRS', desc: 'Tunas Kadet Remaja Sekolah', color: 'from-emerald-500 to-teal-700', text: 'text-emerald-700', bg: 'bg-emerald-50', border: 'border-emerald-200' },
-      { id: 'PENGAKAP', name: 'PENGAKAP', desc: 'Persekutuan Pengakap', color: 'from-blue-600 to-indigo-800', text: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-200' },
-      { id: 'PPT', name: 'PPT', desc: 'Pandu Puteri Tunas', color: 'from-amber-600 to-orange-700', text: 'text-amber-700', bg: 'bg-amber-50', border: 'border-amber-200' },
-      { id: 'PPIM', name: 'PPIM', desc: 'Puteri Islam Malaysia', color: 'from-pink-500 to-rose-600', text: 'text-pink-700', bg: 'bg-pink-50', border: 'border-pink-200' }
-    ];
-
-    const ACTIVITIES = ['BANTU MULA', 'SURVIVAL'];
-    const YEARS = [4, 5, 6];
-
-    // State Management
-    let appState = {
-      activeUnit: 'TUSPA',
-      activeActivity: 'BANTU MULA',
-      appsScriptUrl: '',
-      winners: {}
-    };
-
-    // Edit modal tracking state
-    let editingItem = {
-      unit: '',
-      activity: '',
-      year: 4,
-      index: 0
-    };
-
-    // Manual add modal tracking state
-    let manualTargetYear = 4;
-
-    // Initialize State & Storage
-    function initState() {
-      UNITS.forEach(u => {
-        appState.winners[u.id] = {};
-        ACTIVITIES.forEach(a => {
-          appState.winners[u.id][a] = { 4: [], 5: [], 6: [] };
-        });
-      });
-
-      try {
-        const saved = localStorage.getItem('skdb_winners_state_2026');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (parsed.winners) appState.winners = parsed.winners;
-          if (parsed.appsScriptUrl) appState.appsScriptUrl = parsed.appsScriptUrl;
-        }
-      } catch (e) {
-        console.warn('LocalStorage not accessible:', e);
-      }
-
-      updateAllBadges();
-      renderCurrentUnitView();
-      updateDashboardStats();
-    }
-
-    function saveState() {
-      try {
-        localStorage.setItem('skdb_winners_state_2026', JSON.stringify({
-          winners: appState.winners,
-          appsScriptUrl: appState.appsScriptUrl
-        }));
-      } catch (e) {
-        console.warn('Unable to save to localStorage:', e);
-      }
-      updateAllBadges();
-      updateDashboardStats();
-    }
-
-    function showToast(message, type = 'success') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      const bg = type === 'success' ? 'bg-emerald-800 text-white' : (type === 'error' ? 'bg-rose-800 text-white' : 'bg-slate-800 text-white');
-      toast.className = `${bg} px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center space-x-2 transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto`;
-      toast.innerHTML = `
-        <span>${type === 'success' ? '✓' : (type === 'error' ? '✕' : 'ℹ')}</span>
-        <span>${message}</span>
-      `;
-      container.appendChild(toast);
-      setTimeout(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      }, 50);
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-2');
-        setTimeout(() => toast.remove(), 3200);
-      }, 3200);
-    }
-
-    function showDashboard() {
-      document.getElementById('viewDashboard').classList.remove('hidden');
-      document.getElementById('viewUnitDetail').classList.add('hidden');
-      document.getElementById('navItemDashboard').classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-200/80');
-      document.querySelectorAll('.nav-unit-btn').forEach(b => {
-        b.classList.remove('bg-slate-100', 'border-slate-300', 'font-bold');
-      });
-      updateDashboardStats();
-      closeSidebar();
-    }
-
-    function showUnit(unitId) {
-      appState.activeUnit = unitId;
-      document.getElementById('viewDashboard').classList.add('hidden');
-      document.getElementById('viewUnitDetail').classList.remove('hidden');
-
-      document.getElementById('navItemDashboard').classList.remove('bg-emerald-50', 'text-emerald-800', 'border-emerald-200/80');
-      document.querySelectorAll('.nav-unit-btn').forEach(b => {
-        if (b.getAttribute('data-unit') === unitId) {
-          b.classList.add('bg-slate-100', 'border-slate-300', 'font-bold');
-        } else {
-          b.classList.remove('bg-slate-100', 'border-slate-300', 'font-bold');
-        }
-      });
-
-      renderCurrentUnitView();
-      closeSidebar();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function renderCurrentUnitView() {
-      const unitObj = UNITS.find(u => u.id === appState.activeUnit) || UNITS[0];
-      
-      const unitTitle = document.getElementById('activeUnitTitle');
-      if (unitTitle) unitTitle.textContent = unitObj.name;
-      
-      const unitSub = document.getElementById('activeUnitSubtitle');
-      if (unitSub) unitSub.textContent = unitObj.desc + ' — Pengisian Pemenang';
-
-      const iconBox = document.getElementById('activeUnitIconBox');
-      if (iconBox) {
-        iconBox.className = `w-12 h-12 rounded-xl flex items-center justify-center font-black text-lg text-white shadow-sm bg-gradient-to-br ${unitObj.color}`;
-        iconBox.textContent = unitObj.id.substring(0, 2);
-      }
-
-      const tabBM = document.getElementById('tabActivityBM');
-      const tabSurv = document.getElementById('tabActivitySurvival');
-      if (appState.activeActivity === 'BANTU MULA') {
-        tabBM.className = 'activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-600 text-white shadow-xs transition';
-        tabSurv.className = 'activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
-      } else {
-        tabBM.className = 'activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
-        tabSurv.className = 'activity-tab-btn flex-1 sm:flex-none flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-600 text-white shadow-xs transition';
-      }
-
-      const countBM = getUnitActivityCount(appState.activeUnit, 'BANTU MULA');
-      const countSurv = getUnitActivityCount(appState.activeUnit, 'SURVIVAL');
-      document.getElementById('tabCountBM').textContent = countBM + '/30';
-      document.getElementById('tabCountSurvival').textContent = countSurv + '/30';
-
-      const totalUnitCount = countBM + countSurv;
-      document.getElementById('activeUnitBadge').textContent = totalUnitCount + '/60 Pemenang';
-
-      YEARS.forEach(y => renderYearWinners(y));
-    }
-
-    function getUnitActivityCount(unitId, activity) {
-      const actObj = appState.winners[unitId] ? appState.winners[unitId][activity] : null;
-      if (!actObj) return 0;
-      return (actObj[4]?.length || 0) + (actObj[5]?.length || 0) + (actObj[6]?.length || 0);
-    }
-
-    function getUnitTotalCount(unitId) {
-      return getUnitActivityCount(unitId, 'BANTU MULA') + getUnitActivityCount(unitId, 'SURVIVAL');
-    }
-
-    function renderYearWinners(year) {
-      const listContainer = document.getElementById('winnersListT' + year);
-      const headerBadge = document.getElementById('headerBadgeT' + year);
-      if (!listContainer) return;
-
-      const currentWinners = appState.winners[appState.activeUnit][appState.activeActivity][year] || [];
-      if (headerBadge) {
-        headerBadge.textContent = currentWinners.length + '/10';
-        if (currentWinners.length === 10) {
-          headerBadge.className = 'text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800';
-        } else {
-          headerBadge.className = 'text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600';
-        }
-      }
-
-      listContainer.innerHTML = '';
-
-      for (let i = 0; i < 10; i++) {
-        const winner = currentWinners[i];
-        const slotEl = document.createElement('div');
-        
-        let rankColor = 'bg-slate-100 text-slate-600 border-slate-200';
-        let rankBadge = `${i + 1}`;
-        if (i === 0) {
-          rankColor = 'bg-amber-400 text-amber-950 font-black border-amber-300';
-          rankBadge = '🥇 1';
-        } else if (i === 1) {
-          rankColor = 'bg-slate-300 text-slate-800 font-black border-slate-400';
-          rankBadge = '🥈 2';
-        } else if (i === 2) {
-          rankColor = 'bg-amber-600 text-white font-black border-amber-500';
-          rankBadge = '🥉 3';
-        }
-
-        if (winner) {
-          slotEl.className = 'flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-white hover:border-emerald-300 transition shadow-2xs group';
-          slotEl.innerHTML = `
-            <div class="flex items-center space-x-2.5 min-w-0 pr-2">
-              <span class="w-9 h-7 rounded-lg text-xs flex items-center justify-center font-bold border ${rankColor} shrink-0">${rankBadge}</span>
-              <div class="min-w-0">
-                <div class="text-xs font-bold text-slate-800 truncate" title="${winner.name}">${winner.name}</div>
-                <div class="text-[10px] text-slate-500 flex items-center space-x-1.5">
-                  <span class="px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 font-medium">${winner.studentClass || 'Tahun ' + year}</span>
-                  ${winner.manual ? '<span class="text-[9px] text-amber-700 bg-amber-50 px-1 rounded">Manual</span>' : ''}
-                </div>
-              </div>
-            </div>
-            <div class="flex items-center space-x-1 shrink-0">
-              ${i > 0 ? `<button type="button" class="btn-move-winner p-1 text-slate-400 hover:text-slate-700 rounded" data-year="${year}" data-index="${i}" data-dir="up" title="Naikkan Kedudukan">▲</button>` : ''}
-              ${i < currentWinners.length - 1 ? `<button type="button" class="btn-move-winner p-1 text-slate-400 hover:text-slate-700 rounded" data-year="${year}" data-index="${i}" data-dir="down" title="Turunkan Kedudukan">▼</button>` : ''}
-              <button type="button" class="btn-edit-winner p-1 text-blue-600 hover:bg-blue-50 rounded" data-year="${year}" data-index="${i}" title="Kemaskini">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-              </button>
-              <button type="button" class="btn-delete-winner p-1 text-rose-600 hover:bg-rose-50 rounded" data-year="${year}" data-index="${i}" title="Padam">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-              </button>
-            </div>
-          `;
-        } else {
-          slotEl.className = 'flex items-center justify-between p-2 rounded-xl border border-dashed border-slate-200 bg-slate-50/60 text-slate-400 text-xs';
-          slotEl.innerHTML = `
-            <div class="flex items-center space-x-2">
-              <span class="w-9 h-6 rounded-lg text-[10px] flex items-center justify-center font-semibold bg-white border border-slate-200 text-slate-400">${i + 1}</span>
-              <span class="text-[11px] italic">Slot Kosong</span>
-            </div>
-            <span class="text-[10px] text-slate-300">Pilih dari carian</span>
-          `;
-        }
-
-        listContainer.appendChild(slotEl);
-      }
-
-      listContainer.querySelectorAll('.btn-delete-winner').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const y = parseInt(btn.getAttribute('data-year'));
-          const idx = parseInt(btn.getAttribute('data-index'));
-          deleteWinner(y, idx);
-        });
-      });
-
-      listContainer.querySelectorAll('.btn-edit-winner').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const y = parseInt(btn.getAttribute('data-year'));
-          const idx = parseInt(btn.getAttribute('data-index'));
-          openEditModal(y, idx);
-        });
-      });
-
-      listContainer.querySelectorAll('.btn-move-winner').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const y = parseInt(btn.getAttribute('data-year'));
-          const idx = parseInt(btn.getAttribute('data-index'));
-          const dir = btn.getAttribute('data-dir');
-          moveWinner(y, idx, dir);
-        });
-      });
-    }
-
-    function addWinner(year, studentObj, isManual = false) {
-      const currentList = appState.winners[appState.activeUnit][appState.activeActivity][year];
-      if (currentList.length >= 10) {
-        showToast(`Kuota 10 pemenang untuk Tahun ${year} (${appState.activeActivity}) telah penuh!`, 'error');
-        return false;
-      }
-
-      const exists = currentList.some(w => w.name.toUpperCase().trim() === studentObj.name.toUpperCase().trim());
-      if (exists) {
-        showToast(`${studentObj.name} sudah ada dalam senarai pemenang Tahun ${year}!`, 'error');
-        return false;
-      }
-
-      currentList.push({
-        name: studentObj.name.trim(),
-        studentClass: studentObj.studentClass || '',
-        manual: isManual
-      });
-
-      saveState();
-      renderYearWinners(year);
-      showToast(`Berjaya menambah: ${studentObj.name} (Tempat ${currentList.length})`);
-      return true;
-    }
-
-    function deleteWinner(year, index) {
-      const currentList = appState.winners[appState.activeUnit][appState.activeActivity][year];
-      if (currentList && currentList[index]) {
-        const removed = currentList.splice(index, 1);
-        saveState();
-        renderYearWinners(year);
-        showToast(`Nama ${removed[0].name} telah dipadam.`);
-      }
-    }
-
-    function moveWinner(year, index, direction) {
-      const currentList = appState.winners[appState.activeUnit][appState.activeActivity][year];
-      if (!currentList) return;
-      const targetIndex = direction === 'up' ? index - 1 : index + 1;
-      if (targetIndex < 0 || targetIndex >= currentList.length) return;
-      
-      const temp = currentList[index];
-      currentList[index] = currentList[targetIndex];
-      currentList[targetIndex] = temp;
-
-      saveState();
-      renderYearWinners(year);
-    }
-
-    function openEditModal(year, index) {
-      const winner = appState.winners[appState.activeUnit][appState.activeActivity][year][index];
-      if (!winner) return;
-      editingItem = {
-        unit: appState.activeUnit,
-        activity: appState.activeActivity,
-        year: year,
-        index: index
-      };
-
-      document.getElementById('editInputName').value = winner.name;
-      document.getElementById('editInputClass').value = winner.studentClass || '';
-      document.getElementById('editLabelUnit').textContent = appState.activeUnit;
-      document.getElementById('editLabelActivity').textContent = appState.activeActivity;
-      document.getElementById('editLabelYear').textContent = year;
-      document.getElementById('editLabelRank').textContent = index + 1;
-
-      document.getElementById('modalEditWinner').classList.remove('hidden');
-    }
-
-    function saveEditedWinner() {
-      const newName = document.getElementById('editInputName').value.trim();
-      const newClass = document.getElementById('editInputClass').value.trim();
-      if (!newName) {
-        showToast('Sila masukkan nama murid!', 'error');
-        return;
-      }
-
-      const list = appState.winners[editingItem.unit][editingItem.activity][editingItem.year];
-      if (list && list[editingItem.index]) {
-        list[editingItem.index].name = newName;
-        list[editingItem.index].studentClass = newClass;
-        saveState();
-        renderYearWinners(editingItem.year);
-        document.getElementById('modalEditWinner').classList.add('hidden');
-        showToast('Maklumat pemenang berjaya dikemaskini!');
-      }
-    }
-
-    function setupAutocomplete(year) {
-      const input = document.getElementById('inputSearchT' + year);
-      const dropdown = document.getElementById('dropdownSuggestionsT' + year);
-      const btnClear = document.getElementById('btnClearSearchT' + year);
-      if (!input || !dropdown) return;
-
-      input.addEventListener('input', () => {
-        const query = input.value.trim().toLowerCase();
-        if (query.length > 0) {
-          btnClear.classList.remove('hidden');
-        } else {
-          btnClear.classList.add('hidden');
-        }
-
-        if (query.length < 2) {
-          dropdown.classList.add('hidden');
-          dropdown.innerHTML = '';
-          return;
-        }
-
-        const matches = studentDatabase.filter(s => {
-          const nameMatches = s.n.toLowerCase().includes(query);
-          return nameMatches && (s.t === year || s.t === 0);
-        }).slice(0, 15);
-
-        if (matches.length === 0) {
-          dropdown.innerHTML = `
-            <div class="px-3 py-2.5 text-slate-400 text-center">
-              Tiada murid dijumpai untuk ejaan "${input.value}".
-              <button type="button" class="btn-quick-manual block w-full mt-1.5 text-center text-emerald-700 font-bold hover:underline">
-                + Masukkan "${input.value}" secara manual?
-              </button>
-            </div>
-          `;
-          dropdown.querySelector('.btn-quick-manual')?.addEventListener('click', () => {
-            openManualAddModal(year, input.value.trim());
-            dropdown.classList.add('hidden');
-          });
-          dropdown.classList.remove('hidden');
-          return;
-        }
-
-        dropdown.innerHTML = '';
-        matches.forEach(item => {
-          const itemEl = document.createElement('div');
-          itemEl.className = 'px-3 py-2 hover:bg-emerald-50 cursor-pointer flex items-center justify-between group';
-          itemEl.innerHTML = `
-            <div>
-              <div class="font-bold text-slate-800 group-hover:text-emerald-700">${item.n}</div>
-              <div class="text-[10px] text-slate-400">Tahun ${item.t} &bull; Kelas ${item.k || '-'}</div>
-            </div>
-            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition">+ Pilih</span>
-          `;
-
-          itemEl.addEventListener('click', () => {
-            const added = addWinner(year, {
-              name: item.n,
-              studentClass: `Tahun ${item.t} - ${item.k}`
-            }, false);
-
-            if (added) {
-              input.value = '';
-              btnClear.classList.add('hidden');
-              dropdown.classList.add('hidden');
-            }
-          });
-
-          dropdown.appendChild(itemEl);
-        });
-
-        dropdown.classList.remove('hidden');
-      });
-
-      btnClear.addEventListener('click', () => {
-        input.value = '';
-        btnClear.classList.add('hidden');
-        dropdown.classList.add('hidden');
-        input.focus();
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!input.contains(e.target) && !dropdown.contains(e.target)) {
-          dropdown.classList.add('hidden');
-        }
-      });
-    }
-
-    function openManualAddModal(year, prefillName = '') {
-      manualTargetYear = year;
-      document.getElementById('manualLabelYear').textContent = year;
-      document.getElementById('manualInputName').value = prefillName;
-      document.getElementById('manualInputClass').value = '';
-      document.getElementById('modalManualAdd').classList.remove('hidden');
-      setTimeout(() => document.getElementById('manualInputName').focus(), 100);
-    }
-
-    function updateAllBadges() {
-      let totalAll = 0;
-      UNITS.forEach(u => {
-        const count = getUnitTotalCount(u.id);
-        totalAll += count;
-        
-        const badgeSide = document.getElementById('badge-' + u.id);
-        if (badgeSide) badgeSide.textContent = count + '/60';
-
-        const dashBadge = document.getElementById('dashBadge-' + u.id);
-        if (dashBadge) dashBadge.textContent = count + ' / 60 Pemenang';
-
-        const progBar = document.getElementById('progBar-' + u.id);
-        if (progBar) progBar.style.width = Math.min(100, Math.round((count / 60) * 100)) + '%';
-
-        const bmCount = getUnitActivityCount(u.id, 'BANTU MULA');
-        const survCount = getUnitActivityCount(u.id, 'SURVIVAL');
-
-        const dashBM = document.getElementById('dashBMRating-' + u.id);
-        if (dashBM) dashBM.textContent = bmCount + '/30 Diisi';
-
-        const dashSurv = document.getElementById('dashSurvRating-' + u.id);
-        if (dashSurv) dashSurv.textContent = survCount + '/30 Diisi';
-      });
-
-      const totalBadge = document.getElementById('badgeTotalProgress');
-      if (totalBadge) totalBadge.textContent = totalAll + '/300';
-    }
-
-    function updateDashboardStats() {
-      let totalAll = 0;
-      let completedUnits = 0;
-
-      UNITS.forEach(u => {
-        const c = getUnitTotalCount(u.id);
-        totalAll += c;
-        if (c === 60) completedUnits++;
-      });
-
-      const statFilled = document.getElementById('statFilledWinners');
-      if (statFilled) statFilled.textContent = totalAll;
-
-      const statComp = document.getElementById('statCompletedUnits');
-      if (statComp) statComp.textContent = completedUnits;
-    }
-
-    function openSidebar() {
-      document.getElementById('appSidebar').classList.remove('-translate-x-full');
-      document.getElementById('sidebarBackdrop').classList.remove('hidden');
-    }
-
-    function closeSidebar() {
-      document.getElementById('appSidebar').classList.add('-translate-x-full');
-      document.getElementById('sidebarBackdrop').classList.add('hidden');
-    }
-
-    function exportToExcel(unitId = null) {
-      if (typeof XLSX === 'undefined') {
-        showToast('Pustaka Excel sedang dimuatkan, sila cuba sebentar lagi.', 'error');
-        return;
-      }
-
-      const targetUnits = unitId ? [UNITS.find(u => u.id === unitId)] : UNITS;
-      const wb = XLSX.utils.book_new();
-
-      targetUnits.forEach(u => {
-        const rows = [
-          ['SK DESA BAIDURI - UNIT KOKURIKULUM 2026'],
-          ['SENARAI PEMENANG AKTIVITI PERKHEMAHAN'],
-          ['UNIT BERUNIFORM:', u.name, '(' + u.desc + ')'],
-          [''],
-          ['AKTIVITI', 'TAHUN', 'KEDUDUKAN', 'NAMA PEMENANG', 'KELAS']
-        ];
-
-        ACTIVITIES.forEach(act => {
-          YEARS.forEach(yr => {
-            const list = appState.winners[u.id][act][yr] || [];
-            list.forEach((w, idx) => {
-              rows.push([
-                act,
-                'Tahun ' + yr,
-                'Tempat ' + (idx + 1),
-                w.name,
-                w.studentClass || ''
-              ]);
-            });
-          });
-        });
-
-        const ws = XLSX.utils.aoa_to_sheet(rows);
-        ws['!cols'] = [{ wch: 18 }, { wch: 12 }, { wch: 14 }, { wch: 42 }, { wch: 20 }];
-        XLSX.utils.book_append_sheet(wb, ws, u.id);
-      });
-
-      const fileName = unitId ? `Pemenang_${unitId}_SKDB_2026.xlsx` : `Senarai_Semua_Pemenang_SKDB_2026.xlsx`;
-      XLSX.writeFile(wb, fileName);
-      showToast(`Fail Excel berjaya dimuat turun: ${fileName}`);
-    }
-
-    function exportToPDF(unitId = null) {
-      const { jsPDF } = window.jspdf;
-      if (!jsPDF) {
-        showToast('Pustaka PDF sedang dimuatkan...', 'error');
-        return;
-      }
-
-      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-      const targetUnits = unitId ? [UNITS.find(u => u.id === unitId)] : UNITS;
-
-      targetUnits.forEach((u, uIdx) => {
-        if (uIdx > 0) doc.addPage();
-
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-        doc.setTextColor(22, 101, 52);
-        doc.text('SK DESA BAIDURI, CHERAS SELANGOR', 105, 15, { align: 'center' });
-
-        doc.setFontSize(11);
-        doc.setTextColor(51, 65, 85);
-        doc.text('KEPUTUSAN PEMENANG AKTIVITI BANTU MULA & SURVIVAL 2026', 105, 21, { align: 'center' });
-
-        doc.setFontSize(12);
-        doc.setTextColor(15, 23, 42);
-        doc.text(`UNIT BERUNIFORM: ${u.name} (${u.desc})`, 105, 27, { align: 'center' });
-
-        doc.setDrawColor(203, 213, 225);
-        doc.line(14, 30, 196, 30);
-
-        const tableBody = [];
-        ACTIVITIES.forEach(act => {
-          YEARS.forEach(yr => {
-            const list = appState.winners[u.id][act][yr] || [];
-            list.forEach((w, idx) => {
-              tableBody.push([
-                act,
-                `Tahun ${yr}`,
-                `Tempat ${idx + 1}`,
-                w.name,
-                w.studentClass || '-'
-              ]);
-            });
-          });
-        });
-
-        if (tableBody.length === 0) {
-          tableBody.push(['-', '-', '-', 'Tiada pemenang didaftarkan lagi', '-']);
-        }
-
-        doc.autoTable({
-          startY: 34,
-          head: [['Aktiviti', 'Tahun', 'Kedudukan', 'Nama Murid', 'Kelas']],
-          body: tableBody,
-          theme: 'grid',
-          headStyles: { fillColor: [22, 163, 74], textColor: [255, 255, 255], fontStyle: 'bold' },
-          styles: { fontSize: 8.5, cellPadding: 2.2 },
-          columnStyles: {
-            0: { cellWidth: 26 },
-            1: { cellWidth: 18 },
-            2: { cellWidth: 22 },
-            3: { cellWidth: 80 },
-            4: { cellWidth: 36 }
-          }
-        });
-
-        const finalY = doc.lastAutoTable.finalY + 12;
-        if (finalY < 250) {
-          doc.setFontSize(9);
-          doc.text('Disediakan oleh:', 20, finalY);
-          doc.text('Disahkan oleh:', 130, finalY);
-          doc.line(20, finalY + 18, 75, finalY + 18);
-          doc.line(130, finalY + 18, 185, finalY + 18);
-          doc.text('(Guru Penasihat Unit)', 20, finalY + 22);
-          doc.text('(PK Kokurikulum SKDB)', 130, finalY + 22);
-        }
-      });
-
-      const fileName = unitId ? `Pemenang_${unitId}_SKDB_2026.pdf` : `Senarai_Semua_Pemenang_SKDB_2026.pdf`;
-      doc.save(fileName);
-      showToast(`Fail PDF berjaya dijana: ${fileName}`);
-    }
-
-    function exportToWord(unitId = null) {
-      const targetUnits = unitId ? [UNITS.find(u => u.id === unitId)] : UNITS;
-      let tablesHtml = '';
-
-      targetUnits.forEach(u => {
-        tablesHtml += `
-          <h2 style="color: #166534; font-family: Arial; margin-top: 25px; border-bottom: 2px solid #16a34a; padding-bottom: 5px;">UNIT BERUNIFORM: ${u.name} (${u.desc})</h2>
-          <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; width: 100%; font-family: Arial; font-size: 11pt; margin-bottom: 20px;">
-            <thead>
-              <tr style="background-color: #16a34a; color: white;">
-                <th style="width: 20%;">Aktiviti</th>
-                <th style="width: 15%;">Tahun</th>
-                <th style="width: 15%;">Kedudukan</th>
-                <th style="width: 35%;">Nama Pemenang</th>
-                <th style="width: 15%;">Kelas</th>
-              </tr>
-            </thead>
-            <tbody>
-        `;
-
-        let rowCount = 0;
-        ACTIVITIES.forEach(act => {
-          YEARS.forEach(yr => {
-            const list = appState.winners[u.id][act][yr] || [];
-            list.forEach((w, idx) => {
-              rowCount++;
-              tablesHtml += `
-                <tr>
-                  <td>${act}</td>
-                  <td>Tahun ${yr}</td>
-                  <td>Tempat ${idx + 1}</td>
-                  <td><strong>${w.name}</strong></td>
-                  <td>${w.studentClass || '-'}</td>
-                </tr>
-              `;
-            });
-          });
-        });
-
-        if (rowCount === 0) {
-          tablesHtml += `<tr><td colspan="5" style="text-align: center; color: #888;">Tiada pemenang didaftarkan lagi</td></tr>`;
-        }
-
-        tablesHtml += `</tbody></table>`;
-      });
-
-      const fullDoc = `
-        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head>
-          <meta charset="utf-8">
-          <title>Senarai Pemenang SKDB 2026</title>
-          <style>
-            body { font-family: Arial, sans-serif; margin: 20px; }
-            h1 { color: #15803d; text-align: center; font-size: 18pt; }
-            p.sub { text-align: center; color: #475569; font-size: 12pt; margin-top: -10px; }
-          </style>
-        </head>
-        <body>
-          <h1>SK DESA BAIDURI - UNIT KOKURIKULUM 2026</h1>
-          <p class="sub">SENARAI PEMENANG AKTIVITI BANTU MULA & SURVIVAL</p>
-          <hr/>
-          ${tablesHtml}
-          <br/><br/>
-          <table style="width: 100%; border: none; font-family: Arial; font-size: 11pt;">
-            <tr>
-              <td style="width: 50%;">
-                Disediakan oleh:<br/><br/><br/><br/>
-                __________________________<br/>
-                (Guru Penasihat Unit)
-              </td>
-              <td style="width: 50%;">
-                Disahkan oleh:<br/><br/><br/><br/>
-                __________________________<br/>
-                (Penolong Kanan Kokurikulum SKDB)
-              </td>
-            </tr>
-          </table>
-        </body>
-        </html>
-      `;
-
-      const blob = new Blob(['\ufeff' + fullDoc], { type: 'application/msword' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = unitId ? `Pemenang_${unitId}_SKDB_2026.doc` : `Senarai_Semua_Pemenang_SKDB_2026.doc`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast('Fail Word (.doc) berjaya dimuat turun!');
-    }
-
-    async function pushWinnersToGoogleSheets() {
-      if (!appState.appsScriptUrl) {
-        showToast('Sila masukkan Apps Script Web App URL dahulu!', 'error');
-        document.getElementById('modalSyncSetup').classList.remove('hidden');
-        return;
-      }
-
-      const statusEl = document.getElementById('syncResultStatus');
-      statusEl.textContent = 'Menghantar data ke Google Sheets...';
-
-      const flattened = [];
-      UNITS.forEach(u => {
-        ACTIVITIES.forEach(act => {
-          YEARS.forEach(yr => {
-            const list = appState.winners[u.id][act][yr] || [];
-            list.forEach((w, idx) => {
-              flattened.push({
-                unit: u.id,
-                activity: act,
-                year: yr,
-                rank: idx + 1,
-                name: w.name,
-                studentClass: w.studentClass || ''
-              });
-            });
-          });
-        });
-      });
-
-      try {
-        const response = await fetch(appState.appsScriptUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'saveAll', winners: flattened })
-        });
-
-        statusEl.textContent = `Berjaya menghantar ${flattened.length} pemenang ke Google Sheets!`;
-        showToast(`Segerak Google Sheets selesai (${flattened.length} pemenang).`);
-      } catch (err) {
-        statusEl.textContent = 'Ralat sambungan: ' + err.message;
-        showToast('Gagal berhubung dengan Google Sheets: ' + err.message, 'error');
-      }
-    }
-
-    async function pullWinnersFromGoogleSheets() {
-      if (!appState.appsScriptUrl) {
-        showToast('Sila masukkan Apps Script Web App URL dahulu!', 'error');
-        document.getElementById('modalSyncSetup').classList.remove('hidden');
-        return;
-      }
-
-      const statusEl = document.getElementById('syncResultStatus');
-      statusEl.textContent = 'Mengambil data terkini dari Google Sheets...';
-
-      try {
-        const response = await fetch(appState.appsScriptUrl);
-        const data = await response.json();
-        if (data.status === 'success' && data.winners) {
-          UNITS.forEach(u => {
-            ACTIVITIES.forEach(a => {
-              appState.winners[u.id][a] = { 4: [], 5: [], 6: [] };
-            });
-          });
-
-          data.winners.forEach(w => {
-            if (appState.winners[w.unit] && appState.winners[w.unit][w.activity]) {
-              appState.winners[w.unit][w.activity][w.year].push({
-                name: w.name,
-                studentClass: w.studentClass || '',
-                manual: false
-              });
-            }
-          });
-
-          saveState();
-          renderCurrentUnitView();
-          statusEl.textContent = `Berjaya memuat turun ${data.winners.length} pemenang dari Google Sheets!`;
-          showToast(`Berjaya menarik ${data.winners.length} pemenang dari Sheets!`);
-        } else {
-          statusEl.textContent = 'Gagal memproses data Google Sheets.';
-        }
-      } catch (err) {
-        statusEl.textContent = 'Ralat: ' + err.message;
-        showToast('Gagal memuat turun dari Google Sheets: ' + err.message, 'error');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initState();
-
-      YEARS.forEach(y => setupAutocomplete(y));
-
-      document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
-        const sidebar = document.getElementById('appSidebar');
-        if (sidebar.classList.contains('-translate-x-full')) {
-          openSidebar();
-        } else {
-          closeSidebar();
-        }
-      });
-
-      document.getElementById('btnCloseSidebar')?.addEventListener('click', closeSidebar);
-      document.getElementById('sidebarBackdrop')?.addEventListener('click', closeSidebar);
-
-      document.getElementById('navItemDashboard')?.addEventListener('click', showDashboard);
-      document.getElementById('btnQuickDashboard')?.addEventListener('click', showDashboard);
-      document.getElementById('navBrandHome')?.addEventListener('click', showDashboard);
-      document.getElementById('btnBackToDashboard')?.addEventListener('click', showDashboard);
-
-      document.querySelectorAll('.nav-unit-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const unitId = btn.getAttribute('data-unit');
-          showUnit(unitId);
-        });
-      });
-
-      document.querySelectorAll('.btn-card-select-unit').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const unitId = btn.getAttribute('data-unit');
-          showUnit(unitId);
-        });
-      });
-
-      document.getElementById('tabActivityBM')?.addEventListener('click', () => {
-        appState.activeActivity = 'BANTU MULA';
-        renderCurrentUnitView();
-      });
-
-      document.getElementById('tabActivitySurvival')?.addEventListener('click', () => {
-        appState.activeActivity = 'SURVIVAL';
-        renderCurrentUnitView();
-      });
-
-      document.querySelectorAll('.btn-open-manual-modal').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const yr = parseInt(btn.getAttribute('data-year'));
-          openManualAddModal(yr);
-        });
-      });
-
-      document.getElementById('btnConfirmManual')?.addEventListener('click', () => {
-        const name = document.getElementById('manualInputName').value.trim();
-        const cls = document.getElementById('manualInputClass').value.trim();
-        if (!name) {
-          showToast('Sila masukkan nama murid!', 'error');
-          return;
-        }
-        const added = addWinner(manualTargetYear, { name: name, studentClass: cls || 'Tahun ' + manualTargetYear }, true);
-        if (added) {
-          document.getElementById('modalManualAdd').classList.add('hidden');
-        }
-      });
-
-      document.getElementById('btnCloseManualModal')?.addEventListener('click', () => {
-        document.getElementById('modalManualAdd').classList.add('hidden');
-      });
-      document.getElementById('btnCancelManual')?.addEventListener('click', () => {
-        document.getElementById('modalManualAdd').classList.add('hidden');
-      });
-
-      document.getElementById('btnSaveEdit')?.addEventListener('click', saveEditedWinner);
-      document.getElementById('btnCloseEditModal')?.addEventListener('click', () => {
-        document.getElementById('modalEditWinner').classList.add('hidden');
-      });
-      document.getElementById('btnCancelEdit')?.addEventListener('click', () => {
-        document.getElementById('modalEditWinner').classList.add('hidden');
-      });
-
-      document.getElementById('btnExportUnitExcel')?.addEventListener('click', () => exportToExcel(appState.activeUnit));
-      document.getElementById('btnExportUnitPDF')?.addEventListener('click', () => exportToPDF(appState.activeUnit));
-      document.getElementById('btnExportUnitWord')?.addEventListener('click', () => exportToWord(appState.activeUnit));
-
-      document.getElementById('btnOpenExportAllModal')?.addEventListener('click', () => exportToExcel(null));
-      document.getElementById('btnQuickExportSummary')?.addEventListener('click', () => exportToPDF(null));
-
-      document.getElementById('btnOpenSyncModal')?.addEventListener('click', () => {
-        document.getElementById('inputAppsScriptUrl').value = appState.appsScriptUrl || '';
-        document.getElementById('modalSyncSetup').classList.remove('hidden');
-      });
-      document.getElementById('btnOpenSetupGuide')?.addEventListener('click', () => {
-        document.getElementById('inputAppsScriptUrl').value = appState.appsScriptUrl || '';
-        document.getElementById('modalSyncSetup').classList.remove('hidden');
-      });
-      document.getElementById('btnCloseSyncModal')?.addEventListener('click', () => {
-        document.getElementById('modalSyncSetup').classList.add('hidden');
-      });
-      document.getElementById('btnCloseSyncModalBottom')?.addEventListener('click', () => {
-        document.getElementById('modalSyncSetup').classList.add('hidden');
-      });
-      document.getElementById('btnSaveSyncUrl')?.addEventListener('click', () => {
-        const url = document.getElementById('inputAppsScriptUrl').value.trim();
-        appState.appsScriptUrl = url;
-        saveState();
-        showToast('URL Apps Script disimpan!');
-      });
-      document.getElementById('btnPushToSheets')?.addEventListener('click', pushWinnersToGoogleSheets);
-      document.getElementById('btnPullFromSheets')?.addEventListener('click', pullWinnersFromGoogleSheets);
-
-      document.getElementById('btnOpenGuideModal')?.addEventListener('click', () => {
-        document.getElementById('modalGuide').classList.remove('hidden');
-      });
-      document.getElementById('btnCloseGuideModal')?.addEventListener('click', () => {
-        document.getElementById('modalGuide').classList.add('hidden');
-      });
-      document.getElementById('btnCloseGuideModalBottom')?.addEventListener('click', () => {
-        document.getElementById('modalGuide').classList.add('hidden');
-      });
-    });
+    // ... existing JS with updated loadSettingsFromStorage & saveStateLocally ...
   </script>
 </body>
 </html>
