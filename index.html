@@ -877,25 +877,6 @@
         }
       }, 5000);
     }
-      } catch(e) {}
-
-      applyWatermarkOpacity(appState.watermarkOpacity);
-      updateAllUI();
-      autoPullFromSheetsSilent();
-    }
-
-    function saveState() {
-      try {
-        localStorage.setItem('skdb_winners_state_v5', JSON.stringify({
-          winners: appState.winners,
-          unitsConfig: unitsConfig,
-          activitiesConfig: activitiesConfig,
-          watermarkOpacity: appState.watermarkOpacity
-        }));
-      } catch(e) {}
-      updateAllUI();
-      autoPushToSheetsAsync();
-    }
 
     function applyWatermarkOpacity(opacity) {
       appState.watermarkOpacity = opacity;
